@@ -10,6 +10,7 @@ import { deepseekChat, deepseekModelName } from "@/lib/deepseek";
 import { matchOpportunities, getOpportunity, catalogStats } from "@/lib/opportunities";
 import { generateRoadmapWithAI } from "@/lib/roadmap-ai";
 import highSchools from "@/data/high-schools.json";
+import schoolCatalog from "@/data/schools.json";
 
 export const runtime="nodejs";
 const ok=data=>NextResponse.json(data);
@@ -26,6 +27,12 @@ function resolveHighSchool(profile){
   const fuzzy=exact||highSchools.find(h=>names(h).some(n=>{const x=normalize(n);return x.length>=2&&(x.includes(q)||q.includes(x));}));
   return fuzzy?{...profile,high_school_id:fuzzy.id,high_school_name:fuzzy.name,school_country:fuzzy.country}:profile;
 }
+
+function enrichPlan(plan){
+  const s=schoolCatalog.find(x=>x.name===plan.school_name);
+  return {...plan,country:plan.country||s?.country||null,rank:Number.isFinite(Number(plan.rank))?Number(plan.rank):(s?.rank||999)};
+}
+
 async function aiAssessment(profile,major){
   if(!process.env.DEEPSEEK_API_KEY)return {assessment:null,status:"disabled",error:"DEEPSEEK_API_KEY is not configured."};
   try{return {assessment:await evaluateProfileWithAI(profile,major),status:"ok",error:null}}
@@ -39,6 +46,9 @@ export async function POST(request){
     if(action==="me")return ok({user:{id:user.id,email:user.email},is_admin:admin,model:deepseekModelName(),catalog:{high_schools:highSchools.length,...catalogStats()}});
     if(action==="load_profile"){
       const {data}=await supabase.from("profiles").select("profile,updated_at").eq("user_id",user.id).maybeSingle();return ok({profile:data?.profile||null,updated_at:data?.updated_at||null});
+    }
+    if(action==="latest_prediction"){
+      const {data,error}=await supabase.from("prediction_runs").select("result,created_at").eq("user_id",user.id).order("created_at",{ascending:false}).limit(1).maybeSingle();if(error)throw error;return ok({predictions:data?.result||null,created_at:data?.created_at||null});
     }
     if(action==="save_profile"){
       const profile=resolveHighSchool(ApplicantProfileSchema.parse(body.profile));const {error}=await supabase.from("profiles").upsert({user_id:user.id,profile,updated_at:new Date().toISOString()});if(error)throw error;return ok({saved:true,profile});
@@ -103,10 +113,34 @@ export async function POST(request){
     }
 
     if(action==="list_plans"){
-      const {data,error}=await supabase.from("application_plans").select("*").eq("user_id",user.id).order("created_at");if(error)throw error;return ok({plans:data||[]});
+      const {data,error}=await supabase.from("application_plans").select("*").eq("user_id",user.id).order("created_at");if(error)throw error;return ok({plans:(data||[]).map(enrichPlan)});
     }
     if(action==="save_plan"){
-      const item=body.plan||{};const payload={user_id:user.id,school_name:String(item.school_name||""),program:item.program||null,major:item.major||null,round:item.round||"RD",probability:Number(item.probability)||null,probability_min:Number(item.probability_min)||null,probability_max:Number(item.probability_max)||null,tier:item.tier||null,status:item.status||"Planning",notes:item.notes||null,updated_at:new Date().toISOString()};if(!payload.school_name)return fail("School name is required.");let r=item.id?await supabase.from("application_plans").update(payload).eq("id",item.id).eq("user_id",user.id).select().single():await supabase.from("application_plans").insert(payload).select().single();if(r.error)throw r.error;return ok({plan:r.data});
+      const item=body.plan||{};
+      const payload={user_id:user.id,school_name:String(item.school_name||""),program:item.program||null,major:item.major||null,round:item.round||"RD",probability:Number(item.probability)||null,probability_min:Number(item.probability_min)||null,probability_max:Number(item.probability_max)||null,tier:item.tier||null,status:item.status||"Planning",notes:item.notes||null,updated_at:new Date().toISOString()};
+      if(!payload.school_name)return fail("School name is required.");
+      let targetId=item.id&&!String(item.id).startsWith("draft-")?item.id:null;
+      if(!targetId){const {data:existing}=await supabase.from("application_plans").select("id").eq("user_id",user.id).eq("school_name",payload.school_name).limit(1).maybeSingle();targetId=existing?.id||null;}
+      const r=targetId?await supabase.from("application_plans").update(payload).eq("id",targetId).eq("user_id",user.id).select().single():await supabase.from("application_plans").insert(payload).select().single();
+      if(r.error)throw r.error;return ok({plan:enrichPlan(r.data)});
+    }
+    if(action==="save_plan_batch"){
+      const items=Array.isArray(body.plans)?body.plans.slice(0,20):[];if(!items.length)return fail("No schools supplied.");
+      const {data:existing,error:existingError}=await supabase.from("application_plans").select("*").eq("user_id",user.id);if(existingError)throw existingError;
+      const byName=new Map((existing||[]).map(x=>[x.school_name,x]));
+      for(const item of items){
+        const school_name=String(item.school_name||"").trim();if(!school_name)continue;
+        const payload={user_id:user.id,school_name,program:item.program||null,major:item.major||null,round:item.round||"RD",probability:Number(item.probability)||null,probability_min:Number(item.probability_min)||null,probability_max:Number(item.probability_max)||null,tier:item.tier||null,status:item.status||"Planning",notes:item.notes||null,updated_at:new Date().toISOString()};
+        const prior=byName.get(school_name);const r=prior?await supabase.from("application_plans").update(payload).eq("id",prior.id).eq("user_id",user.id):await supabase.from("application_plans").insert(payload);if(r.error)throw r.error;
+      }
+      const {data,error}=await supabase.from("application_plans").select("*").eq("user_id",user.id).order("created_at");if(error)throw error;return ok({plans:(data||[]).map(enrichPlan)});
+    }
+    if(action==="sync_plans"){
+      const modeled=Array.isArray(body.predictions?.schools)?body.predictions.schools:[];
+      const map=new Map(modeled.map(x=>[x.school,x]));
+      const {data:current,error}=await supabase.from("application_plans").select("*").eq("user_id",user.id);if(error)throw error;
+      for(const plan of current||[]){const row=map.get(plan.school_name);if(!row)continue;const patch={program:row.program||plan.program,major:row.major||plan.major,probability:Number(row.probability)||plan.probability,probability_min:Number(row.interval?.[0])||plan.probability_min,probability_max:Number(row.interval?.[1])||plan.probability_max,tier:row.tier||plan.tier,updated_at:new Date().toISOString()};const r=await supabase.from("application_plans").update(patch).eq("id",plan.id).eq("user_id",user.id);if(r.error)throw r.error;}
+      const {data,error:reloadError}=await supabase.from("application_plans").select("*").eq("user_id",user.id).order("created_at");if(reloadError)throw reloadError;return ok({plans:(data||[]).map(enrichPlan)});
     }
     if(action==="delete_plan"){const {error}=await supabase.from("application_plans").delete().eq("id",body.id).eq("user_id",user.id);if(error)throw error;return ok({deleted:true})}
     if(action==="round_rules")return ok({rules:rulesForSchool(body.school_name,body.country)});

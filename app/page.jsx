@@ -17,6 +17,32 @@ const roundLabel={ED1:"ED I",ED2:"ED II",EA:"EA",EA2:"EA2",REA:"REA",SCEA:"SCEA"
 const pct=x=>`${Math.round((Number(x)||0)*100)}%`;
 const score=x=>Number.isFinite(Number(x))?Math.round(Number(x)):"—";
 
+function buildDraftPortfolio(predictions){
+  const rows=predictions?.schools||[];
+  if(!rows.length)return [];
+  const selected=[];
+  const take=(tier,n)=>{
+    rows.filter(x=>x.tier===tier&&!selected.some(y=>y.school===x.school))
+      .sort((a,b)=>(a.rank||999)-(b.rank||999)||b.probability-a.probability)
+      .slice(0,n).forEach(x=>selected.push(x));
+  };
+  // A model-balanced starting point, not a claim about personal preference.
+  take("Lottery",1); take("Super Reach",2); take("Reach",3); take("Target",3); take("Likely",2);
+  if(selected.length<11){
+    rows.filter(x=>!selected.some(y=>y.school===x.school))
+      .sort((a,b)=>(a.rank||999)-(b.rank||999)||b.probability-a.probability)
+      .slice(0,11-selected.length).forEach(x=>selected.push(x));
+  }
+  return selected.slice(0,12).map(row=>{
+    const rule=roundRules[row.school]||{default:row.country==="uk"?"UCAS":"RD"};
+    return {
+      id:`draft-${row.school}`,draft:true,school_name:row.school,program:row.program,major:row.major,
+      round:rule.default,probability:row.probability,probability_min:row.interval?.[0],probability_max:row.interval?.[1],
+      tier:row.tier,status:"Planning",country:row.country,rank:row.rank
+    };
+  });
+}
+
 export default function Home(){
   const [supabase,setSupabase]=useState(null),[session,setSession]=useState(null),[authMode,setAuthMode]=useState("login");
   const [email,setEmail]=useState(""),[password,setPassword]=useState(""),[authMsg,setAuthMsg]=useState("");
@@ -52,18 +78,23 @@ export default function Home(){
     return data;
   }
   async function bootstrap(){
-    try{setLoading("bootstrap");const [me,p,pl,so,rm,ch]=await Promise.all([api("me"),api("load_profile"),api("list_plans"),api("list_saved_opportunities"),api("list_roadmap"),api("chat_history")]);setIsAdmin(me.is_admin);if(p.profile)setProfile({...EmptyProfile,...p.profile});setPlans(pl.plans||[]);setSavedOpps(so.items||[]);setRoadmap(rm.items||[]);setChat((ch.messages||[]).map(m=>({role:m.role==="assistant"?"ai":"user",text:m.content})));}
+    try{setLoading("bootstrap");const [me,p,pl,so,rm,ch,latest]=await Promise.all([api("me"),api("load_profile"),api("list_plans"),api("list_saved_opportunities"),api("list_roadmap"),api("chat_history"),api("latest_prediction")]);setIsAdmin(me.is_admin);if(p.profile)setProfile({...EmptyProfile,...p.profile});let loadedPlans=pl.plans||[];if(latest.predictions){setPredictions(latest.predictions);if(loadedPlans.length){try{const synced=await api("sync_plans",{predictions:latest.predictions});loadedPlans=synced.plans||loadedPlans}catch{}}}setPlans(loadedPlans);setSavedOpps(so.items||[]);setRoadmap(rm.items||[]);setChat((ch.messages||[]).map(m=>({role:m.role==="assistant"?"ai":"user",text:m.content})));}
     catch(e){alert(e.message)}finally{setLoading("")}
   }
   async function signIn(e){e.preventDefault();setAuthMsg("");try{if(!supabase)throw new Error("Supabase is not configured.");if(authMode==="signup"){const {error}=await supabase.auth.signUp({email,password});if(error)throw error;setAuthMsg("Account created. Check email if confirmation is enabled.")}else{const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error}}catch(e){setAuthMsg(e.message)}}
   async function logout(){await supabase?.auth.signOut();setSession(null)}
   const update=(k,v)=>setProfile(p=>({...p,[k]:v}));
   async function saveProfile(){try{setLoading("save");const d=await api("save_profile",{profile});setProfile({...EmptyProfile,...d.profile})}catch(e){alert(e.message)}finally{setLoading("")}}
-  async function importProfile(){try{setLoading("import");const d=await api("analyze",{text:importText,age_band:profile.age_band,primary_major:profile.primary_major,secondary_major:profile.secondary_major});setProfile({...EmptyProfile,...d.profile});setPredictions(d.predictions);setTab("colleges")}catch(e){alert(e.message)}finally{setLoading("")}}
-  async function runPrediction(){try{setLoading("predict");const d=await api("predict",{profile,primary_major:profile.primary_major,secondary_major:profile.secondary_major,use_ai:true});setPredictions(d.predictions);setTab("colleges")}catch(e){alert(e.message)}finally{setLoading("")}}
-  async function addSchool(row){try{const rule=roundRules[row.school]||{default:row.country==="uk"?"UCAS":"RD"};const d=await api("save_plan",{plan:{school_name:row.school,program:row.program,major:row.major,round:rule.default,probability:row.probability,probability_min:row.interval[0],probability_max:row.interval[1],tier:row.tier,status:"Planning"}});setPlans(p=>[...p.filter(x=>x.school_name!==row.school),d.plan])}catch(e){alert(e.message)}}
-  async function changePlan(plan,patch){try{const d=await api("save_plan",{plan:{...plan,...patch}});setPlans(p=>p.map(x=>x.id===plan.id?d.plan:x))}catch(e){alert(e.message)}}
-  async function deletePlan(plan){try{await api("delete_plan",{id:plan.id});setPlans(p=>p.filter(x=>x.id!==plan.id))}catch(e){alert(e.message)}}
+  async function syncPlansWithPredictions(nextPredictions){
+    if(!plans.length||!nextPredictions?.schools?.length)return;
+    try{const d=await api("sync_plans",{predictions:nextPredictions});setPlans(d.plans||[]);setSimulation(null)}catch(e){console.warn("Plan sync failed",e)}
+  }
+  async function importProfile(){try{setLoading("import");const d=await api("analyze",{text:importText,age_band:profile.age_band,primary_major:profile.primary_major,secondary_major:profile.secondary_major});setProfile({...EmptyProfile,...d.profile});setPredictions(d.predictions);await syncPlansWithPredictions(d.predictions);setTab("colleges")}catch(e){alert(e.message)}finally{setLoading("")}}
+  async function runPrediction(){try{setLoading("predict");const d=await api("predict",{profile,primary_major:profile.primary_major,secondary_major:profile.secondary_major,use_ai:true});setPredictions(d.predictions);await syncPlansWithPredictions(d.predictions);setTab("colleges")}catch(e){alert(e.message)}finally{setLoading("")}}
+  async function addSchool(row){try{const rule=roundRules[row.school]||{default:row.country==="uk"?"UCAS":"RD"};const d=await api("save_plan",{plan:{school_name:row.school,program:row.program,major:row.major,round:rule.default,probability:row.probability,probability_min:row.interval[0],probability_max:row.interval[1],tier:row.tier,status:"Planning",country:row.country,rank:row.rank}});setPlans(p=>[...p.filter(x=>x.school_name!==row.school),d.plan]);setSimulation(null)}catch(e){alert(e.message)}}
+  async function saveSuggestedPortfolio(draft){if(!draft?.length)return;try{setLoading("saveDraft");const d=await api("save_plan_batch",{plans:draft});setPlans(d.plans||[]);setSimulation(null)}catch(e){alert(e.message)}finally{setLoading("")}}
+  async function changePlan(plan,patch){try{const d=await api("save_plan",{plan:{...plan,...patch}});setPlans(p=>p.map(x=>x.id===plan.id?d.plan:x));setSimulation(null)}catch(e){alert(e.message)}}
+  async function deletePlan(plan){try{await api("delete_plan",{id:plan.id});setPlans(p=>p.filter(x=>x.id!==plan.id));setSimulation(null)}catch(e){alert(e.message)}}
   async function loadOpportunities(){try{setLoading("opps");const d=await api("opportunities",{profile,kind:oppKind,query:oppQuery,limit:80});setOpps(d.items||[])}catch(e){alert(e.message)}finally{setLoading("")}}
   async function saveOpportunity(o){try{const d=await api("save_opportunity",{opportunity_id:o.id});setSavedOpps(p=>[...p.filter(x=>x.opportunity_id!==o.id),d.item])}catch(e){alert(e.message)}}
   async function removeOpportunity(o){try{await api("delete_saved_opportunity",{opportunity_id:o.id});setSavedOpps(p=>p.filter(x=>x.opportunity_id!==o.id))}catch(e){alert(e.message)}}
@@ -73,8 +104,8 @@ export default function Home(){
   async function deleteRoadmapItem(item){try{await api("delete_roadmap_item",{id:item.id});setRoadmap(p=>p.filter(x=>x.id!==item.id))}catch(e){alert(e.message)}}
   async function askAI(){const q=question.trim();if(!q)return;setChat(c=>[...c,{role:"user",text:q}]);setQuestion("");try{setLoading("chat");const d=await api("counsel",{question:q,profile,predictions,plans});setChat(c=>[...c,{role:"ai",text:d.answer}])}catch(e){setChat(c=>[...c,{role:"ai",text:`Error: ${e.message}`}])}finally{setLoading("")}}
   async function clearChat(){try{await api("clear_chat");setChat([])}catch(e){alert(e.message)}}
-  async function simulate(runs=2000){try{setLoading("simulate");const d=await api("simulate",{plans,runs});setSimulation(d)}catch(e){alert(e.message)}finally{setLoading("")}}
-  async function optimize(){try{setLoading("strategy");setStrategy(await api("optimize_strategy",{plans}))}catch(e){alert(e.message)}finally{setLoading("")}}
+  async function simulate(runs=2000,sourcePlans=plans){try{setLoading("simulate");const d=await api("simulate",{plans:sourcePlans,runs});setSimulation(d)}catch(e){alert(e.message)}finally{setLoading("")}}
+  async function optimize(sourcePlans=plans){try{setLoading("strategy");setStrategy(await api("optimize_strategy",{plans:sourcePlans}))}catch(e){alert(e.message)}finally{setLoading("")}}
   async function loadHistory(){try{const d=await api("history");setHistory(d.runs||[]);setTab("history")}catch(e){alert(e.message)}}
   async function loadAdmin(){try{const d=await api("admin_stats");setAdminData(d);setTab("admin")}catch(e){alert(e.message)}}
   async function saveOverride(){try{await api("admin_save_override",{school_name:adminSchool,data:JSON.parse(adminJson)});await loadAdmin()}catch(e){alert(e.message)}}
@@ -88,6 +119,13 @@ export default function Home(){
   const collegeRows=useMemo(()=>{
     const q=collegeQuery.toLowerCase();return (predictions?.schools||[]).filter(s=>(collegeCountry==="all"||s.country===collegeCountry)&&(collegeTier==="all"||s.tier===collegeTier)&&(!q||`${s.school} ${s.program}`.toLowerCase().includes(q)));
   },[predictions,collegeCountry,collegeTier,collegeQuery]);
+  const draftPlans=useMemo(()=>buildDraftPortfolio(predictions),[predictions]);
+  const effectiveApplicationPlans=plans.length?plans:draftPlans;
+  useEffect(()=>{
+    if(!session||tab!=="applications")return;
+    if(!effectiveApplicationPlans.length){setStrategy(null);setSimulation(null);return;}
+    api("optimize_strategy",{plans:effectiveApplicationPlans}).then(setStrategy).catch(e=>console.warn("Strategy refresh failed",e));
+  },[tab,session?.access_token,plans,predictions]);
   const completedRoadmap=roadmap.filter(x=>x.status==="done").length;
 
   if(!session)return <AuthScreen mode={authMode} setMode={setAuthMode} email={email} setEmail={setEmail} password={password} setPassword={setPassword} submit={signIn} msg={authMsg}/>;
@@ -101,14 +139,14 @@ export default function Home(){
     </aside>
 
     <main className="workspace">
-      <header className="mast"><div><span className="kicker">UNIPATH / {tab.toUpperCase()}</span><h1>{title(tab)}</h1><p>{subtitle(tab)}</p></div><div className="mastActions"><button className="quiet" onClick={saveProfile}>{loading==="save"?"Saving…":"Save"}</button><button className="solid" onClick={runPrediction}>{loading==="predict"?"Running hybrid model…":"Run prediction"}</button></div></header>
+      <header className="mast"><div><span className="kicker">UNIPATH / {tab.toUpperCase()}</span><h1>{title(tab)}</h1><p>{subtitle(tab)}</p></div><div className="mastActions"><button className="quiet" onClick={saveProfile}>{loading==="save"?"Saving…":"Save profile"}</button><button className="solid" onClick={runPrediction}>{loading==="predict"?"Running hybrid model…":"Run prediction"}</button></div></header>
 
       {tab==="overview"&&<Overview profile={profile} predictions={predictions} plans={plans} roadmap={roadmap} completedRoadmap={completedRoadmap} hs={hs} go={setTab} runPrediction={runPrediction}/>}      
       {tab==="profile"&&<ProfileEditor profile={profile} update={update} importText={importText} setImportText={setImportText} importProfile={importProfile} loading={loading} addActivity={addActivity} setActivity={setActivity} addAward={addAward} setAward={setAward}/>}      
       {tab==="colleges"&&<Colleges rows={collegeRows} predictions={predictions} plans={plans} addSchool={addSchool} country={collegeCountry} setCountry={setCollegeCountry} tier={collegeTier} setTier={setCollegeTier} query={collegeQuery} setQuery={setCollegeQuery} run={runPrediction} loading={loading}/>}      
       {tab==="opportunities"&&<Opportunities items={opps} saved={savedOpps} kind={oppKind} setKind={setOppKind} query={oppQuery} setQuery={setOppQuery} search={loadOpportunities} save={saveOpportunity} remove={removeOpportunity} loading={loading}/>}      
       {tab==="roadmap"&&<Roadmap items={roadmap} generated={generatedRoadmap} generate={generateRoadmap} accept={acceptRoadmap} update={updateRoadmapItem} remove={deleteRoadmapItem} savedOpps={savedOpps} loading={loading}/>}      
-      {tab==="applications"&&<Applications plans={plans} change={changePlan} remove={deletePlan} optimize={optimize} strategy={strategy} simulate={simulate} simulation={simulation} loading={loading}/>}      
+      {tab==="applications"&&<Applications plans={plans} draftPlans={draftPlans} effectivePlans={effectiveApplicationPlans} saveDraft={saveSuggestedPortfolio} change={changePlan} remove={deletePlan} optimize={optimize} strategy={strategy} simulate={simulate} simulation={simulation} loading={loading}/>}      
       {tab==="advisor"&&<Advisor chat={chat} question={question} setQuestion={setQuestion} send={askAI} clear={clearChat} loading={loading}/>}      
       {tab==="history"&&<History rows={history}/>}      
       {tab==="admin"&&isAdmin&&<Admin data={adminData} school={adminSchool} setSchool={setAdminSchool} json={adminJson} setJson={setAdminJson} save={saveOverride}/>}      
@@ -173,8 +211,35 @@ function Opportunities({items,saved,kind,setKind,query,setQuery,search,save,remo
 function Roadmap({items,generated,generate,accept,update,remove,savedOpps,loading}){return <section className="stack"><article className="panel roadmapHero"><div><span className="overline">LIVING PLAN</span><h2>Turn the profile into the next 9–12 months.</h2><p>The roadmap is persistent. The advisor sees it, and future recommendations can build on what you finished instead of restarting every conversation.</p></div><button className="solid" onClick={generate}>{loading==="roadmap"?"DeepSeek is planning…":"Generate roadmap"}</button></article>{generated&&<article className="panel generated"><div className="panelHead"><div><span className="overline">AI DRAFT</span><h3>{generated.summary||"Roadmap draft"}</h3></div><button className="solid" onClick={accept}>{loading==="acceptRoadmap"?"Saving…":"Add to my roadmap"}</button></div><div className="roadmapList">{(generated.items||[]).map((x,i)=><div className="roadItem" key={i}><span className={`priority ${x.priority}`}>{x.priority}</span><div><b>{x.title}</b><small>{x.due_window} · {x.why}</small><em>{x.success_metric}</em></div></div>)}</div></article>}
     <article className="panel"><div className="panelHead"><div><span className="overline">MY ROADMAP</span><h3>{items.length} active records</h3></div><span className="muted">{savedOpps.length} opportunities saved</span></div>{!items.length?<Empty text="No roadmap items yet. Generate a draft or add opportunities first."/>:<div className="roadmapList">{items.map(x=><div className={`roadItem ${x.status==="done"?"done":""}`} key={x.id}><button className="checkBtn" onClick={()=>update(x,{status:x.status==="done"?"todo":"done"})}>{x.status==="done"?"✓":"○"}</button><div><b>{x.title}</b><small>{x.due_window||x.due_date||"No date"} · {x.why||x.item_type}</small>{x.success_metric&&<em>{x.success_metric}</em>}</div><span className={`priority ${x.priority}`}>{x.priority}</span><button className="iconDanger" onClick={()=>remove(x)}>×</button></div>)}</div>}</article></section>}
 
-function Applications({plans,change,remove,optimize,strategy,simulate,simulation,loading}){return <section className="stack"><article className="panel"><div className="panelHead"><div><span className="overline">APPLICATION PORTFOLIO</span><h3>{plans.length} saved schools</h3></div><div className="row"><button className="quiet" onClick={optimize}>{loading==="strategy"?"Optimizing…":"Optimize early"}</button><button className="solid" onClick={()=>simulate(3000)}>{loading==="simulate"?"Simulating…":"Simulate 3,000 cycles"}</button></div></div>{!plans.length?<Empty text="Add colleges from the Colleges page."/>:<div className="applicationList">{plans.map(p=>{const rules=roundRules[p.school_name]||{plans:[p.school_name==="Oxford"||p.school_name==="Cambridge"?"OX":p.school_name?.includes("London")?"UCAS":"RD"]};return <div className="appRow" key={p.id}><div><b>{p.school_name}</b><span>{p.program}</span></div><span>{pct(p.probability_min)}–{pct(p.probability_max)}</span><select value={p.round} onChange={e=>change(p,{round:e.target.value})}>{rules.plans.map(r=><option key={r} value={r}>{roundLabel[r]||r}</option>)}</select><button className="iconDanger" onClick={()=>remove(p)}>×</button></div>})}</div>}</article>{strategy&&<article className="panel"><span className="overline">EARLY STRATEGY</span><div className="threeCols"><Mini label="ED I" value={strategy.strategy?.ed1?.school||"—"}/><Mini label="ED II" value={strategy.strategy?.ed2?.school||"—"}/><Mini label="EA set" value={(strategy.strategy?.ea||[]).length}/></div>{strategy.validation?.errors?.map(x=><div className="error" key={x}>{x}</div>)}{strategy.validation?.warnings?.map(x=><div className="notice" key={x}>{x}</div>)}</article>}{simulation&&<article className="panel"><span className="overline">MONTE CARLO</span><div className="metricRow compact"><Metric label="Expected admits" value={simulation.simulation.expected_admits.toFixed(1)}/><Metric label="Zero-admit risk" value={pct(simulation.simulation.zero_admit_risk)}/><Metric label="Binding finish" value={pct(simulation.simulation.binding_finish_rate)}/><Metric label="Top-20 hit" value={pct(simulation.simulation.top20_hit_rate)}/></div></article>}</section>}
+function Applications({plans,draftPlans,effectivePlans,saveDraft,change,remove,optimize,strategy,simulate,simulation,loading}){
+  const usingDraft=!plans.length&&draftPlans.length>0;
+  const list=effectivePlans||[];
+  const grouped=(tier)=>list.filter(p=>p.tier===tier).map(p=>p.school_name);
+  const roundText=(p)=>roundLabel[p.round]||p.round;
+  return <section className="stack">
+    <article className="panel applicationIntro">
+      <div className="panelHead"><div><span className="overline">APPLICATION PORTFOLIO</span><h3>{plans.length?`${plans.length} saved schools`:`${draftPlans.length} model suggestions`}</h3></div><div className="row">{usingDraft&&<button className="solid" onClick={()=>saveDraft(draftPlans)}>{loading==="saveDraft"?"Saving…":"Save suggested list"}</button>}<button className="quiet" disabled={!list.length} onClick={()=>optimize(list)}>{loading==="strategy"?"Refreshing…":"Refresh strategy"}</button><button className="solid" disabled={!list.length} onClick={()=>simulate(3000,list)}>{loading==="simulate"?"Simulating…":"Simulate 3,000 cycles"}</button></div></div>
+      {usingDraft&&<div className="notice">No colleges are saved yet, so UniPath is showing a balanced draft from your latest prediction. Save it, then edit the list and rounds. This draft is a starting point—not a statement of personal preference.</div>}
+      {!list.length?<Empty text="Run a college prediction first. UniPath will create a model-balanced draft here, or add individual colleges from the Colleges page."/>:<div className="applicationList">{list.map(p=>{const rules=roundRules[p.school_name]||{plans:[p.country==="uk"?"UCAS":"RD"]};return <div className={`appRow ${p.draft?"draft":""}`} key={p.id}><div><b>{p.school_name}</b><span>{p.program}{p.draft?" · suggested":""}</span></div><span>{pct(p.probability_min)}–{pct(p.probability_max)}</span>{p.draft?<span className="roundPill">{roundText(p)}</span>:<select value={p.round} onChange={e=>change(p,{round:e.target.value})}>{rules.plans.map(r=><option key={r} value={r}>{roundLabel[r]||r}</option>)}</select>}{p.draft?<span/>:<button className="iconDanger" onClick={()=>remove(p)}>×</button>}</div>})}</div>}
+    </article>
 
+    <article className="panel strategyPanel">
+      <div className="panelHead"><div><span className="overline">ED / EA / RD STRATEGY</span><h3>Round strategy</h3></div><span className="muted">Built from the {usingDraft?"current model draft":"saved portfolio"}</span></div>
+      {!list.length?<Empty text="A round strategy will appear after a college model is available."/>:!strategy?<Empty text="Building strategy…"/>:<>
+        <div className="strategyGrid">
+          <div className="strategyCard"><span>ED I candidates</span><b>{(strategy.strategy?.ed1_candidates||[]).map(x=>x.school).join(" · ")||"No ED I school in this list"}</b><small>Binding. Pick only a genuine first choice after fit and affordability checks.</small></div>
+          <div className="strategyCard"><span>ED II contingency</span><b>{(strategy.strategy?.ed2_candidates||[]).map(x=>x.school).join(" · ")||"No ED II option in this list"}</b><small>Use only if ED I does not end the process and the school remains a true preference.</small></div>
+          <div className="strategyCard"><span>EA / REA / SCEA</span><b>{(strategy.strategy?.ea||[]).join(" · ")||"—"}</b><small>Restrictive plans must be checked against every other early application.</small></div>
+          <div className="strategyCard"><span>RD core</span><b>{(strategy.strategy?.rd_core||[]).slice(0,8).join(" · ")||"—"}</b><small>Keep enough target/likely coverage instead of using RD only for additional reaches.</small></div>
+        </div>
+        <div className="portfolioShape"><span><b>{grouped("Lottery").length+grouped("Super Reach").length}</b> ultra-high risk</span><span><b>{grouped("Reach").length}</b> reach</span><span><b>{grouped("Target").length}</b> target</span><span><b>{grouped("Likely").length}</b> likely</span></div>
+        {strategy.validation?.errors?.map(x=><div className="error" key={x}>{x}</div>)}{strategy.validation?.warnings?.map(x=><div className="notice" key={x}>{x}</div>)}
+      </>}
+    </article>
+
+    <article className="panel"><span className="overline">MONTE CARLO</span>{simulation?<div className="metricRow compact"><Metric label="Expected admits" value={simulation.simulation.expected_admits.toFixed(1)}/><Metric label="Zero-admit risk" value={pct(simulation.simulation.zero_admit_risk)}/><Metric label="Binding finish" value={pct(simulation.simulation.binding_finish_rate)}/><Metric label="Top-20 hit" value={pct(simulation.simulation.top20_hit_rate)}/></div>:<Empty text={list.length?"Run the simulation after reviewing the round strategy. No result is shown until a simulation has actually run.":"Create a portfolio before simulating."}/>}</article>
+  </section>
+}
 function Advisor({chat,question,setQuestion,send,clear,loading}){return <section className="advisorLayout"><article className="panel advisorPanel"><div className="panelHead"><div><span className="overline">PERSISTENT THREAD</span><h3>Your strategy conversation</h3></div><button className="textButton" onClick={clear}>Clear</button></div><div className="chat">{chat.length?chat.map((m,i)=><div className={`message ${m.role}`} key={i}>{m.text}</div>):<div className="message ai">I can use your saved profile, current prediction intervals, application plan and roadmap. Ask a question that changes a decision.</div>}</div><div className="composer"><textarea value={question} onChange={e=>setQuestion(e.target.value)} onKeyDown={e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send()}}} placeholder="What should I prioritize next?"/><button className="solid" onClick={send}>{loading==="chat"?"Thinking…":"Send"}</button></div></article><aside className="panel prompts"><span className="overline">USEFUL QUESTIONS</span>{["我的活动现在最像什么申请叙事？","未来六个月最值得完成的三个输出是什么？","我的选校是不是过于激进？","如果不参加昂贵夏校，我该怎么补强？","第二专业到底有没有真实战略价值？"].map(q=><button key={q} onClick={()=>setQuestion(q)}>{q}</button>)}</aside></section>}
 
 function History({rows}){return <article className="panel"><span className="overline">MODEL HISTORY</span>{!rows.length?<Empty text="No prediction history yet."/>:<div className="history">{rows.map(r=><div key={r.id}><b>{r.primary_major||"Unknown major"}</b><span>{new Date(r.created_at).toLocaleString()}</span><small>{r.result?.ai_status||"deterministic"} · {r.result?.schools?.length||0} schools</small></div>)}</div>}</article>}
