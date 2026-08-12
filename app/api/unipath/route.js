@@ -93,7 +93,7 @@ export async function POST(request){
       const [{data:history},{data:roadmap}]=await Promise.all([supabase.from("conversation_messages").select("role,content").eq("user_id",user.id).eq("thread_key",thread).order("created_at",{ascending:false}).limit(18),supabase.from("roadmap_items").select("title,status,priority,due_window,why,success_metric").eq("user_id",user.id).limit(30)]);
       const prior=(history||[]).reverse();
       const context=`Applicant profile:\n${JSON.stringify(body.profile||{})}\n\nUniPath prediction engine output:\n${JSON.stringify(body.predictions||{})}\n\nSaved application plans:\n${JSON.stringify(body.plans||[])}\n\nCurrent roadmap:\n${JSON.stringify(roadmap||[])}`;
-      const answer=await deepseekChat([{role:"system",content:"You are UniPath AI Advisor, a persistent student-facing university-planning counselor. Be concrete, critical and action-oriented. Use only probability intervals supplied by UniPath; never invent admissions percentages. Distinguish completed work from future plans. Prefer depth, evidence and fit over prestige collecting. When suggesting summer programs, research, competitions or projects, explain the role they play in the student's strategy. Do not infer sensitive traits. Keep continuity with prior conversation. Respond in the user's language."},{role:"system",content:context},...prior.map(m=>({role:m.role==="assistant"?"assistant":"user",content:m.content})),{role:"user",content:question}],{temperature:.2,max_tokens:3000,thinking:true,reasoning_effort:"medium"});
+      const answer=await deepseekChat([{role:"system",content:"You are UniPath AI Advisor, a persistent student-facing university-planning counselor. Be concrete, critical and action-oriented. Use only probability intervals supplied by UniPath; never invent admissions percentages. Distinguish completed work from future plans. Prefer depth, evidence and fit over prestige collecting. When suggesting summer programs, research, competitions or projects, explain the role they play in the student's strategy. Do not infer sensitive traits. Keep continuity with prior conversation. Respond in the user's language."},{role:"system",content:context},...prior.map(m=>({role:m.role==="assistant"?"assistant":"user",content:m.content})),{role:"user",content:question}],{temperature:.2,max_tokens:3600,thinking:false});
       await supabase.from("conversation_messages").insert([{user_id:user.id,thread_key:thread,role:"user",content:question},{user_id:user.id,thread_key:thread,role:"assistant",content:answer,metadata:{model:deepseekModelName()}}]);return ok({answer});
     }
     if(action==="clear_chat"){
@@ -124,5 +124,12 @@ export async function POST(request){
       if(!admin)return fail("Admin access required.",403);const id=String(body.high_school_id||"").trim();if(!id)return fail("High school id is required.");const {error}=await supabase.from("high_school_outcome_overrides").upsert({high_school_id:id,data:body.data||{},source_url:body.source_url||null,source_year:body.source_year||null,verified:!!body.verified,updated_by:user.id,updated_at:new Date().toISOString()});if(error)throw error;return ok({saved:true});
     }
     return fail("Unknown action.");
-  }catch(error){console.error("UniPath API error:",error);if(error?.message==="AUTH_REQUIRED")return fail("Please log in.",401);return fail(error?.message||"Request failed.",500)}
+  }catch(error){
+    console.error("UniPath API error:",error);
+    if(error?.message==="AUTH_REQUIRED")return fail("Please log in.",401);
+    if(error?.name==="ZodError" || Array.isArray(error?.issues)){
+      return fail("AI returned profile fields in an unsupported format. Please retry; UniPath now normalizes common enum and output-format variations.",422);
+    }
+    return fail(error?.message||"Request failed.",500);
+  }
 }

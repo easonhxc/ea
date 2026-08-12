@@ -120,3 +120,7 @@ Opportunity records intentionally avoid hardcoding deadlines because deadlines c
 ## 6. Important product principle
 
 UniPath is a student planning tool, not an official admissions model. Do not present its probability intervals as university-issued odds. Sensitive traits are excluded from scoring. Planned future achievements do not receive the same credit as completed evidence.
+
+
+## Robust AI profile normalization
+AI-imported enum labels and object-shaped outputs are normalized before Zod validation; malformed residuals receive one constrained repair pass.
