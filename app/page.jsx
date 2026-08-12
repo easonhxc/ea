@@ -40,8 +40,16 @@ export default function Home(){
 
   async function api(action,body={}){
     if(!session?.access_token)throw new Error("Please log in.");
-    const res=await fetch("/api/unipath",{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${session.access_token}`},body:JSON.stringify({action,...body})});
-    const data=await res.json();if(!res.ok)throw new Error(data.error||"Request failed");return data;
+    let res;
+    try{
+      res=await fetch("/api/unipath",{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${session.access_token}`},body:JSON.stringify({action,...body})});
+    }catch(e){
+      throw new Error("Network request failed. Refresh the page and retry. If it repeats, check the latest Vercel runtime log.");
+    }
+    const raw=await res.text();let data={};
+    try{data=raw?JSON.parse(raw):{}}catch{}
+    if(!res.ok)throw new Error(data.error||raw||`Request failed (${res.status})`);
+    return data;
   }
   async function bootstrap(){
     try{setLoading("bootstrap");const [me,p,pl,so,rm,ch]=await Promise.all([api("me"),api("load_profile"),api("list_plans"),api("list_saved_opportunities"),api("list_roadmap"),api("chat_history")]);setIsAdmin(me.is_admin);if(p.profile)setProfile({...EmptyProfile,...p.profile});setPlans(pl.plans||[]);setSavedOpps(so.items||[]);setRoadmap(rm.items||[]);setChat((ch.messages||[]).map(m=>({role:m.role==="assistant"?"ai":"user",text:m.content})));}
