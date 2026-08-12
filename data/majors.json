@@ -1,0 +1,572 @@
+[
+  {
+    "slug": "accounting",
+    "label": "Accounting",
+    "category": "business"
+  },
+  {
+    "slug": "actuarial_science",
+    "label": "Actuarial Science",
+    "category": "natural"
+  },
+  {
+    "slug": "aerospace_engineering",
+    "label": "Aerospace Engineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "agricultural_engineering",
+    "label": "Agricultural Engineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "animal_science",
+    "label": "Animal Science",
+    "category": "agriculture"
+  },
+  {
+    "slug": "anthropology",
+    "label": "Anthropology",
+    "category": "social"
+  },
+  {
+    "slug": "applied_mathematics",
+    "label": "Applied Mathematics",
+    "category": "natural"
+  },
+  {
+    "slug": "archaeology",
+    "label": "Archaeology",
+    "category": "humanities"
+  },
+  {
+    "slug": "architectural_engineering",
+    "label": "Architectural Engineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "architecture",
+    "label": "Architecture",
+    "category": "arts"
+  },
+  {
+    "slug": "art_history",
+    "label": "Art History",
+    "category": "humanities"
+  },
+  {
+    "slug": "artificial_intelligence",
+    "label": "Artificial Intelligence",
+    "category": "computing"
+  },
+  {
+    "slug": "astrophysics",
+    "label": "Astrophysics",
+    "category": "natural"
+  },
+  {
+    "slug": "atmospheric_science",
+    "label": "Atmospheric Science",
+    "category": "natural"
+  },
+  {
+    "slug": "automotive_engineering",
+    "label": "Automotive Engineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "aviation",
+    "label": "Aviation",
+    "category": "other"
+  },
+  {
+    "slug": "biochemistry",
+    "label": "Biochemistry",
+    "category": "life"
+  },
+  {
+    "slug": "bioengineering",
+    "label": "Bioengineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "biology",
+    "label": "Biology",
+    "category": "life"
+  },
+  {
+    "slug": "biomedical_engineering",
+    "label": "Biomedical Engineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "biomedical_science",
+    "label": "Biomedical Science",
+    "category": "life"
+  },
+  {
+    "slug": "business_administration",
+    "label": "Business Administration",
+    "category": "business"
+  },
+  {
+    "slug": "chemical_engineering",
+    "label": "Chemical Engineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "chemistry",
+    "label": "Chemistry",
+    "category": "natural"
+  },
+  {
+    "slug": "civil_engineering",
+    "label": "Civil Engineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "classics",
+    "label": "Classics",
+    "category": "humanities"
+  },
+  {
+    "slug": "cognitive_science",
+    "label": "Cognitive Science",
+    "category": "life"
+  },
+  {
+    "slug": "communication",
+    "label": "Communication",
+    "category": "social"
+  },
+  {
+    "slug": "comparative_literature",
+    "label": "Comparative Literature",
+    "category": "humanities"
+  },
+  {
+    "slug": "computational_biology",
+    "label": "Computational Biology",
+    "category": "other"
+  },
+  {
+    "slug": "computational_social_science",
+    "label": "Computational Social Science",
+    "category": "other"
+  },
+  {
+    "slug": "computer_engineering",
+    "label": "Computer Engineering",
+    "category": "computing"
+  },
+  {
+    "slug": "computer_science",
+    "label": "Computer Science",
+    "category": "computing"
+  },
+  {
+    "slug": "construction_management",
+    "label": "Construction Management",
+    "category": "other"
+  },
+  {
+    "slug": "criminology",
+    "label": "Criminology",
+    "category": "social"
+  },
+  {
+    "slug": "cybersecurity",
+    "label": "Cybersecurity",
+    "category": "computing"
+  },
+  {
+    "slug": "dance",
+    "label": "Dance",
+    "category": "other"
+  },
+  {
+    "slug": "data_science",
+    "label": "Data Science",
+    "category": "computing"
+  },
+  {
+    "slug": "design_engineering",
+    "label": "Design Engineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "earth_science",
+    "label": "Earth Science",
+    "category": "natural"
+  },
+  {
+    "slug": "east_asian_studies",
+    "label": "East Asian Studies",
+    "category": "humanities"
+  },
+  {
+    "slug": "economics",
+    "label": "Economics",
+    "category": "business"
+  },
+  {
+    "slug": "education",
+    "label": "Education",
+    "category": "social"
+  },
+  {
+    "slug": "electrical_engineering",
+    "label": "Electrical Engineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "energy_engineering",
+    "label": "Energy Engineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "engineering_physics",
+    "label": "Engineering Physics",
+    "category": "engineering"
+  },
+  {
+    "slug": "english",
+    "label": "English",
+    "category": "humanities"
+  },
+  {
+    "slug": "entrepreneurship",
+    "label": "Entrepreneurship",
+    "category": "business"
+  },
+  {
+    "slug": "environmental_engineering",
+    "label": "Environmental Engineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "environmental_science",
+    "label": "Environmental Science",
+    "category": "natural"
+  },
+  {
+    "slug": "environmental_studies",
+    "label": "Environmental Studies",
+    "category": "other"
+  },
+  {
+    "slug": "fashion_design",
+    "label": "Fashion Design",
+    "category": "arts"
+  },
+  {
+    "slug": "film",
+    "label": "Film",
+    "category": "arts"
+  },
+  {
+    "slug": "finance",
+    "label": "Finance",
+    "category": "business"
+  },
+  {
+    "slug": "fine_arts",
+    "label": "Fine Arts",
+    "category": "other"
+  },
+  {
+    "slug": "food_science",
+    "label": "Food Science",
+    "category": "agriculture"
+  },
+  {
+    "slug": "forestry",
+    "label": "Forestry",
+    "category": "agriculture"
+  },
+  {
+    "slug": "game_design",
+    "label": "Game Design",
+    "category": "other"
+  },
+  {
+    "slug": "genetics",
+    "label": "Genetics",
+    "category": "life"
+  },
+  {
+    "slug": "geography",
+    "label": "Geography",
+    "category": "social"
+  },
+  {
+    "slug": "geology",
+    "label": "Geology",
+    "category": "natural"
+  },
+  {
+    "slug": "global_health",
+    "label": "Global Health",
+    "category": "life"
+  },
+  {
+    "slug": "graphic_design",
+    "label": "Graphic Design",
+    "category": "arts"
+  },
+  {
+    "slug": "history",
+    "label": "History",
+    "category": "humanities"
+  },
+  {
+    "slug": "hospitality",
+    "label": "Hospitality",
+    "category": "other"
+  },
+  {
+    "slug": "human_computer_interaction",
+    "label": "Human Computer Interaction",
+    "category": "computing"
+  },
+  {
+    "slug": "industrial_design",
+    "label": "Industrial Design",
+    "category": "other"
+  },
+  {
+    "slug": "industrial_engineering",
+    "label": "Industrial Engineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "information_science",
+    "label": "Information Science",
+    "category": "other"
+  },
+  {
+    "slug": "international_relations",
+    "label": "International Relations",
+    "category": "social"
+  },
+  {
+    "slug": "journalism",
+    "label": "Journalism",
+    "category": "social"
+  },
+  {
+    "slug": "languages",
+    "label": "Languages",
+    "category": "humanities"
+  },
+  {
+    "slug": "linguistics",
+    "label": "Linguistics",
+    "category": "humanities"
+  },
+  {
+    "slug": "management",
+    "label": "Management",
+    "category": "business"
+  },
+  {
+    "slug": "marine_biology",
+    "label": "Marine Biology",
+    "category": "life"
+  },
+  {
+    "slug": "marketing",
+    "label": "Marketing",
+    "category": "business"
+  },
+  {
+    "slug": "materials_engineering",
+    "label": "Materials Science & Engineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "mathematics",
+    "label": "Mathematics",
+    "category": "natural"
+  },
+  {
+    "slug": "mechanical_engineering",
+    "label": "Mechanical Engineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "microbiology",
+    "label": "Microbiology",
+    "category": "life"
+  },
+  {
+    "slug": "molecular_biology",
+    "label": "Molecular Biology",
+    "category": "life"
+  },
+  {
+    "slug": "music",
+    "label": "Music",
+    "category": "arts"
+  },
+  {
+    "slug": "nanotechnology",
+    "label": "Nanotechnology",
+    "category": "engineering"
+  },
+  {
+    "slug": "natural_resources",
+    "label": "Natural Resources",
+    "category": "other"
+  },
+  {
+    "slug": "neuroscience",
+    "label": "Neuroscience",
+    "category": "life"
+  },
+  {
+    "slug": "nuclear_engineering",
+    "label": "Nuclear Engineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "nursing",
+    "label": "Nursing",
+    "category": "life"
+  },
+  {
+    "slug": "nutrition",
+    "label": "Nutrition",
+    "category": "life"
+  },
+  {
+    "slug": "oceanography",
+    "label": "Oceanography",
+    "category": "natural"
+  },
+  {
+    "slug": "operations_management",
+    "label": "Operations Management",
+    "category": "other"
+  },
+  {
+    "slug": "operations_research",
+    "label": "Operations Research",
+    "category": "other"
+  },
+  {
+    "slug": "optics",
+    "label": "Optics",
+    "category": "other"
+  },
+  {
+    "slug": "pharmacy",
+    "label": "Pharmacy",
+    "category": "life"
+  },
+  {
+    "slug": "philosophy",
+    "label": "Philosophy",
+    "category": "humanities"
+  },
+  {
+    "slug": "physics",
+    "label": "Physics",
+    "category": "natural"
+  },
+  {
+    "slug": "plant_science",
+    "label": "Plant Science",
+    "category": "agriculture"
+  },
+  {
+    "slug": "political_science",
+    "label": "Political Science",
+    "category": "social"
+  },
+  {
+    "slug": "ppe",
+    "label": "Philosophy, Politics & Economics",
+    "category": "social"
+  },
+  {
+    "slug": "prelaw",
+    "label": "Pre-Law",
+    "category": "social"
+  },
+  {
+    "slug": "psychology",
+    "label": "Psychology",
+    "category": "social"
+  },
+  {
+    "slug": "public_health",
+    "label": "Public Health",
+    "category": "life"
+  },
+  {
+    "slug": "public_policy",
+    "label": "Public Policy",
+    "category": "social"
+  },
+  {
+    "slug": "real_estate",
+    "label": "Real Estate",
+    "category": "business"
+  },
+  {
+    "slug": "religious_studies",
+    "label": "Religious Studies",
+    "category": "humanities"
+  },
+  {
+    "slug": "robotics",
+    "label": "Robotics",
+    "category": "engineering"
+  },
+  {
+    "slug": "science_technology_society",
+    "label": "Science, Technology & Society",
+    "category": "humanities"
+  },
+  {
+    "slug": "sociology",
+    "label": "Sociology",
+    "category": "social"
+  },
+  {
+    "slug": "software_engineering",
+    "label": "Software Engineering",
+    "category": "computing"
+  },
+  {
+    "slug": "sports_management",
+    "label": "Sports Management",
+    "category": "business"
+  },
+  {
+    "slug": "statistics",
+    "label": "Statistics",
+    "category": "natural"
+  },
+  {
+    "slug": "sustainability",
+    "label": "Sustainability",
+    "category": "other"
+  },
+  {
+    "slug": "systems_engineering",
+    "label": "Systems Engineering",
+    "category": "engineering"
+  },
+  {
+    "slug": "theatre",
+    "label": "Theatre",
+    "category": "arts"
+  },
+  {
+    "slug": "urban_studies",
+    "label": "Urban Studies",
+    "category": "social"
+  }
+]

@@ -1,0 +1,373 @@
+{
+  "Harvard": {
+    "plans": [
+      "REA",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Restrictive early plan; verify current-cycle restrictions."
+  },
+  "MIT": {
+    "plans": [
+      "EA",
+      "RA"
+    ],
+    "default": "RA",
+    "note": "Non-binding early plan."
+  },
+  "Stanford": {
+    "plans": [
+      "REA",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Restrictive early plan."
+  },
+  "Princeton": {
+    "plans": [
+      "SCEA",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Single-choice early action."
+  },
+  "Yale": {
+    "plans": [
+      "SCEA",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Single-choice early action."
+  },
+  "Caltech": {
+    "plans": [
+      "REA",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Restrictive early action."
+  },
+  "Columbia": {
+    "plans": [
+      "ED1",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "ED is binding."
+  },
+  "UPenn": {
+    "plans": [
+      "ED1",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "ED is binding."
+  },
+  "Duke": {
+    "plans": [
+      "ED1",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "ED is binding."
+  },
+  "Brown": {
+    "plans": [
+      "ED1",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "ED is binding."
+  },
+  "Northwestern": {
+    "plans": [
+      "ED1",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "ED is binding."
+  },
+  "Cornell": {
+    "plans": [
+      "ED1",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "ED is binding."
+  },
+  "Rice": {
+    "plans": [
+      "ED1",
+      "ED2",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "ED I / ED II are binding."
+  },
+  "Johns Hopkins": {
+    "plans": [
+      "ED1",
+      "ED2",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "ED I / ED II are binding."
+  },
+  "UChicago": {
+    "plans": [
+      "EA",
+      "ED1",
+      "ED2",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Multiple early options."
+  },
+  "UC Berkeley": {
+    "plans": [
+      "UC"
+    ],
+    "default": "UC",
+    "note": "UC single application cycle."
+  },
+  "UCLA": {
+    "plans": [
+      "UC"
+    ],
+    "default": "UC",
+    "note": "UC single application cycle."
+  },
+  "UC San Diego": {
+    "plans": [
+      "UC"
+    ],
+    "default": "UC",
+    "note": "UC single application cycle."
+  },
+  "UC Davis": {
+    "plans": [
+      "UC"
+    ],
+    "default": "UC",
+    "note": "UC single application cycle."
+  },
+  "UC Irvine": {
+    "plans": [
+      "UC"
+    ],
+    "default": "UC",
+    "note": "UC single application cycle."
+  },
+  "UC Santa Barbara": {
+    "plans": [
+      "UC"
+    ],
+    "default": "UC",
+    "note": "UC single application cycle."
+  },
+  "Carnegie Mellon": {
+    "plans": [
+      "ED1",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "ED is binding."
+  },
+  "Michigan": {
+    "plans": [
+      "ED1",
+      "EA",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Verify current-cycle plan availability."
+  },
+  "USC": {
+    "plans": [
+      "EA",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Some programs may have special deadlines."
+  },
+  "NYU": {
+    "plans": [
+      "ED1",
+      "ED2",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "ED I / ED II are binding."
+  },
+  "UVA": {
+    "plans": [
+      "ED1",
+      "EA",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Early and regular options."
+  },
+  "UT Austin": {
+    "plans": [
+      "EA",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Verify residency/program-specific deadlines."
+  },
+  "Georgia Tech": {
+    "plans": [
+      "EA2",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "International/non-Georgia applicants generally use EA2; verify current cycle."
+  },
+  "UIUC": {
+    "plans": [
+      "EA",
+      "RD"
+    ],
+    "default": "RD"
+  },
+  "Purdue": {
+    "plans": [
+      "EA",
+      "RD"
+    ],
+    "default": "RD"
+  },
+  "Wisconsin–Madison": {
+    "plans": [
+      "EA",
+      "RD"
+    ],
+    "default": "RD"
+  },
+  "Maryland": {
+    "plans": [
+      "EA",
+      "RD"
+    ],
+    "default": "RD"
+  },
+  "Ohio State": {
+    "plans": [
+      "EA",
+      "RD"
+    ],
+    "default": "RD"
+  },
+  "Penn State": {
+    "plans": [
+      "ROLLING",
+      "RD"
+    ],
+    "default": "ROLLING"
+  },
+  "Virginia Tech": {
+    "plans": [
+      "EA",
+      "RD"
+    ],
+    "default": "RD"
+  },
+  "Minnesota Twin Cities": {
+    "plans": [
+      "EA",
+      "RD"
+    ],
+    "default": "RD"
+  },
+  "Arizona State": {
+    "plans": [
+      "ROLLING"
+    ],
+    "default": "ROLLING"
+  },
+  "Rochester": {
+    "plans": [
+      "ED1",
+      "ED2",
+      "RD"
+    ],
+    "default": "RD"
+  },
+  "Case Western Reserve": {
+    "plans": [
+      "EA",
+      "ED1",
+      "ED2",
+      "RD"
+    ],
+    "default": "RD"
+  },
+  "Boston University": {
+    "plans": [
+      "ED1",
+      "ED2",
+      "RD"
+    ],
+    "default": "RD"
+  },
+  "Northeastern": {
+    "plans": [
+      "EA",
+      "ED1",
+      "ED2",
+      "RD"
+    ],
+    "default": "RD"
+  },
+  "Oxford": {
+    "plans": [
+      "OX"
+    ],
+    "default": "OX",
+    "note": "UCAS early deadline; course-specific tests/interviews may apply."
+  },
+  "Cambridge": {
+    "plans": [
+      "OX"
+    ],
+    "default": "OX",
+    "note": "UCAS early deadline; course-specific tests/interviews may apply."
+  },
+  "Imperial College London": {
+    "plans": [
+      "UCAS"
+    ],
+    "default": "UCAS"
+  },
+  "UCL": {
+    "plans": [
+      "UCAS"
+    ],
+    "default": "UCAS"
+  },
+  "LSE": {
+    "plans": [
+      "UCAS"
+    ],
+    "default": "UCAS"
+  },
+  "Edinburgh": {
+    "plans": [
+      "UCAS"
+    ],
+    "default": "UCAS"
+  },
+  "Manchester": {
+    "plans": [
+      "UCAS"
+    ],
+    "default": "UCAS"
+  },
+  "Warwick": {
+    "plans": [
+      "UCAS"
+    ],
+    "default": "UCAS"
+  }
+}

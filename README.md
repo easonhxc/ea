@@ -1,227 +1,310 @@
-# UniPath AI — Shareable API Version
+# UniPath Complete
 
-这是给别人直接用的版本。
+这是一个完整的可部署版本，包含：
 
-## 最终用户怎么用？
+- Supabase 用户注册 / 登录
+- 用户 Profile 持久化
+- AI Profile Import（GitHub Models）
+- 52 校 seed database
+- 114 majors
+- 第一 / 第二申请方向
+- field-aware applicant scoring
+- school + major recommendations
+- academics / extracurricular recommendations
+- saved application plans
+- ED / ED II / EA / EA2 / REA / SCEA / RD / RA / UC / UCAS / Rolling
+- conflict validation
+- early-strategy optimizer
+- Monte Carlo application simulator
+- AI Counselor
+- prediction history
+- user feedback
+- admin dashboard
+- school-data overrides without redeploying code
 
-你部署完成以后，只需要把网址发给别人，例如：
+## Architecture
 
 ```text
-https://unipath-ai.vercel.app
+Browser
+  |
+  | Supabase Auth
+  v
+Next.js / Vercel
+  |
+  | /api/unipath
+  +---- GitHub Models (AI parsing + counselor)
+  +---- UniPath deterministic admissions engine
+  +---- Supabase Postgres (users/profile/plans/history/admin overrides)
 ```
 
-别人打开网址后：
+GitHub Models is used through:
 
-1. 输入自己的申请简介；
-2. 点击 **Analyze with AI**；
-3. AI 自动整理 GPA / SAT / AP / 活动 / 奖项 / 专业方向；
-4. UniPath 自动生成学校预测；
-5. 用户可以继续问 AI Counselor。
+```text
+https://models.github.ai/inference/chat/completions
+```
 
-**他们不需要 API Key，也不需要下载任何文件。**
+The default model is:
+
+```text
+deepseek/DeepSeek-V3-0324
+```
+
+You can change it using `GITHUB_MODEL`.
 
 ---
 
-# 你作为网站拥有者只需要配置一次
+# Recommended way to replace your current GitHub repository
 
-这个版本前端永远只调用：
+Do **not** delete files one by one on the GitHub website.
 
-```text
-/api/unipath
-```
+The easiest reliable method is GitHub Desktop:
 
-不需要理解 profile / predict / counselor 三个 API。
+1. Install GitHub Desktop.
+2. Clone your current repository (`easonhxc/ea`).
+3. Open the cloned folder in Finder.
+4. Delete the old project files **inside the folder**. Do not delete the hidden `.git` folder.
+5. Copy every file/folder from this `unipath-complete` project into that folder.
+6. GitHub Desktop will show all deletes/additions.
+7. Commit with a message such as:
+   `Replace prototype with UniPath Complete`
+8. Click `Push origin`.
+9. Vercel automatically redeploys the same project URL.
 
-服务器内部会自动根据 action 完成：
-
-```text
-Analyze
-  → OpenAI 解析 Profile
-  → UniPath Prediction Engine
-  → 一次返回 Profile + 学校结果
-
-Predict
-  → UniPath 本地算法
-
-Counsel
-  → OpenAI 根据已有 Profile + UniPath 结果回答
-```
+Safer alternative: create a brand-new GitHub repository such as `unipath-ai` and import that into Vercel. This avoids old-file conflicts.
 
 ---
 
-# 最简单的公开部署方式：Vercel
+# 1. Create Supabase
 
-## 第一次
+Create a Supabase project.
 
-### 1. 把项目上传到 GitHub
-
-整个 `unipath-ai-shareable` 文件夹上传到一个 GitHub repository。
-
-### 2. 在 Vercel 里 Import Project
-
-选择刚刚的 GitHub repository。
-
-Vercel 会自动识别 Next.js。
-
-### 3. 只配置一个环境变量
-
-在 Vercel 项目的 Environment Variables 添加：
+Open:
 
 ```text
-OPENAI_API_KEY
+SQL Editor
 ```
 
-Value 填你的 OpenAI API Key。
-
-不要加 `NEXT_PUBLIC_`。
-
-### 4. 点击 Deploy
-
-部署完成后会得到类似：
+Run the entire file:
 
 ```text
-https://unipath-ai-xxxx.vercel.app
+supabase/schema.sql
 ```
 
-这就是你可以直接发给其他人的网址。
+This creates:
+
+```text
+profiles
+application_plans
+prediction_runs
+school_overrides
+feedback
+```
+
+The app uses Supabase Auth's built-in `auth.users` table for accounts.
 
 ---
 
-# API Key 到底谁需要？
+# 2. Get Supabase keys
 
-只有你需要。
-
-普通用户：
+In Supabase project settings, get:
 
 ```text
-❌ 不需要 OpenAI 账号
-❌ 不需要 API Key
-❌ 不需要安装 Node.js
-❌ 不需要运行 npm
-✅ 打开网址直接使用
+Project URL
+Publishable / anon key
+Service role key
 ```
 
-网站所有者：
+The browser receives only the public/publishable key.
 
-```text
-✅ 在 Vercel 后台配置一次 OPENAI_API_KEY
-```
-
-API Key 保存在服务器端，不会放进浏览器 JavaScript。
+The **service role key must only be stored in Vercel**.
 
 ---
 
-# 成本是谁付？
+# 3. Create a GitHub Models token
 
-因为网站使用你的 OpenAI API Key：
+Use a GitHub Personal Access Token with:
 
 ```text
-别人使用 UniPath
-        ↓
-你的服务器
-        ↓
-你的 OpenAI API project
+models: read
 ```
 
-因此 API 使用费用由你的 OpenAI API 项目承担。
-
-正式公开测试前建议继续加入：
-
-- 登录；
-- 每人每日调用次数；
-- IP / user rate limit；
-- API 成本上限；
-- usage logging；
-- bot protection。
+Never commit this token to GitHub.
 
 ---
 
-# 为什么现在只有一个 API？
+# 4. Vercel Environment Variables
 
-旧版：
-
-```text
-/api/profile
-/api/predict
-/api/counselor
-```
-
-新版：
+In:
 
 ```text
-/api/unipath
+Vercel
+→ Project
+→ Settings
+→ Environment Variables
 ```
 
-前端只需要：
+add:
 
-```js
-fetch("/api/unipath", ...)
+```env
+GITHUB_TOKEN=your_github_pat
+
+GITHUB_MODEL=deepseek/DeepSeek-V3-0324
+
+NEXT_PUBLIC_SUPABASE_URL=https://YOURPROJECT.supabase.co
+
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_publishable_key
+
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+
+ADMIN_EMAILS=your-email@example.com
 ```
 
-其中：
+`ADMIN_EMAILS` can contain multiple emails separated by commas.
+
+Example:
+
+```text
+owner@example.com,secondadmin@example.com
+```
+
+Users whose email appears here see the Admin tab.
+
+---
+
+# 5. Deploy
+
+Import the GitHub repository into Vercel.
+
+Framework:
+
+```text
+Next.js
+```
+
+Root directory:
+
+```text
+./
+```
+
+Deploy.
+
+---
+
+# 6. Login behavior
+
+Users can:
+
+```text
+Sign up
+→ verify email if Supabase email confirmation is enabled
+→ log in
+→ save profile
+→ save school plan
+→ view history
+```
+
+You can change email-confirmation settings in Supabase Auth settings.
+
+---
+
+# Admin
+
+Admin does not expose secret API keys.
+
+Admin can currently:
+
+- see profile count;
+- see saved-plan count;
+- see prediction-run count;
+- see feedback count;
+- see the active GitHub model;
+- create JSON overrides for school data.
+
+Example school override:
 
 ```json
-{"action":"analyze"}
+{
+  "sel": 0.08,
+  "rank": 17,
+  "research": 10,
+  "source_note": "2026 official institutional data"
+}
 ```
 
-会完成：
+The prediction engine merges this record over the built-in school database immediately. You do not need to redeploy.
 
-```text
-AI profile extraction
-+
-admission predictions
+You can later extend override JSON with your own fields such as:
+
+```json
+{
+  "major_factors": {
+    "computer_science": 0.55
+  },
+  "international_rate": 0.06,
+  "year": "2026",
+  "source": "official"
+}
 ```
-
-一次点击就够。
 
 ---
 
-# OpenAI 调用
+# Data warning
 
-OpenAI API Key 只由服务器读取：
+The built-in school database is a planning seed dataset. It is **not** a guarantee that every rate, program, policy or application round is current.
 
-```js
-process.env.OPENAI_API_KEY
-```
-
-AI 使用 OpenAI Responses API。
-
-Profile extraction 使用 Structured Outputs，因此 AI 不是随意写一段文字，而是必须生成符合 UniPath ApplicantProfile schema 的结构化数据。
-
-Counselor 不负责重新计算录取率。它只解释 deterministic UniPath engine 已经给出的区间。
+For a public product, create a data-update workflow using official university sources and use the Admin override system to keep current-cycle values updated.
 
 ---
 
-# 本地测试（可选）
+# Security
 
-只有你作为开发者需要时才做。
-
-```bash
-npm install
-```
-
-创建：
+Never commit:
 
 ```text
+GITHUB_TOKEN
+SUPABASE_SERVICE_ROLE_KEY
+.env
 .env.local
 ```
 
-填：
+The included `.gitignore` blocks `.env` and `.env.local`.
+
+The `SUPABASE_SERVICE_ROLE_KEY` is used only by server-side API routes.
+
+The browser uses only:
 
 ```text
-OPENAI_API_KEY=你的key
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
 ```
 
-然后：
+---
 
-```bash
-npm run dev
-```
+# GitHub Models free tier
 
-浏览器：
+GitHub Models is appropriate for prototype/testing use, but it has model-dependent rate limits.
+
+If usage grows, add:
+
+- per-user daily AI limits;
+- IP/user rate limiting;
+- bot protection;
+- usage counters;
+- paid plan;
+- model fallback;
+- request caching.
+
+The deterministic prediction/simulation endpoints do not require an AI call, so they are cheap.
+
+---
+
+# Product rule
 
 ```text
-http://localhost:3000
+AI understands the applicant.
+UniPath calculates the risk.
+AI explains the result.
 ```
 
-如果你直接部署 Vercel，可以完全不让最终用户接触这部分。
+Do not let the language model independently invent school-specific admission probabilities.

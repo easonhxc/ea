@@ -1,6 +1,6 @@
 {
-  "name": "unipath-ai",
-  "version": "0.1.0",
+  "name": "unipath-complete",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,10 +8,10 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "16.3.0",
-    "openai": "latest",
+    "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "@supabase/supabase-js": "latest",
     "zod": "latest"
   }
 }
