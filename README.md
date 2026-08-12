@@ -1,310 +1,122 @@
-# UniPath Complete
+# UniPath Next — DeepSeek Hybrid Admissions OS
 
-这是一个完整的可部署版本，包含：
+A deployable Next.js + Supabase university-planning product. This rebuild replaces GitHub Models with the official DeepSeek API and redesigns UniPath around a persistent student profile, hybrid model, opportunity database, roadmap, application portfolio and continuous AI conversation.
 
-- Supabase 用户注册 / 登录
-- 用户 Profile 持久化
-- AI Profile Import（GitHub Models）
-- 52 校 seed database
-- 114 majors
-- 第一 / 第二申请方向
-- field-aware applicant scoring
-- school + major recommendations
-- academics / extracurricular recommendations
-- saved application plans
-- ED / ED II / EA / EA2 / REA / SCEA / RD / RA / UC / UCAS / Rolling
-- conflict validation
-- early-strategy optimizer
-- Monte Carlo application simulator
-- AI Counselor
-- prediction history
-- user feedback
-- admin dashboard
-- school-data overrides without redeploying code
+## What changed
+
+- Cleaner, restrained premium UI instead of the old dashboard-heavy layout.
+- Official DeepSeek API (`deepseek-v4-flash` by default).
+- Hybrid admissions model: deterministic applicant model + bounded AI holistic assessment.
+- AI is not allowed to invent admission percentages. Its contribution is confidence-weighted and bounded inside the profile score.
+- Verified high-school aggregate outcomes can add only a small, audited context multiplier; unverified schools add **zero** probability adjustment.
+- High-school selector with 35 initial schools/directories.
+- Official-outcome seed context for SHSID, Shanghai American School Pudong/Puxi, and limited UWC Changshu context.
+- 127 university planning records across the US, UK, Canada, Singapore, Hong Kong and Australia.
+- 114 majors.
+- 69 opportunity pathways covering summer programs, research, competitions, projects and work.
+- Opportunity matching based on major, grade and profile gaps rather than prestige alone.
+- Persistent roadmap stored in Supabase.
+- Persistent AI Advisor conversation stored in Supabase.
+- Saved application plans + early-round conflict checking + Monte Carlo simulation.
+- Admin school-data overrides remain available without code redeployment.
 
 ## Architecture
 
 ```text
 Browser
-  |
   | Supabase Auth
   v
 Next.js / Vercel
   |
-  | /api/unipath
-  +---- GitHub Models (AI parsing + counselor)
-  +---- UniPath deterministic admissions engine
-  +---- Supabase Postgres (users/profile/plans/history/admin overrides)
+  +-- /api/unipath
+       |
+       +-- DeepSeek V4 Flash
+       |    - profile extraction
+       |    - bounded holistic scoring
+       |    - roadmap generation
+       |    - persistent AI advisor
+       |
+       +-- UniPath deterministic model
+       |    - academics / activities / awards / output / narrative
+       |    - school + major selectivity planning baseline
+       |    - verified high-school aggregate context (small capped effect)
+       |    - application-round simulation
+       |
+       +-- Supabase Postgres
+            - profiles
+            - application_plans
+            - prediction_runs
+            - saved_opportunities
+            - roadmap_items
+            - conversation_messages
+            - school_overrides
+            - high_school_outcome_overrides
+            - feedback
 ```
 
-GitHub Models is used through:
+## 1. Upgrade the existing Supabase database
 
-```text
-https://models.github.ai/inference/chat/completions
-```
-
-The default model is:
-
-```text
-deepseek/DeepSeek-V3-0324
-```
-
-You can change it using `GITHUB_MODEL`.
-
----
-
-# Recommended way to replace your current GitHub repository
-
-Do **not** delete files one by one on the GitHub website.
-
-The easiest reliable method is GitHub Desktop:
-
-1. Install GitHub Desktop.
-2. Clone your current repository (`easonhxc/ea`).
-3. Open the cloned folder in Finder.
-4. Delete the old project files **inside the folder**. Do not delete the hidden `.git` folder.
-5. Copy every file/folder from this `unipath-complete` project into that folder.
-6. GitHub Desktop will show all deletes/additions.
-7. Commit with a message such as:
-   `Replace prototype with UniPath Complete`
-8. Click `Push origin`.
-9. Vercel automatically redeploys the same project URL.
-
-Safer alternative: create a brand-new GitHub repository such as `unipath-ai` and import that into Vercel. This avoids old-file conflicts.
-
----
-
-# 1. Create Supabase
-
-Create a Supabase project.
-
-Open:
-
-```text
-SQL Editor
-```
-
-Run the entire file:
+Open Supabase → SQL Editor and run the **entire** file:
 
 ```text
 supabase/schema.sql
 ```
 
-This creates:
+It is written with `create table if not exists`, so it can be run on the existing UniPath project. It adds the new roadmap, opportunity and conversation tables.
 
-```text
-profiles
-application_plans
-prediction_runs
-school_overrides
-feedback
-```
+## 2. Vercel environment variables
 
-The app uses Supabase Auth's built-in `auth.users` table for accounts.
-
----
-
-# 2. Get Supabase keys
-
-In Supabase project settings, get:
-
-```text
-Project URL
-Publishable / anon key
-Service role key
-```
-
-The browser receives only the public/publishable key.
-
-The **service role key must only be stored in Vercel**.
-
----
-
-# 3. Create a GitHub Models token
-
-Use a GitHub Personal Access Token with:
-
-```text
-models: read
-```
-
-Never commit this token to GitHub.
-
----
-
-# 4. Vercel Environment Variables
-
-In:
-
-```text
-Vercel
-→ Project
-→ Settings
-→ Environment Variables
-```
-
-add:
-
-```env
-GITHUB_TOKEN=your_github_pat
-
-GITHUB_MODEL=deepseek/DeepSeek-V3-0324
-
-NEXT_PUBLIC_SUPABASE_URL=https://YOURPROJECT.supabase.co
-
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_publishable_key
-
-SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
-
-ADMIN_EMAILS=your-email@example.com
-```
-
-`ADMIN_EMAILS` can contain multiple emails separated by commas.
-
-Example:
-
-```text
-owner@example.com,secondadmin@example.com
-```
-
-Users whose email appears here see the Admin tab.
-
----
-
-# 5. Deploy
-
-Import the GitHub repository into Vercel.
-
-Framework:
-
-```text
-Next.js
-```
-
-Root directory:
-
-```text
-./
-```
-
-Deploy.
-
----
-
-# 6. Login behavior
-
-Users can:
-
-```text
-Sign up
-→ verify email if Supabase email confirmation is enabled
-→ log in
-→ save profile
-→ save school plan
-→ view history
-```
-
-You can change email-confirmation settings in Supabase Auth settings.
-
----
-
-# Admin
-
-Admin does not expose secret API keys.
-
-Admin can currently:
-
-- see profile count;
-- see saved-plan count;
-- see prediction-run count;
-- see feedback count;
-- see the active GitHub model;
-- create JSON overrides for school data.
-
-Example school override:
-
-```json
-{
-  "sel": 0.08,
-  "rank": 17,
-  "research": 10,
-  "source_note": "2026 official institutional data"
-}
-```
-
-The prediction engine merges this record over the built-in school database immediately. You do not need to redeploy.
-
-You can later extend override JSON with your own fields such as:
-
-```json
-{
-  "major_factors": {
-    "computer_science": 0.55
-  },
-  "international_rate": 0.06,
-  "year": "2026",
-  "source": "official"
-}
-```
-
----
-
-# Data warning
-
-The built-in school database is a planning seed dataset. It is **not** a guarantee that every rate, program, policy or application round is current.
-
-For a public product, create a data-update workflow using official university sources and use the Admin override system to keep current-cycle values updated.
-
----
-
-# Security
-
-Never commit:
+Remove the retired GitHub Models variables when convenient:
 
 ```text
 GITHUB_TOKEN
-SUPABASE_SERVICE_ROLE_KEY
-.env
-.env.local
+GITHUB_MODEL
 ```
 
-The included `.gitignore` blocks `.env` and `.env.local`.
+Add:
 
-The `SUPABASE_SERVICE_ROLE_KEY` is used only by server-side API routes.
-
-The browser uses only:
-
-```text
-NEXT_PUBLIC_SUPABASE_URL
-NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY
+```env
+DEEPSEEK_API_KEY=your_deepseek_key
+DEEPSEEK_MODEL=deepseek-v4-flash
+NEXT_PUBLIC_SUPABASE_URL=https://YOURPROJECT.supabase.co
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=your_publishable_key
+SUPABASE_SECRET_KEY=your_server_secret_key
+ADMIN_EMAILS=your-email@example.com
 ```
 
----
+The code also accepts the legacy `SUPABASE_SERVICE_ROLE_KEY` as a fallback, so an existing deployment does not have to migrate Supabase keys immediately.
 
-# GitHub Models free tier
+Never expose `DEEPSEEK_API_KEY`, `SUPABASE_SECRET_KEY`, or `SUPABASE_SERVICE_ROLE_KEY` with a `NEXT_PUBLIC_` prefix.
 
-GitHub Models is appropriate for prototype/testing use, but it has model-dependent rate limits.
+## 3. Replace the GitHub repository files
 
-If usage grows, add:
+Using GitHub Desktop:
 
-- per-user daily AI limits;
-- IP/user rate limiting;
-- bot protection;
-- usage counters;
-- paid plan;
-- model fallback;
-- request caching.
+1. Open the local `ea` repository with **Repository → Show in Finder**.
+2. Keep the hidden `.git` directory.
+3. Replace the project files with the contents of this folder.
+4. Commit, for example: `Upgrade UniPath to DeepSeek hybrid planner`.
+5. Push origin.
+6. Vercel will create a new deployment automatically.
 
-The deterministic prediction/simulation endpoints do not require an AI call, so they are cheap.
+## 4. High-school context model
 
----
+The high-school name is **not** treated as a prestige score. A context adjustment is enabled only where the catalog entry has verified public aggregate data. The current built-in effect is capped at a small relative multiplier and is surfaced in the college row as `School context`.
 
-# Product rule
+Current verified seed sources include:
 
-```text
-AI understands the applicant.
-UniPath calculates the risk.
-AI explains the result.
-```
+- SHSID 2026 official admissions review.
+- Shanghai American School 2025-26 college profiles and Class of 2025 university matriculation page.
+- UWC Changshu official university-counseling / graduation context, with a smaller signal because school-by-school counts are not published in the same form.
 
-Do not let the language model independently invent school-specific admission probabilities.
+For schools without enough verified public data, `context_strength = 0`, so selecting that school does not change the modeled probability.
+
+## 5. Data quality
+
+The expanded university catalog is a **planning seed database**, not a claim that every acceptance rate or program mapping is current. Each school record contains `data_quality`, `catalog_verified`, and `source_note`. Use Admin `school_overrides` for verified current-cycle data.
+
+Opportunity records intentionally avoid hardcoding deadlines because deadlines change by cycle. The UI tells users to verify the current official page before applying.
+
+## 6. Important product principle
+
+UniPath is a student planning tool, not an official admissions model. Do not present its probability intervals as university-issued odds. Sensitive traits are excluded from scoring. Planned future achievements do not receive the same credit as completed evidence.

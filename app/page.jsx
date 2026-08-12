@@ -6,419 +6,176 @@ import { EmptyProfile } from "@/lib/schema";
 import majors from "@/data/majors.json";
 import schools from "@/data/schools.json";
 import roundRules from "@/data/rounds.json";
+import highSchools from "@/data/high-schools.json";
 
 const NAV=[
-  ["dashboard","⌂","Dashboard"],
-  ["profile","◎","Profile"],
-  ["import","✦","AI Import"],
-  ["colleges","⌕","Schools & Majors"],
-  ["recommend","↗","Academic & Activities"],
-  ["strategy","⇄","ED / RD Planner"],
-  ["simulator","◉","Application Simulator"],
-  ["counselor","✧","AI Counselor"],
-  ["history","◫","History"],
+  ["overview","Overview"],["profile","Profile"],["colleges","Colleges"],["opportunities","Opportunities"],
+  ["roadmap","Roadmap"],["applications","Applications"],["advisor","AI Advisor"],["history","History"]
 ];
-
+const COUNTRY_LABEL={us:"US",uk:"UK",canada:"Canada",singapore:"Singapore",hk:"Hong Kong",australia:"Australia",europe:"Europe"};
+const roundLabel={ED1:"ED I",ED2:"ED II",EA:"EA",EA2:"EA2",REA:"REA",SCEA:"SCEA",RD:"RD",RA:"RA",UC:"UC",UCAS:"UCAS",OX:"Oxbridge",ROLLING:"Rolling"};
 const pct=x=>`${Math.round((Number(x)||0)*100)}%`;
-const fmtScore=x=>Math.round(Number(x)||0);
-const roundLabel={ED1:"ED I",ED2:"ED II",EA:"EA",EA2:"EA2",REA:"REA",SCEA:"SCEA",RD:"RD",RA:"RA",UC:"UC",UCAS:"UCAS",OX:"Oxbridge UCAS",ROLLING:"Rolling"};
+const score=x=>Number.isFinite(Number(x))?Math.round(Number(x)):"—";
 
-function majorLabel(slugOrText) {
-  return majors.find(m=>m.slug===slugOrText)?.label || slugOrText || "—";
-}
-
-export default function Home() {
-  const [supabase,setSupabase]=useState(null);
-  const [session,setSession]=useState(null);
-  const [authMode,setAuthMode]=useState("login");
-  const [email,setEmail]=useState("");
-  const [password,setPassword]=useState("");
-  const [authMsg,setAuthMsg]=useState("");
-  const [tab,setTab]=useState("dashboard");
-  const [profile,setProfile]=useState({...EmptyProfile});
-  const [predictions,setPredictions]=useState(null);
-  const [recommendations,setRecommendations]=useState(null);
-  const [plans,setPlans]=useState([]);
-  const [history,setHistory]=useState([]);
-  const [isAdmin,setIsAdmin]=useState(false);
-  const [adminData,setAdminData]=useState(null);
-  const [loading,setLoading]=useState("");
-  const [freeText,setFreeText]=useState("");
-  const [question,setQuestion]=useState("根据我的profile和选校结果，我的申请策略最应该先改哪三件事？");
-  const [chat,setChat]=useState([]);
-  const [simulation,setSimulation]=useState(null);
-  const [strategy,setStrategy]=useState(null);
-  const [filterCountry,setFilterCountry]=useState("all");
-  const [filterTier,setFilterTier]=useState("all");
-  const [adminSchool,setAdminSchool]=useState("Harvard");
-  const [adminJson,setAdminJson]=useState('{\n  "sel": 0.035,\n  "source_note": "Replace with verified current-cycle data"\n}');
-  const [feedback,setFeedback]=useState("");
+export default function Home(){
+  const [supabase,setSupabase]=useState(null),[session,setSession]=useState(null),[authMode,setAuthMode]=useState("login");
+  const [email,setEmail]=useState(""),[password,setPassword]=useState(""),[authMsg,setAuthMsg]=useState("");
+  const [tab,setTab]=useState("overview"),[profile,setProfile]=useState({...EmptyProfile}),[predictions,setPredictions]=useState(null);
+  const [plans,setPlans]=useState([]),[opps,setOpps]=useState([]),[savedOpps,setSavedOpps]=useState([]),[roadmap,setRoadmap]=useState([]),[generatedRoadmap,setGeneratedRoadmap]=useState(null);
+  const [chat,setChat]=useState([]),[question,setQuestion]=useState(""),[history,setHistory]=useState([]),[isAdmin,setIsAdmin]=useState(false),[adminData,setAdminData]=useState(null);
+  const [loading,setLoading]=useState(""),[importText,setImportText]=useState(""),[feedback,setFeedback]=useState("");
+  const [collegeCountry,setCollegeCountry]=useState("all"),[collegeTier,setCollegeTier]=useState("all"),[collegeQuery,setCollegeQuery]=useState("");
+  const [oppKind,setOppKind]=useState("all"),[oppQuery,setOppQuery]=useState("");
+  const [simulation,setSimulation]=useState(null),[strategy,setStrategy]=useState(null);
+  const [adminSchool,setAdminSchool]=useState("Harvard"),[adminJson,setAdminJson]=useState('{\n  "sel": 0.035,\n  "source_note": "Verified current institutional source"\n}');
 
   useEffect(()=>{
-    try {
-      const s=getSupabaseBrowser();
-      setSupabase(s);
-      s.auth.getSession().then(({data})=>setSession(data.session));
-      const {data:{subscription}}=s.auth.onAuthStateChange((_event,next)=>setSession(next));
-      return ()=>subscription.unsubscribe();
-    } catch(e) { setAuthMsg(e.message); }
+    try{
+      const s=getSupabaseBrowser();setSupabase(s);s.auth.getSession().then(({data})=>setSession(data.session));
+      const {data:{subscription}}=s.auth.onAuthStateChange((_event,next)=>setSession(next));return()=>subscription.unsubscribe();
+    }catch(e){setAuthMsg(e.message)}
   },[]);
+  useEffect(()=>{if(session)bootstrap()},[session]);
+  useEffect(()=>{if(session&&tab==="opportunities"&&!opps.length)loadOpportunities()},[tab,session]);
 
-  useEffect(()=>{
-    if(session) bootstrap();
-  },[session]);
-
-  async function api(action,body={}) {
-    if(!session?.access_token) throw new Error("Please log in.");
-    const res=await fetch("/api/unipath",{
-      method:"POST",
-      headers:{"Content-Type":"application/json",Authorization:`Bearer ${session.access_token}`},
-      body:JSON.stringify({action,...body})
-    });
-    const data=await res.json();
-    if(!res.ok) throw new Error(data.error||"Request failed");
-    return data;
+  async function api(action,body={}){
+    if(!session?.access_token)throw new Error("Please log in.");
+    const res=await fetch("/api/unipath",{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${session.access_token}`},body:JSON.stringify({action,...body})});
+    const data=await res.json();if(!res.ok)throw new Error(data.error||"Request failed");return data;
   }
-
-  async function bootstrap() {
-    try {
-      setLoading("bootstrap");
-      const [me,p,pl]=await Promise.all([api("me"),api("load_profile"),api("list_plans")]);
-      setIsAdmin(me.is_admin);
-      if(p.profile) setProfile({...EmptyProfile,...p.profile});
-      setPlans(pl.plans||[]);
-    } catch(e) { alert(e.message); }
-    finally { setLoading(""); }
+  async function bootstrap(){
+    try{setLoading("bootstrap");const [me,p,pl,so,rm,ch]=await Promise.all([api("me"),api("load_profile"),api("list_plans"),api("list_saved_opportunities"),api("list_roadmap"),api("chat_history")]);setIsAdmin(me.is_admin);if(p.profile)setProfile({...EmptyProfile,...p.profile});setPlans(pl.plans||[]);setSavedOpps(so.items||[]);setRoadmap(rm.items||[]);setChat((ch.messages||[]).map(m=>({role:m.role==="assistant"?"ai":"user",text:m.content})));}
+    catch(e){alert(e.message)}finally{setLoading("")}
   }
+  async function signIn(e){e.preventDefault();setAuthMsg("");try{if(!supabase)throw new Error("Supabase is not configured.");if(authMode==="signup"){const {error}=await supabase.auth.signUp({email,password});if(error)throw error;setAuthMsg("Account created. Check email if confirmation is enabled.")}else{const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error}}catch(e){setAuthMsg(e.message)}}
+  async function logout(){await supabase?.auth.signOut();setSession(null)}
+  const update=(k,v)=>setProfile(p=>({...p,[k]:v}));
+  async function saveProfile(){try{setLoading("save");const d=await api("save_profile",{profile});setProfile({...EmptyProfile,...d.profile})}catch(e){alert(e.message)}finally{setLoading("")}}
+  async function importProfile(){try{setLoading("import");const d=await api("analyze",{text:importText,age_band:profile.age_band,primary_major:profile.primary_major,secondary_major:profile.secondary_major});setProfile({...EmptyProfile,...d.profile});setPredictions(d.predictions);setTab("colleges")}catch(e){alert(e.message)}finally{setLoading("")}}
+  async function runPrediction(){try{setLoading("predict");const d=await api("predict",{profile,primary_major:profile.primary_major,secondary_major:profile.secondary_major,use_ai:true});setPredictions(d.predictions);setTab("colleges")}catch(e){alert(e.message)}finally{setLoading("")}}
+  async function addSchool(row){try{const rule=roundRules[row.school]||{default:row.country==="uk"?"UCAS":"RD"};const d=await api("save_plan",{plan:{school_name:row.school,program:row.program,major:row.major,round:rule.default,probability:row.probability,probability_min:row.interval[0],probability_max:row.interval[1],tier:row.tier,status:"Planning"}});setPlans(p=>[...p.filter(x=>x.school_name!==row.school),d.plan])}catch(e){alert(e.message)}}
+  async function changePlan(plan,patch){try{const d=await api("save_plan",{plan:{...plan,...patch}});setPlans(p=>p.map(x=>x.id===plan.id?d.plan:x))}catch(e){alert(e.message)}}
+  async function deletePlan(plan){try{await api("delete_plan",{id:plan.id});setPlans(p=>p.filter(x=>x.id!==plan.id))}catch(e){alert(e.message)}}
+  async function loadOpportunities(){try{setLoading("opps");const d=await api("opportunities",{profile,kind:oppKind,query:oppQuery,limit:80});setOpps(d.items||[])}catch(e){alert(e.message)}finally{setLoading("")}}
+  async function saveOpportunity(o){try{const d=await api("save_opportunity",{opportunity_id:o.id});setSavedOpps(p=>[...p.filter(x=>x.opportunity_id!==o.id),d.item])}catch(e){alert(e.message)}}
+  async function removeOpportunity(o){try{await api("delete_saved_opportunity",{opportunity_id:o.id});setSavedOpps(p=>p.filter(x=>x.opportunity_id!==o.id))}catch(e){alert(e.message)}}
+  async function generateRoadmap(){try{setLoading("roadmap");const d=await api("generate_roadmap",{profile,predictions});setGeneratedRoadmap(d.roadmap)}catch(e){alert(e.message)}finally{setLoading("")}}
+  async function acceptRoadmap(){if(!generatedRoadmap?.items?.length)return;try{setLoading("acceptRoadmap");const d=await api("accept_roadmap",{items:generatedRoadmap.items});setRoadmap(p=>[...p,...(d.items||[])]);setGeneratedRoadmap(null)}catch(e){alert(e.message)}finally{setLoading("")}}
+  async function updateRoadmapItem(item,patch){try{const d=await api("save_roadmap_item",{item:{...item,...patch}});setRoadmap(p=>p.map(x=>x.id===item.id?d.item:x))}catch(e){alert(e.message)}}
+  async function deleteRoadmapItem(item){try{await api("delete_roadmap_item",{id:item.id});setRoadmap(p=>p.filter(x=>x.id!==item.id))}catch(e){alert(e.message)}}
+  async function askAI(){const q=question.trim();if(!q)return;setChat(c=>[...c,{role:"user",text:q}]);setQuestion("");try{setLoading("chat");const d=await api("counsel",{question:q,profile,predictions,plans});setChat(c=>[...c,{role:"ai",text:d.answer}])}catch(e){setChat(c=>[...c,{role:"ai",text:`Error: ${e.message}`}])}finally{setLoading("")}}
+  async function clearChat(){try{await api("clear_chat");setChat([])}catch(e){alert(e.message)}}
+  async function simulate(runs=2000){try{setLoading("simulate");const d=await api("simulate",{plans,runs});setSimulation(d)}catch(e){alert(e.message)}finally{setLoading("")}}
+  async function optimize(){try{setLoading("strategy");setStrategy(await api("optimize_strategy",{plans}))}catch(e){alert(e.message)}finally{setLoading("")}}
+  async function loadHistory(){try{const d=await api("history");setHistory(d.runs||[]);setTab("history")}catch(e){alert(e.message)}}
+  async function loadAdmin(){try{const d=await api("admin_stats");setAdminData(d);setTab("admin")}catch(e){alert(e.message)}}
+  async function saveOverride(){try{await api("admin_save_override",{school_name:adminSchool,data:JSON.parse(adminJson)});await loadAdmin()}catch(e){alert(e.message)}}
+  async function sendFeedback(){if(!feedback.trim())return;try{await api("feedback",{message:feedback});setFeedback("")}catch(e){alert(e.message)}}
 
-  async function signIn(e) {
-    e.preventDefault(); setAuthMsg("");
-    try {
-      if(!supabase) throw new Error("Supabase is not configured.");
-      if(authMode==="signup") {
-        const {error}=await supabase.auth.signUp({email,password});
-        if(error) throw error;
-        setAuthMsg("Account created. If email confirmation is enabled, check your inbox.");
-      } else {
-        const {error}=await supabase.auth.signInWithPassword({email,password});
-        if(error) throw error;
-      }
-    } catch(e){setAuthMsg(e.message)}
-  }
+  function addActivity(){update("activities",[...(profile.activities||[]),{name:"",category:"other",status:"ongoing",years:null,hours_per_week:null,role:"",impact_scope:"unknown",measurable_outcome:"",major_related:false}])}
+  function setActivity(i,k,v){update("activities",profile.activities.map((a,j)=>j===i?{...a,[k]:v}:a))}
+  function addAward(){update("awards",[...(profile.awards||[]),{name:"",level:"unknown",status:"earned",major_related:false}])}
+  function setAward(i,k,v){update("awards",profile.awards.map((a,j)=>j===i?{...a,[k]:v}:a))}
 
-  async function logout(){ await supabase?.auth.signOut(); setSession(null); }
+  const collegeRows=useMemo(()=>{
+    const q=collegeQuery.toLowerCase();return (predictions?.schools||[]).filter(s=>(collegeCountry==="all"||s.country===collegeCountry)&&(collegeTier==="all"||s.tier===collegeTier)&&(!q||`${s.school} ${s.program}`.toLowerCase().includes(q)));
+  },[predictions,collegeCountry,collegeTier,collegeQuery]);
+  const completedRoadmap=roadmap.filter(x=>x.status==="done").length;
 
-  function update(key,value){ setProfile(p=>({...p,[key]:value})); }
+  if(!session)return <AuthScreen mode={authMode} setMode={setAuthMode} email={email} setEmail={setEmail} password={password} setPassword={setPassword} submit={signIn} msg={authMsg}/>;
+  const hs=highSchools.find(h=>h.id===profile.high_school_id);
 
-  async function saveProfile() {
-    try{setLoading("saveProfile");await api("save_profile",{profile});}
-    catch(e){alert(e.message)} finally{setLoading("")}
-  }
-
-  async function analyzeProfile() {
-    try{
-      setLoading("analyze");
-      const data=await api("analyze",{
-        text:freeText,age_band:profile.age_band,
-        primary_major:profile.primary_major,secondary_major:profile.secondary_major
-      });
-      setProfile({...EmptyProfile,...data.profile});
-      setPredictions(data.predictions);
-      setTab("colleges");
-    }catch(e){alert(e.message)} finally{setLoading("")}
-  }
-
-  async function runPrediction() {
-    try{
-      setLoading("predict");
-      const data=await api("predict",{profile,primary_major:profile.primary_major,secondary_major:profile.secondary_major});
-      setPredictions(data.predictions);
-      setTab("colleges");
-    }catch(e){alert(e.message)} finally{setLoading("")}
-  }
-
-  async function runRecommendations() {
-    try{
-      setLoading("recommend");
-      const data=await api("recommend",{profile,primary_major:profile.primary_major,predictions});
-      setRecommendations(data.recommendations); setTab("recommend");
-    }catch(e){alert(e.message)} finally{setLoading("")}
-  }
-
-  async function addSchool(row) {
-    try{
-      const rule=roundRules[row.school]||{default:row.country==="uk"?"UCAS":"RD"};
-      const data=await api("save_plan",{plan:{
-        school_name:row.school,program:row.program,major:row.major,round:rule.default,
-        probability:row.probability,probability_min:row.interval[0],probability_max:row.interval[1],
-        tier:row.tier,status:"Planning"
-      }});
-      setPlans(p=>[...p.filter(x=>x.school_name!==row.school),data.plan]);
-    }catch(e){alert(e.message)}
-  }
-
-  async function changePlan(plan,patch) {
-    try{
-      const data=await api("save_plan",{plan:{...plan,...patch}});
-      setPlans(p=>p.map(x=>x.id===plan.id?data.plan:x));
-    }catch(e){alert(e.message)}
-  }
-
-  async function deletePlan(plan) {
-    if(!confirm(`Remove ${plan.school_name} from your application plan?`)) return;
-    try{await api("delete_plan",{id:plan.id});setPlans(p=>p.filter(x=>x.id!==plan.id));}
-    catch(e){alert(e.message)}
-  }
-
-  async function optimizeStrategy() {
-    try{
-      setLoading("strategy");const data=await api("optimize_strategy",{plans});
-      setStrategy(data);setTab("strategy");
-    }catch(e){alert(e.message)}finally{setLoading("")}
-  }
-
-  async function simulate(runs=1000) {
-    try{
-      setLoading("simulate");const data=await api("simulate",{plans,runs});
-      setSimulation(data);setTab("simulator");
-    }catch(e){alert(e.message)}finally{setLoading("")}
-  }
-
-  async function askAI() {
-    if(!question.trim())return;
-    const q=question;setChat(c=>[...c,{role:"user",text:q}]);setQuestion("");
-    try{
-      setLoading("counsel");
-      const data=await api("counsel",{question:q,profile,predictions,plans});
-      setChat(c=>[...c,{role:"ai",text:data.answer}]);
-    }catch(e){setChat(c=>[...c,{role:"ai",text:`Error: ${e.message}`}])}
-    finally{setLoading("")}
-  }
-
-  async function loadHistory() {
-    try{const d=await api("history");setHistory(d.runs||[]);setTab("history");}
-    catch(e){alert(e.message)}
-  }
-
-  async function loadAdmin() {
-    try{const d=await api("admin_stats");setAdminData(d);setTab("admin");}
-    catch(e){alert(e.message)}
-  }
-
-  async function saveOverride() {
-    try{
-      const data=JSON.parse(adminJson);
-      await api("admin_save_override",{school_name:adminSchool,data});
-      await loadAdmin();
-    }catch(e){alert(e.message)}
-  }
-
-  async function sendFeedback() {
-    try{await api("feedback",{message:feedback});setFeedback("");alert("Thanks — feedback saved.");}
-    catch(e){alert(e.message)}
-  }
-
-  function addActivity(){update("activities",[...profile.activities,{name:"",category:"other",years:null,hours_per_week:null,role:"",impact_scope:"unknown",measurable_outcome:"",major_related:false}])}
-  function setActivity(i,key,value){update("activities",profile.activities.map((a,j)=>j===i?{...a,[key]:value}:a))}
-  function delActivity(i){update("activities",profile.activities.filter((_,j)=>j!==i))}
-  function addAward(){update("awards",[...profile.awards,{name:"",level:"unknown",major_related:false}])}
-  function setAward(i,key,value){update("awards",profile.awards.map((a,j)=>j===i?{...a,[key]:value}:a))}
-  function delAward(i){update("awards",profile.awards.filter((_,j)=>j!==i))}
-
-  const filteredSchools=(predictions?.schools||[]).filter(s=>
-    (filterCountry==="all"||s.country===filterCountry) &&
-    (filterTier==="all"||s.tier===filterTier)
-  );
-
-  if(!session) return <AuthScreen mode={authMode} setMode={setAuthMode} email={email} setEmail={setEmail} password={password} setPassword={setPassword} submit={signIn} msg={authMsg}/>;
-
-  const score=predictions?.scores;
-
-  return <div className="app">
-    <aside className="sidebar">
-      <div className="brand"><div className="logo">U</div><div><b>UniPath AI</b><small>Application Strategy OS</small></div></div>
-      <div className="nav">
-        {NAV.map(([id,ico,name])=><button key={id} className={tab===id?"active":""} onClick={()=>id==="history"?loadHistory():setTab(id)}><span>{ico}</span>{name}</button>)}
-        {isAdmin&&<button className={tab==="admin"?"active":""} onClick={loadAdmin}><span>⚙</span>Admin</button>}
-      </div>
-      <div className="userBox"><small>{session.user.email}</small><button onClick={logout}>Log out</button></div>
+  return <div className="shell">
+    <aside className="rail">
+      <div className="brand"><div className="mark">U</div><div><b>UniPath</b><small>Admissions OS</small></div></div>
+      <nav>{NAV.map(([id,name])=><button key={id} className={tab===id?"active":""} onClick={()=>id==="history"?loadHistory():setTab(id)}>{name}</button>)}{isAdmin&&<button className={tab==="admin"?"active":""} onClick={loadAdmin}>Admin</button>}</nav>
+      <div className="account"><span>{session.user.email}</span><button onClick={logout}>Log out</button></div>
     </aside>
 
-    <main className="main">
-      <header className="top">
-        <div><div className="eyebrow">UNIPATH AI</div><h1>{titleFor(tab)}</h1><p>{subtitleFor(tab)}</p></div>
-        <div className="topActions"><button className="ghost" onClick={saveProfile}>{loading==="saveProfile"?"Saving…":"Save Profile"}</button><button className="primary" onClick={runPrediction}>{loading==="predict"?"Calculating…":"Run Prediction"}</button></div>
-      </header>
+    <main className="workspace">
+      <header className="mast"><div><span className="kicker">UNIPATH / {tab.toUpperCase()}</span><h1>{title(tab)}</h1><p>{subtitle(tab)}</p></div><div className="mastActions"><button className="quiet" onClick={saveProfile}>{loading==="save"?"Saving…":"Save"}</button><button className="solid" onClick={runPrediction}>{loading==="predict"?"Running hybrid model…":"Run prediction"}</button></div></header>
 
-      {tab==="dashboard"&&<Dashboard profile={profile} score={score} predictions={predictions} plans={plans} go={setTab} onPredict={runPrediction} onRecommend={runRecommendations}/>}
+      {tab==="overview"&&<Overview profile={profile} predictions={predictions} plans={plans} roadmap={roadmap} completedRoadmap={completedRoadmap} hs={hs} go={setTab} runPrediction={runPrediction}/>}      
+      {tab==="profile"&&<ProfileEditor profile={profile} update={update} importText={importText} setImportText={setImportText} importProfile={importProfile} loading={loading} addActivity={addActivity} setActivity={setActivity} addAward={addAward} setAward={setAward}/>}      
+      {tab==="colleges"&&<Colleges rows={collegeRows} predictions={predictions} plans={plans} addSchool={addSchool} country={collegeCountry} setCountry={setCollegeCountry} tier={collegeTier} setTier={setCollegeTier} query={collegeQuery} setQuery={setCollegeQuery} run={runPrediction} loading={loading}/>}      
+      {tab==="opportunities"&&<Opportunities items={opps} saved={savedOpps} kind={oppKind} setKind={setOppKind} query={oppQuery} setQuery={setOppQuery} search={loadOpportunities} save={saveOpportunity} remove={removeOpportunity} loading={loading}/>}      
+      {tab==="roadmap"&&<Roadmap items={roadmap} generated={generatedRoadmap} generate={generateRoadmap} accept={acceptRoadmap} update={updateRoadmapItem} remove={deleteRoadmapItem} savedOpps={savedOpps} loading={loading}/>}      
+      {tab==="applications"&&<Applications plans={plans} change={changePlan} remove={deletePlan} optimize={optimize} strategy={strategy} simulate={simulate} simulation={simulation} loading={loading}/>}      
+      {tab==="advisor"&&<Advisor chat={chat} question={question} setQuestion={setQuestion} send={askAI} clear={clearChat} loading={loading}/>}      
+      {tab==="history"&&<History rows={history}/>}      
+      {tab==="admin"&&isAdmin&&<Admin data={adminData} school={adminSchool} setSchool={setAdminSchool} json={adminJson} setJson={setAdminJson} save={saveOverride}/>}      
 
-      {tab==="profile"&&<ProfilePage profile={profile} update={update} addActivity={addActivity} setActivity={setActivity} delActivity={delActivity} addAward={addAward} setAward={setAward} delAward={delAward}/>}
-
-      {tab==="import"&&<section className="grid2">
-        <div className="card"><h2>AI Profile Import</h2><p>粘贴自我介绍、Activities List、简历摘要或中英文混合信息。AI 会结构化后保存到你的账户。</p>
-          <textarea className="bigText" value={freeText} onChange={e=>setFreeText(e.target.value)} placeholder="Paste your applicant profile here..."/>
-          <button className="primary" onClick={analyzeProfile}>{loading==="analyze"?"Analyzing…":"Analyze with GitHub Models"}</button>
-        </div>
-        <div className="card"><h2>What AI extracts</h2><div className="featureGrid">{["GPA / curriculum","SAT / ACT / English","Awards","Activities & duration","Leadership & impact","Research / creative output","Primary major","Secondary major","Missing information"].map(x=><div className="feature" key={x}>{x}</div>)}</div>
-          <div className="notice">AI 只负责理解资料。最终学校概率由确定性 UniPath engine 计算，不让模型自己随口编百分比。</div>
-        </div>
-      </section>}
-
-      {tab==="colleges"&&<section>
-        <div className="toolbar card"><div><b>Primary:</b> {profile.primary_major||"—"}</div><div><b>Secondary:</b> {profile.secondary_major||"—"}</div>
-          <select value={filterCountry} onChange={e=>setFilterCountry(e.target.value)}><option value="all">US + UK</option><option value="us">US</option><option value="uk">UK</option></select>
-          <select value={filterTier} onChange={e=>setFilterTier(e.target.value)}><option value="all">All tiers</option>{["Lottery","Super Reach","Reach","Target","Likely"].map(x=><option key={x}>{x}</option>)}</select>
-        </div>
-        {!predictions?<Empty text="Run Prediction first."/>:<div className="schoolList">{filteredSchools.map(s=><SchoolRow key={s.school} s={s} saved={plans.some(p=>p.school_name===s.school)} add={()=>addSchool(s)}/>)}</div>}
-      </section>}
-
-      {tab==="recommend"&&<RecommendationsPage data={recommendations} run={runRecommendations} loading={loading==="recommend"}/>}
-
-      {tab==="strategy"&&<StrategyPage plans={plans} changePlan={changePlan} deletePlan={deletePlan} optimize={optimizeStrategy} data={strategy} loading={loading==="strategy"}/>}
-
-      {tab==="simulator"&&<SimulatorPage plans={plans} simulation={simulation} run={simulate} loading={loading==="simulate"}/>}
-
-      {tab==="counselor"&&<section className="grid2"><div>
-        <div className="chat">{chat.length?chat.map((m,i)=><div key={i} className={`msg ${m.role}`}>{m.text}</div>):<div className="msg ai">Ask about ED choices, major strategy, school list balance, activities, academics, essays, or what-if scenarios.</div>}</div>
-        <div className="chatInput"><input value={question} onChange={e=>setQuestion(e.target.value)} onKeyDown={e=>e.key==="Enter"&&askAI()} placeholder="Ask UniPath AI..."/><button className="primary" onClick={askAI}>{loading==="counsel"?"Thinking…":"Send"}</button></div>
-      </div><div className="card"><h2>Grounding</h2><p>The counselor receives your structured profile, deterministic school predictions and saved application plan. It is instructed not to create its own admissions percentages.</p>
-        <div className="quick">{["我应该把ED给哪所学校？","第二专业真的能提高机会吗？","我的活动最弱的地方是什么？","这个list是不是太激进？","文科申请还缺什么？"].map(q=><button key={q} onClick={()=>setQuestion(q)}>{q}</button>)}</div>
-      </div></section>}
-
-      {tab==="history"&&<section className="card"><h2>Prediction History</h2>{history.length?history.map(r=><div className="historyRow" key={r.id}><div><b>{r.primary_major}</b><small>{r.secondary_major||"No secondary major"}</small></div><div>{new Date(r.created_at).toLocaleString()}</div><div>{r.result?.schools?.length||0} schools</div></div>):<Empty text="No saved prediction runs yet."/>}</section>}
-
-      {tab==="admin"&&isAdmin&&<AdminPage data={adminData} school={adminSchool} setSchool={setAdminSchool} json={adminJson} setJson={setAdminJson} save={saveOverride}/>}
-
-      <section className="feedback card"><div><b>Feedback</b><small>Help calibrate the product.</small></div><input value={feedback} onChange={e=>setFeedback(e.target.value)} placeholder="What felt wrong or missing?"/><button className="ghost" onClick={sendFeedback}>Send</button></section>
-      <footer>Planning tool only — not an official admissions model. Verify policies, deadlines, programs, testing and aid rules with each university.</footer>
+      <div className="feedback"><span>Something wrong or missing?</span><input value={feedback} onChange={e=>setFeedback(e.target.value)} placeholder="Tell us what the model got wrong."/><button onClick={sendFeedback}>Send</button></div>
+      <footer>Planning model, not an admissions decision system. University policies, program availability, deadlines and aggregate school-outcome data should be verified from current official sources.</footer>
     </main>
   </div>;
 }
 
-function AuthScreen({mode,setMode,email,setEmail,password,setPassword,submit,msg}) {
-  return <main className="auth">
-    <div className="authHero"><div className="logo big">U</div><div className="eyebrow">UNIPATH AI</div><h1>University application planning with an AI layer and an auditable prediction engine.</h1>
-      <p>Profile → school/major recommendations → academic/activity strategy → ED/RD planning → application simulation → AI counselor.</p>
-      <div className="authFeatures"><span>52-school seed database</span><span>114 majors</span><span>GitHub Models AI</span><span>Saved user profiles</span><span>Admin dashboard</span></div>
-    </div>
-    <form className="authCard" onSubmit={submit}><h2>{mode==="login"?"Welcome back":"Create account"}</h2>
-      <label>Email</label><input type="email" value={email} onChange={e=>setEmail(e.target.value)} required/>
-      <label>Password</label><input type="password" value={password} onChange={e=>setPassword(e.target.value)} minLength={6} required/>
-      <button className="primary" type="submit">{mode==="login"?"Log in":"Sign up"}</button>
-      {msg&&<div className="notice">{msg}</div>}
-      <button type="button" className="linkBtn" onClick={()=>setMode(mode==="login"?"signup":"login")}>{mode==="login"?"Need an account? Sign up":"Already have an account? Log in"}</button>
-    </form>
-  </main>
+function AuthScreen({mode,setMode,email,setEmail,password,setPassword,submit,msg}){
+  return <main className="auth"><section><div className="mark xl">U</div><span className="kicker">UNIPATH</span><h1>A quieter way to plan a complicated application.</h1><p>One persistent profile, a hybrid admissions model, opportunity matching, a living roadmap and a counselor that remembers the plan.</p><div className="chips"><span>127 universities</span><span>114 majors</span><span>69 opportunity pathways</span><span>DeepSeek V4</span></div></section><form onSubmit={submit}><h2>{mode==="login"?"Sign in":"Create account"}</h2><label>Email<input type="email" value={email} onChange={e=>setEmail(e.target.value)} required/></label><label>Password<input type="password" value={password} onChange={e=>setPassword(e.target.value)} minLength={6} required/></label><button className="solid" type="submit">{mode==="login"?"Continue":"Create account"}</button>{msg&&<div className="notice">{msg}</div>}<button type="button" className="textButton" onClick={()=>setMode(mode==="login"?"signup":"login")}>{mode==="login"?"Create an account":"Already have an account"}</button></form></main>
 }
 
-function Dashboard({profile,score,predictions,plans,go,onPredict,onRecommend}) {
-  const s=score||{overall:0,academic:0,activities:0,output:0,awards:0,narrative:0};
+function Overview({profile,predictions,plans,roadmap,completedRoadmap,hs,go,runPrediction}){
+  const s=predictions?.scores||{};const ai=predictions?.ai_assessment;
   return <>
-    <section className="stats">
-      <Stat label="Overall Profile" value={fmtScore(s.overall)||"—"}/>
-      <Stat label="Academic" value={fmtScore(s.academic)||"—"}/>
-      <Stat label="Activities" value={fmtScore(s.activities)||"—"}/>
-      <Stat label="Saved Schools" value={plans.length}/>
+    <section className="metricRow"><Metric label="Hybrid profile" value={score(s.overall)}/><Metric label="Academic" value={score(s.academic)}/><Metric label="Execution" value={score(s.output)}/><Metric label="Plan" value={`${completedRoadmap}/${roadmap.length||0}`}/></section>
+    <section className="two"><article className="panel heroPanel"><span className="overline">CURRENT STATE</span><h2>{profile.primary_major||"Choose a primary direction"}</h2><p>{profile.profile_summary||"Complete your profile, then UniPath will connect academics, activities, opportunities and application strategy into one persistent plan."}</p><div className="facts"><span>{profile.current_grade==="unknown"?"Grade not set":`Grade ${profile.current_grade}`}</span><span>{profile.sat?`SAT ${profile.sat}`:"Test score not set"}</span><span>{hs?.name||profile.high_school_name||"High school not set"}</span></div><div className="row"><button className="solid" onClick={runPrediction}>Refresh model</button><button className="quiet" onClick={()=>go("profile")}>Edit profile</button></div></article>
+      <article className="panel"><span className="overline">NEXT BEST ACTIONS</span><ActionLine n="01" title="Complete the evidence" text="Separate completed work from plans; add measurable outputs." onClick={()=>go("profile")}/><ActionLine n="02" title="Balance the college list" text={`${plans.length} schools currently saved.`} onClick={()=>go("colleges")}/><ActionLine n="03" title="Build the next 9–12 months" text="Generate a roadmap from profile gaps and real opportunity categories." onClick={()=>go("roadmap")}/><ActionLine n="04" title="Keep one continuous strategy conversation" text="Advisor history is saved to your account." onClick={()=>go("advisor")}/></article>
     </section>
-    <section className="grid2">
-      <div className="card"><h2>Profile status</h2><p><b>Primary major:</b> {profile.primary_major||"Not set"}</p><p><b>Secondary:</b> {profile.secondary_major||"Not set"}</p><p><b>Applicant type:</b> {profile.applicant_type}</p><p><b>SAT:</b> {profile.sat||"—"} · <b>Activities:</b> {profile.activities.length} · <b>Awards:</b> {profile.awards.length}</p>
-        <div className="buttonRow"><button className="ghost" onClick={()=>go("profile")}>Edit profile</button><button className="primary" onClick={onPredict}>Generate schools</button></div>
-      </div>
-      <div className="card"><h2>Next actions</h2><Action title="1. Complete profile" detail="Add academics, activities, awards and both intended directions." go={()=>go("profile")}/><Action title="2. Generate school list" detail="Compare primary vs secondary major when the school actually admits by college/major." go={onPredict}/><Action title="3. Find gaps" detail="Generate field-aware academic and extracurricular recommendations." go={onRecommend}/><Action title="4. Build application strategy" detail="Save schools, assign ED/EA/RD, then simulate the full cycle." go={()=>go("strategy")}/></div>
-    </section>
-    {predictions&&<section className="card"><h2>Current list snapshot</h2><div className="tierGrid">{["Lottery","Super Reach","Reach","Target","Likely"].map(t=><div key={t}><small>{t}</small><b>{predictions.schools.filter(s=>s.tier===t).length}</b></div>)}</div></section>}
-  </>;
+    {predictions&&<section className="two"><article className="panel"><div className="panelHead"><div><span className="overline">MODEL COMPOSITION</span><h3>Deterministic core + bounded AI</h3></div><span className={`status ${predictions.ai_status||"disabled"}`}>{predictions.ai_status||"deterministic"}</span></div><div className="scoreGrid"><Mini label="Rules engine" value={score(s.deterministic)}/><Mini label="AI holistic" value={ai?score(ai.overall):"—"}/><Mini label="AI weight" value={ai?`${Math.round((s.ai_weight||0)*100)}%`:"0%"}/><Mini label="Confidence" value={ai?`${Math.round(ai.confidence*100)}%`:"—"}/></div>{ai&&<p className="muted">{ai.rationale}</p>}</article><article className="panel"><span className="overline">LIST SHAPE</span><div className="tierStrip">{["Lottery","Super Reach","Reach","Target","Likely"].map(t=><div key={t}><b>{predictions.schools.filter(s=>s.tier===t).length}</b><span>{t}</span></div>)}</div></article></section>}
+  </>
 }
 
-function ProfilePage({profile,update,addActivity,setActivity,delActivity,addAward,setAward,delAward}) {
-  return <section className="profileSections">
-    <div className="card"><h2>Identity & academics</h2><div className="formGrid">
+function ProfileEditor({profile,update,importText,setImportText,importProfile,loading,addActivity,setActivity,addAward,setAward}){
+  const chooseHS=e=>{const id=e.target.value;const h=highSchools.find(x=>x.id===id);update("high_school_id",id||null);update("high_school_name",h?.name||null);update("school_country",h?.country||null)};
+  return <section className="stack">
+    <article className="panel"><div className="panelHead"><div><span className="overline">CONTEXT</span><h3>School & application direction</h3></div></div><div className="formGrid three">
+      <Field label="High school"><select value={profile.high_school_id||""} onChange={chooseHS}><option value="">Select or use Other</option>{highSchools.map(h=><option key={h.id} value={h.id}>{h.name}</option>)}</select></Field>
+      <Field label="School name / custom"><input value={profile.high_school_name||""} onChange={e=>update("high_school_name",e.target.value)} placeholder="Type your school if not listed"/></Field>
+      <Field label="Current grade"><select value={profile.current_grade} onChange={e=>update("current_grade",e.target.value)}>{["8","9","10","11","12","gap","unknown"].map(x=><option key={x}>{x}</option>)}</select></Field>
+      <Field label="Graduation year"><input type="number" value={profile.graduation_year??""} onChange={e=>update("graduation_year",e.target.value?Number(e.target.value):null)}/></Field>
       <Field label="Applicant type"><select value={profile.applicant_type} onChange={e=>update("applicant_type",e.target.value)}>{["china_international","other_international","us_domestic","uk_home","unknown"].map(x=><option key={x}>{x}</option>)}</select></Field>
-      <Field label="Age band"><select value={profile.age_band} onChange={e=>update("age_band",e.target.value)}><option value="13_17">13–17</option><option value="18_plus">18+</option><option value="unknown">Unknown</option></select></Field>
-      <Field label="Curriculum"><select value={profile.curriculum} onChange={e=>update("curriculum",e.target.value)}>{["ap","ib","alevel","other","unknown"].map(x=><option key={x}>{x}</option>)}</select></Field>
-      <Field label="Grade band"><select value={profile.grade_band} onChange={e=>update("grade_band",e.target.value)}>{["top1","top5","top10","top25","mid","unknown"].map(x=><option key={x}>{x}</option>)}</select></Field>
-      <Field label="GPA description"><input value={profile.gpa_description||""} onChange={e=>update("gpa_description",e.target.value)}/></Field>
-      <Field label="SAT"><input type="number" value={profile.sat??""} onChange={e=>update("sat",e.target.value?Number(e.target.value):null)}/></Field>
-      <Field label="ACT"><input type="number" value={profile.act??""} onChange={e=>update("act",e.target.value?Number(e.target.value):null)}/></Field>
-      <Field label="TOEFL"><input type="number" value={profile.toefl??""} onChange={e=>update("toefl",e.target.value?Number(e.target.value):null)}/></Field>
-      <Field label="AP 5 count"><input type="number" value={profile.ap_5_count??""} onChange={e=>update("ap_5_count",e.target.value?Number(e.target.value):null)}/></Field>
-      <Field label="AP 4 count"><input type="number" value={profile.ap_4_count??""} onChange={e=>update("ap_4_count",e.target.value?Number(e.target.value):null)}/></Field>
-      <Field label="Academic rigor"><select value={profile.academic_rigor} onChange={e=>update("academic_rigor",e.target.value)}>{["highest","strong","average","unknown"].map(x=><option key={x}>{x}</option>)}</select></Field>
-      <Field label="Quant preparation"><select value={profile.quantitative_preparation} onChange={e=>update("quantitative_preparation",e.target.value)}>{["strong","average","weak","unknown"].map(x=><option key={x}>{x}</option>)}</select></Field>
-      <Field label="Writing preparation"><select value={profile.writing_preparation} onChange={e=>update("writing_preparation",e.target.value)}>{["strong","average","weak","unknown"].map(x=><option key={x}>{x}</option>)}</select></Field>
-      <Field label="Aid need"><select value={profile.aid_need} onChange={e=>update("aid_need",e.target.value)}>{["none","some","high","unknown"].map(x=><option key={x}>{x}</option>)}</select></Field>
-    </div></div>
+      <Field label="Primary major"><select value={profile.primary_major||""} onChange={e=>update("primary_major",e.target.value||null)}><option value="">Select</option>{majors.map(m=><option key={m.slug} value={m.label}>{m.label}</option>)}</select></Field>
+      <Field label="Secondary major"><select value={profile.secondary_major||""} onChange={e=>update("secondary_major",e.target.value||null)}><option value="">None</option>{majors.map(m=><option key={m.slug} value={m.label}>{m.label}</option>)}</select></Field>
+    </div><div className="countryChecks">{Object.entries(COUNTRY_LABEL).map(([id,label])=><label key={id}><input type="checkbox" checked={(profile.intended_countries||[]).includes(id)} onChange={e=>update("intended_countries",e.target.checked?[...(profile.intended_countries||[]),id]:(profile.intended_countries||[]).filter(x=>x!==id))}/>{label}</label>)}</div></article>
 
-    <div className="card"><h2>Application direction</h2><div className="formGrid">
-      <Field label="Primary major"><select value={profile.primary_major||""} onChange={e=>update("primary_major",e.target.value)}><option value="">Select</option>{majors.map(m=><option value={m.label} key={m.slug}>{m.label}</option>)}</select></Field>
-      <Field label="Secondary major"><select value={profile.secondary_major||""} onChange={e=>update("secondary_major",e.target.value||null)}><option value="">None</option>{majors.map(m=><option value={m.label} key={m.slug}>{m.label}</option>)}</select></Field>
-      <Field label="Essay quality"><select value={profile.essay_quality} onChange={e=>update("essay_quality",e.target.value)}>{["unknown","average","good","excellent"].map(x=><option key={x}>{x}</option>)}</select></Field>
-      <Field label="Recommendation quality"><select value={profile.recommendation_quality} onChange={e=>update("recommendation_quality",e.target.value)}>{["unknown","average","good","excellent"].map(x=><option key={x}>{x}</option>)}</select></Field>
-    </div></div>
+    <article className="panel"><span className="overline">ACADEMICS</span><div className="formGrid four">
+      <Field label="Curriculum"><select value={profile.curriculum} onChange={e=>update("curriculum",e.target.value)}>{["ap","ib","alevel","us","other","unknown"].map(x=><option key={x}>{x}</option>)}</select></Field><Field label="Grade band"><select value={profile.grade_band} onChange={e=>update("grade_band",e.target.value)}>{["top1","top5","top10","top25","mid","unknown"].map(x=><option key={x}>{x}</option>)}</select></Field><Field label="GPA"><input value={profile.gpa_description||""} onChange={e=>update("gpa_description",e.target.value)}/></Field><Field label="SAT"><input type="number" value={profile.sat??""} onChange={e=>update("sat",e.target.value?Number(e.target.value):null)}/></Field>
+      <Field label="ACT"><input type="number" value={profile.act??""} onChange={e=>update("act",e.target.value?Number(e.target.value):null)}/></Field><Field label="TOEFL"><input type="number" value={profile.toefl??""} onChange={e=>update("toefl",e.target.value?Number(e.target.value):null)}/></Field><Field label="AP 5s"><input type="number" value={profile.ap_5_count??""} onChange={e=>update("ap_5_count",e.target.value?Number(e.target.value):null)}/></Field><Field label="AP 4s"><input type="number" value={profile.ap_4_count??""} onChange={e=>update("ap_4_count",e.target.value?Number(e.target.value):null)}/></Field>
+      <Field label="IB predicted"><input type="number" value={profile.ib_predicted??""} onChange={e=>update("ib_predicted",e.target.value?Number(e.target.value):null)}/></Field><Field label="A* count"><input type="number" value={profile.a_star_count??""} onChange={e=>update("a_star_count",e.target.value?Number(e.target.value):null)}/></Field><Field label="Rigor"><select value={profile.academic_rigor} onChange={e=>update("academic_rigor",e.target.value)}>{["highest","strong","average","unknown"].map(x=><option key={x}>{x}</option>)}</select></Field><Field label="Aid need"><select value={profile.aid_need} onChange={e=>update("aid_need",e.target.value)}>{["none","some","high","unknown"].map(x=><option key={x}>{x}</option>)}</select></Field>
+    </div></article>
 
-    <div className="card"><div className="cardTitle"><h2>Activities</h2><button className="ghost" onClick={addActivity}>+ Activity</button></div>
-      {profile.activities.length===0?<Empty text="No activities added yet."/>:profile.activities.map((a,i)=><div className="editRow" key={i}>
-        <input placeholder="Activity name" value={a.name} onChange={e=>setActivity(i,"name",e.target.value)}/>
-        <select value={a.category} onChange={e=>setActivity(i,"category",e.target.value)}>{["research","stem","business","service","sports","arts","humanities","social_science","work","family_responsibility","other"].map(x=><option key={x}>{x}</option>)}</select>
-        <input placeholder="Role" value={a.role||""} onChange={e=>setActivity(i,"role",e.target.value)}/>
-        <input type="number" placeholder="Years" value={a.years??""} onChange={e=>setActivity(i,"years",e.target.value?Number(e.target.value):null)}/>
-        <input type="number" placeholder="Hours/week" value={a.hours_per_week??""} onChange={e=>setActivity(i,"hours_per_week",e.target.value?Number(e.target.value):null)}/>
-        <select value={a.impact_scope} onChange={e=>setActivity(i,"impact_scope",e.target.value)}>{["self","school","local","regional","national","international","unknown"].map(x=><option key={x}>{x}</option>)}</select>
-        <input className="span2" placeholder="Measurable outcome" value={a.measurable_outcome||""} onChange={e=>setActivity(i,"measurable_outcome",e.target.value)}/>
-        <label className="check"><input type="checkbox" checked={!!a.major_related} onChange={e=>setActivity(i,"major_related",e.target.checked)}/>Major-related</label>
-        <button className="danger" onClick={()=>delActivity(i)}>Delete</button>
-      </div>)}
-    </div>
+    <article className="panel"><div className="panelHead"><div><span className="overline">ACTIVITIES</span><h3>Evidence, not résumé padding</h3></div><button className="quiet" onClick={addActivity}>Add activity</button></div>{!profile.activities.length?<Empty text="No activities yet."/>:<div className="editorList">{profile.activities.map((a,i)=><div className="activityEdit" key={i}><input value={a.name} onChange={e=>setActivity(i,"name",e.target.value)} placeholder="Activity"/><select value={a.status||"unknown"} onChange={e=>setActivity(i,"status",e.target.value)}>{["completed","ongoing","planned","unknown"].map(x=><option key={x}>{x}</option>)}</select><select value={a.category} onChange={e=>setActivity(i,"category",e.target.value)}>{["research","stem","business","service","sports","arts","humanities","social_science","work","family_responsibility","other"].map(x=><option key={x}>{x}</option>)}</select><input value={a.role||""} onChange={e=>setActivity(i,"role",e.target.value)} placeholder="Role"/><input type="number" value={a.years??""} onChange={e=>setActivity(i,"years",e.target.value?Number(e.target.value):null)} placeholder="Years"/><input type="number" value={a.hours_per_week??""} onChange={e=>setActivity(i,"hours_per_week",e.target.value?Number(e.target.value):null)} placeholder="h/week"/><select value={a.impact_scope} onChange={e=>setActivity(i,"impact_scope",e.target.value)}>{["self","school","local","regional","national","international","unknown"].map(x=><option key={x}>{x}</option>)}</select><input className="wide" value={a.measurable_outcome||""} onChange={e=>setActivity(i,"measurable_outcome",e.target.value)} placeholder="Measured outcome / finished output"/><button className="iconDanger" onClick={()=>update("activities",profile.activities.filter((_,j)=>j!==i))}>×</button></div>)}</div>}</article>
 
-    <div className="card"><div className="cardTitle"><h2>Awards</h2><button className="ghost" onClick={addAward}>+ Award</button></div>
-      {profile.awards.map((a,i)=><div className="awardRow" key={i}><input value={a.name} placeholder="Award" onChange={e=>setAward(i,"name",e.target.value)}/><select value={a.level} onChange={e=>setAward(i,"level",e.target.value)}>{["school","regional","national","international","elite","unknown"].map(x=><option key={x}>{x}</option>)}</select><label className="check"><input type="checkbox" checked={!!a.major_related} onChange={e=>setAward(i,"major_related",e.target.checked)}/>Major-related</label><button className="danger" onClick={()=>delAward(i)}>Delete</button></div>)}
-    </div>
+    <article className="panel"><div className="panelHead"><div><span className="overline">AWARDS & OUTPUTS</span><h3>External validation and finished work</h3></div><button className="quiet" onClick={addAward}>Add award</button></div><div className="awardList">{profile.awards.map((a,i)=><div className="awardEdit" key={i}><input value={a.name} onChange={e=>setAward(i,"name",e.target.value)} placeholder="Award"/><select value={a.status||"earned"} onChange={e=>setAward(i,"status",e.target.value)}><option>earned</option><option>planned</option><option>unknown</option></select><select value={a.level} onChange={e=>setAward(i,"level",e.target.value)}>{["school","regional","national","international","elite","unknown"].map(x=><option key={x}>{x}</option>)}</select><button className="iconDanger" onClick={()=>update("awards",profile.awards.filter((_,j)=>j!==i))}>×</button></div>)}</div><Field label="Distinctive outputs — one per line"><textarea value={(profile.distinctive_outputs||[]).join("\n")} onChange={e=>update("distinctive_outputs",e.target.value.split("\n").map(x=>x.trim()).filter(Boolean))} placeholder="Research paper\nPrototype\nDocumentary\nPublished article…"/></Field></article>
 
-    <div className="card"><h2>Distinctive outputs</h2><p>One item per line: paper, prototype, software, publication, documentary, policy report, performance, product, patent, etc.</p><textarea value={(profile.distinctive_outputs||[]).join("\n")} onChange={e=>update("distinctive_outputs",e.target.value.split("\n").map(x=>x.trim()).filter(Boolean))}/></div>
-  </section>;
-}
-
-function SchoolRow({s,saved,add}) {
-  return <div className="schoolRow"><div><b>{s.school}</b><small>{s.program} · {s.country.toUpperCase()} · #{s.rank}</small>{s.second_major_reason&&<em>{s.second_major_reason}</em>}</div><div><span className={`tier ${s.tier.replaceAll(" ","").toLowerCase()}`}>{s.tier}</span></div><div className="prob">{pct(s.interval[0])}–{pct(s.interval[1])}<small>center {pct(s.probability)}</small></div><div><small>{s.mechanism}</small><small>{s.source_note}</small></div><button className={saved?"saved":"ghost"} disabled={saved} onClick={add}>{saved?"Saved":"+ Plan"}</button></div>
-}
-
-function RecommendationsPage({data,run,loading}) {
-  if(!data)return <div className="card"><h2>Academic & activity recommendations</h2><p>Recommendations change by intended field. Humanities/social-science applicants are not judged by the same research/competition assumptions as engineering applicants.</p><button className="primary" onClick={run}>{loading?"Analyzing…":"Generate Recommendations"}</button></div>;
-  return <section><div className="stats"><Stat label="Academic" value={fmtScore(data.scores.academic)}/><Stat label="Activities" value={fmtScore(data.scores.activities)}/><Stat label="Output" value={fmtScore(data.scores.output)}/><Stat label="Narrative" value={fmtScore(data.scores.narrative)}/></div>
-    <div className="grid3"><RecColumn title="Academics" items={data.academic}/><RecColumn title="Activities" items={data.activities}/><RecColumn title="Application strategy" items={data.application}/></div></section>
-}
-
-function StrategyPage({plans,changePlan,deletePlan,optimize,data,loading}) {
-  return <section>
-    <div className="card cardTitle"><div><h2>Application Plan</h2><p>Save schools from Schools & Majors, then assign rounds here.</p></div><button className="primary" onClick={optimize}>{loading?"Optimizing…":"Optimize Early Strategy"}</button></div>
-    {!plans.length?<Empty text="No schools saved yet."/>:<div className="planList">{plans.map(p=>{
-      const rules=roundRules[p.school_name]||{plans:[p.school_name==="Oxford"||p.school_name==="Cambridge"?"OX":p.school_name?.includes("London")?"UCAS":"RD"],note:"Verify current-cycle rules."};
-      return <div className="planRow" key={p.id}><div><b>{p.school_name}</b><small>{p.program}</small></div><div className="prob">{pct(p.probability_min)}–{pct(p.probability_max)}</div><select value={p.round} onChange={e=>changePlan(p,{round:e.target.value})}>{rules.plans.map(x=><option value={x} key={x}>{roundLabel[x]||x}</option>)}</select><input value={p.notes||""} placeholder="Notes" onChange={e=>changePlan(p,{notes:e.target.value})}/><button className="danger" onClick={()=>deletePlan(p)}>Remove</button></div>
-    })}</div>}
-    {data&&<div className="grid2 section"><div className="card"><h2>Suggested structure</h2><p><b>ED I:</b> {data.strategy.ed1?.school||"None"}</p><p><b>ED II:</b> {data.strategy.ed2?.school||"None"}</p><p><b>EA candidates:</b> {data.strategy.ea.join(", ")||"None"}</p><p>{data.strategy.note}</p></div><div className="card"><h2>Validation</h2>{data.validation.errors.map(x=><div className="error" key={x}>{x}</div>)}{data.validation.warnings.map(x=><div className="warning" key={x}>{x}</div>)}{!data.validation.errors.length&&!data.validation.warnings.length&&<div className="success">No obvious strategy conflicts detected.</div>}</div></div>}
+    <article className="panel importPanel"><div><span className="overline">AI IMPORT</span><h3>Paste the messy version.</h3><p>DeepSeek converts a résumé, activities list or mixed Chinese/English notes into the structured profile. Planned items stay planned.</p></div><textarea value={importText} onChange={e=>setImportText(e.target.value)} placeholder="Paste applicant information here…"/><button className="solid" onClick={importProfile}>{loading==="import"?"Parsing + scoring…":"Import with DeepSeek"}</button></article>
   </section>
 }
 
-function SimulatorPage({plans,simulation,run,loading}) {
-  return <section><div className="card cardTitle"><div><h2>Application Simulator</h2><p>Runs ED/EA/REA → ED II/Oxbridge → RD/UC/UCAS chronologically. Binding ED stops unresolved later applications.</p></div><div className="buttonRow"><button className="ghost" onClick={()=>run(1000)}>1,000 runs</button><button className="primary" onClick={()=>run(5000)}>{loading?"Running…":"5,000 runs"}</button></div></div>
-    {!plans.length?<Empty text="Add schools to your application plan first."/>:simulation&&<><div className="stats"><Stat label="Expected admits" value={simulation.simulation.expected_admits.toFixed(1)}/><Stat label="Zero-admit risk" value={pct(simulation.simulation.zero_admit_risk)}/><Stat label="Binding finish" value={pct(simulation.simulation.binding_finish_rate)}/><Stat label="Top-20 hit" value={pct(simulation.simulation.top20_hit_rate)}/></div><div className="card"><h2>One visible simulated cycle</h2>{simulation.simulation.visible_cycle.results.map((r,i)=><div className="simRow" key={i}><div><b>{r.school_name}</b><small>{roundLabel[r.round]||r.round}</small></div><div className={`outcome ${r.outcome.includes("Admit")?"admit":r.outcome.includes("Defer")?"defer":r.outcome==="Withdrawn"?"withdraw":"deny"}`}>{r.outcome}</div><div>{r.note}</div></div>)}</div></>}
+function Colleges({rows,predictions,plans,addSchool,country,setCountry,tier,setTier,query,setQuery,run,loading}){
+  return <section className="stack"><article className="panel filterBar"><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search university or program"/><select value={country} onChange={e=>setCountry(e.target.value)}><option value="all">All countries</option>{Object.entries(COUNTRY_LABEL).map(([k,v])=><option key={k} value={k}>{v}</option>)}</select><select value={tier} onChange={e=>setTier(e.target.value)}><option value="all">All tiers</option>{["Lottery","Super Reach","Reach","Target","Likely"].map(x=><option key={x}>{x}</option>)}</select><button className="solid" onClick={run}>{loading==="predict"?"Running…":"Refresh"}</button></article>
+    {!predictions?<article className="panel"><Empty text="Complete your profile and run the hybrid prediction model."/></article>:<><article className="modelNote"><b>{predictions.schools.length} modeled universities</b><span>AI contributes a bounded holistic score; public high-school outcome data contributes only a small audited context multiplier when verified. Neither layer is allowed to invent a new acceptance rate.</span></article><div className="collegeList">{rows.map(s=><CollegeRow key={s.school} s={s} saved={plans.some(p=>p.school_name===s.school)} add={()=>addSchool(s)}/>)}</div></>}
   </section>
 }
+function CollegeRow({s,saved,add}){const hs=s.high_school_context;return <article className="collegeRow"><div className="collegeName"><b>{s.school}</b><span>{s.program} · {COUNTRY_LABEL[s.country]||s.country}</span><div className="badges"><i className={`tier ${s.tier.replaceAll(" ","").toLowerCase()}`}>{s.tier}</i>{hs?.label&&<i className="context">School context</i>}{s.data_quality!=="verified"&&<i>Seed data</i>}</div></div><div className="chance"><b>{pct(s.interval[0])}–{pct(s.interval[1])}</b><span>planning interval · center {pct(s.probability)}</span></div><div className="why"><span>{s.mechanism}</span>{hs?.label&&<small>{hs.label} · {hs.year}</small>}<small>{s.second_major_reason||s.source_note}</small></div><button className={saved?"saved":"quiet"} disabled={saved} onClick={add}>{saved?"Saved":"Add"}</button></article>}
 
-function AdminPage({data,school,setSchool,json,setJson,save}) {
-  if(!data)return <Empty text="Loading admin data..."/>;
-  return <section><div className="stats"><Stat label="Profiles" value={data.stats.profiles}/><Stat label="Saved plans" value={data.stats.plans}/><Stat label="Prediction runs" value={data.stats.runs}/><Stat label="Feedback" value={data.stats.feedback}/></div>
-    <div className="grid2"><div className="card"><h2>AI backend</h2><p><b>Model:</b> {data.model}</p><p>Provider: GitHub Models</p><div className="notice">Secrets are not shown here. Change GITHUB_TOKEN / GITHUB_MODEL in Vercel Environment Variables.</div></div>
-    <div className="card"><h2>School data override</h2><select value={school} onChange={e=>setSchool(e.target.value)}>{schools.map(s=><option key={s.name}>{s.name}</option>)}</select><textarea className="codeText" value={json} onChange={e=>setJson(e.target.value)}/><button className="primary" onClick={save}>Save override</button></div></div>
-    <div className="card section"><h2>Active overrides</h2>{data.overrides.length?data.overrides.map(o=><div className="historyRow" key={o.school_name}><b>{o.school_name}</b><code>{JSON.stringify(o.data)}</code><small>{new Date(o.updated_at).toLocaleString()}</small></div>):<Empty text="No school overrides yet."/>}</div>
-  </section>;
-}
+function Opportunities({items,saved,kind,setKind,query,setQuery,search,save,remove,loading}){const savedIds=new Set(saved.map(x=>x.opportunity_id));return <section className="stack"><article className="panel filterBar"><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="Search summer, research, competition or project"/><select value={kind} onChange={e=>setKind(e.target.value)}><option value="all">All pathways</option>{["summer","research","competition","project","work"].map(x=><option key={x}>{x}</option>)}</select><button className="solid" onClick={search}>{loading==="opps"?"Matching…":"Match to profile"}</button></article><article className="modelNote"><b>Opportunity catalog</b><span>Brand name is not the score. Match prioritizes field relevance, grade eligibility and gaps in research, output or external validation. Exact dates remain an official-source check.</span></article><div className="oppGrid">{items.map(o=><article className="opp" key={o.id}><div className="oppTop"><span className="kind">{o.kind}</span><b>{o.match_score}</b></div><h3>{o.name}</h3><p>{o.provider}</p><div className="tags">{o.tags.slice(0,4).map(t=><span key={t}>{t}</span>)}</div><ul>{(o.match_reasons||[]).map(r=><li key={r}>{r}</li>)}</ul><div className="oppFoot"><span>{o.selectivity} · {o.cost}</span>{savedIds.has(o.id)?<button onClick={()=>remove(o)}>Saved ✓</button>:<button onClick={()=>save(o)}>Save</button>}</div></article>)}</div></section>}
 
-function RecColumn({title,items}){return <div className="card"><h2>{title}</h2>{items.length?items.map((x,i)=><div className="rec" key={i}><span className={`priority ${x.priority}`}>{x.priority}</span><b>{x.title}</b><p>{x.detail}</p></div>):<p>No major gap detected.</p>}</div>}
-function Stat({label,value}){return <div className="stat"><small>{label}</small><b>{value}</b></div>}
-function Action({title,detail,go}){return <button className="action" onClick={go}><b>{title}</b><span>{detail}</span></button>}
+function Roadmap({items,generated,generate,accept,update,remove,savedOpps,loading}){return <section className="stack"><article className="panel roadmapHero"><div><span className="overline">LIVING PLAN</span><h2>Turn the profile into the next 9–12 months.</h2><p>The roadmap is persistent. The advisor sees it, and future recommendations can build on what you finished instead of restarting every conversation.</p></div><button className="solid" onClick={generate}>{loading==="roadmap"?"DeepSeek is planning…":"Generate roadmap"}</button></article>{generated&&<article className="panel generated"><div className="panelHead"><div><span className="overline">AI DRAFT</span><h3>{generated.summary||"Roadmap draft"}</h3></div><button className="solid" onClick={accept}>{loading==="acceptRoadmap"?"Saving…":"Add to my roadmap"}</button></div><div className="roadmapList">{(generated.items||[]).map((x,i)=><div className="roadItem" key={i}><span className={`priority ${x.priority}`}>{x.priority}</span><div><b>{x.title}</b><small>{x.due_window} · {x.why}</small><em>{x.success_metric}</em></div></div>)}</div></article>}
+    <article className="panel"><div className="panelHead"><div><span className="overline">MY ROADMAP</span><h3>{items.length} active records</h3></div><span className="muted">{savedOpps.length} opportunities saved</span></div>{!items.length?<Empty text="No roadmap items yet. Generate a draft or add opportunities first."/>:<div className="roadmapList">{items.map(x=><div className={`roadItem ${x.status==="done"?"done":""}`} key={x.id}><button className="checkBtn" onClick={()=>update(x,{status:x.status==="done"?"todo":"done"})}>{x.status==="done"?"✓":"○"}</button><div><b>{x.title}</b><small>{x.due_window||x.due_date||"No date"} · {x.why||x.item_type}</small>{x.success_metric&&<em>{x.success_metric}</em>}</div><span className={`priority ${x.priority}`}>{x.priority}</span><button className="iconDanger" onClick={()=>remove(x)}>×</button></div>)}</div>}</article></section>}
+
+function Applications({plans,change,remove,optimize,strategy,simulate,simulation,loading}){return <section className="stack"><article className="panel"><div className="panelHead"><div><span className="overline">APPLICATION PORTFOLIO</span><h3>{plans.length} saved schools</h3></div><div className="row"><button className="quiet" onClick={optimize}>{loading==="strategy"?"Optimizing…":"Optimize early"}</button><button className="solid" onClick={()=>simulate(3000)}>{loading==="simulate"?"Simulating…":"Simulate 3,000 cycles"}</button></div></div>{!plans.length?<Empty text="Add colleges from the Colleges page."/>:<div className="applicationList">{plans.map(p=>{const rules=roundRules[p.school_name]||{plans:[p.school_name==="Oxford"||p.school_name==="Cambridge"?"OX":p.school_name?.includes("London")?"UCAS":"RD"]};return <div className="appRow" key={p.id}><div><b>{p.school_name}</b><span>{p.program}</span></div><span>{pct(p.probability_min)}–{pct(p.probability_max)}</span><select value={p.round} onChange={e=>change(p,{round:e.target.value})}>{rules.plans.map(r=><option key={r} value={r}>{roundLabel[r]||r}</option>)}</select><button className="iconDanger" onClick={()=>remove(p)}>×</button></div>})}</div>}</article>{strategy&&<article className="panel"><span className="overline">EARLY STRATEGY</span><div className="threeCols"><Mini label="ED I" value={strategy.strategy?.ed1?.school||"—"}/><Mini label="ED II" value={strategy.strategy?.ed2?.school||"—"}/><Mini label="EA set" value={(strategy.strategy?.ea||[]).length}/></div>{strategy.validation?.errors?.map(x=><div className="error" key={x}>{x}</div>)}{strategy.validation?.warnings?.map(x=><div className="notice" key={x}>{x}</div>)}</article>}{simulation&&<article className="panel"><span className="overline">MONTE CARLO</span><div className="metricRow compact"><Metric label="Expected admits" value={simulation.simulation.expected_admits.toFixed(1)}/><Metric label="Zero-admit risk" value={pct(simulation.simulation.zero_admit_risk)}/><Metric label="Binding finish" value={pct(simulation.simulation.binding_finish_rate)}/><Metric label="Top-20 hit" value={pct(simulation.simulation.top20_hit_rate)}/></div></article>}</section>}
+
+function Advisor({chat,question,setQuestion,send,clear,loading}){return <section className="advisorLayout"><article className="panel advisorPanel"><div className="panelHead"><div><span className="overline">PERSISTENT THREAD</span><h3>Your strategy conversation</h3></div><button className="textButton" onClick={clear}>Clear</button></div><div className="chat">{chat.length?chat.map((m,i)=><div className={`message ${m.role}`} key={i}>{m.text}</div>):<div className="message ai">I can use your saved profile, current prediction intervals, application plan and roadmap. Ask a question that changes a decision.</div>}</div><div className="composer"><textarea value={question} onChange={e=>setQuestion(e.target.value)} onKeyDown={e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();send()}}} placeholder="What should I prioritize next?"/><button className="solid" onClick={send}>{loading==="chat"?"Thinking…":"Send"}</button></div></article><aside className="panel prompts"><span className="overline">USEFUL QUESTIONS</span>{["我的活动现在最像什么申请叙事？","未来六个月最值得完成的三个输出是什么？","我的选校是不是过于激进？","如果不参加昂贵夏校，我该怎么补强？","第二专业到底有没有真实战略价值？"].map(q=><button key={q} onClick={()=>setQuestion(q)}>{q}</button>)}</aside></section>}
+
+function History({rows}){return <article className="panel"><span className="overline">MODEL HISTORY</span>{!rows.length?<Empty text="No prediction history yet."/>:<div className="history">{rows.map(r=><div key={r.id}><b>{r.primary_major||"Unknown major"}</b><span>{new Date(r.created_at).toLocaleString()}</span><small>{r.result?.ai_status||"deterministic"} · {r.result?.schools?.length||0} schools</small></div>)}</div>}</article>}
+function Admin({data,school,setSchool,json,setJson,save}){if(!data)return <article className="panel"><Empty text="Loading admin data…"/></article>;return <section className="stack"><section className="metricRow"><Metric label="Profiles" value={data.stats.profiles}/><Metric label="Prediction runs" value={data.stats.runs}/><Metric label="Roadmap items" value={data.stats.roadmap}/><Metric label="Chat messages" value={data.stats.chat}/></section><article className="two"><div className="panel"><span className="overline">INFRASTRUCTURE</span><h3>DeepSeek + Supabase</h3><p>Model: <b>{data.model}</b></p><p>{data.catalog?.universities} universities · {data.catalog?.high_schools} high schools · {data.catalog?.total} opportunity pathways.</p><div className="notice">Keep DEEPSEEK_API_KEY and the Supabase server key server-only in Vercel.</div></div><div className="panel"><span className="overline">UNIVERSITY DATA OVERRIDE</span><select value={school} onChange={e=>setSchool(e.target.value)}>{schools.map(s=><option key={s.name}>{s.name}</option>)}</select><textarea className="code" value={json} onChange={e=>setJson(e.target.value)}/><button className="solid" onClick={save}>Save verified override</button></div></article><article className="panel"><span className="overline">ACTIVE OVERRIDES</span>{data.overrides?.length?data.overrides.map(o=><div className="override" key={o.school_name}><b>{o.school_name}</b><code>{JSON.stringify(o.data)}</code></div>):<Empty text="No live university overrides."/>}</article></section>}
+
+function Metric({label,value}){return <div className="metric"><span>{label}</span><b>{value}</b></div>}
+function Mini({label,value}){return <div className="mini"><span>{label}</span><b>{value}</b></div>}
 function Field({label,children}){return <label className="field"><span>{label}</span>{children}</label>}
 function Empty({text}){return <div className="empty">{text}</div>}
-
-function titleFor(t){return {dashboard:"Dashboard",profile:"Profile Builder",import:"AI Profile Import",colleges:"Schools & Majors",recommend:"Academic & Activity Strategy",strategy:"ED / EA / RD Planner",simulator:"Application Simulator",counselor:"AI Counselor",history:"Prediction History",admin:"Admin Dashboard"}[t]||"UniPath"}
-function subtitleFor(t){return {dashboard:"One view of your applicant profile, school list and next decisions.",profile:"Build the structured profile used by every other module.",import:"Turn messy natural-language information into a structured application profile.",colleges:"Compare school fit, primary/secondary directions and modeled risk.",recommend:"Field-aware recommendations for academics, activities and application strategy.",strategy:"Plan binding and non-binding rounds while checking conflicts.",simulator:"Stress-test the entire application portfolio across thousands of simulated cycles.",counselor:"Ask strategy questions grounded in your saved profile and deterministic probabilities.",history:"Review recent prediction runs.",admin:"Manage product data and monitor usage."}[t]||""}
+function ActionLine({n,title,text,onClick}){return <button className="actionLine" onClick={onClick}><span>{n}</span><div><b>{title}</b><small>{text}</small></div><i>↗</i></button>}
+function title(t){return {overview:"Overview",profile:"Applicant profile",colleges:"College model",opportunities:"Opportunity map",roadmap:"Roadmap",applications:"Application strategy",advisor:"AI advisor",history:"Prediction history",admin:"Admin"}[t]||"UniPath"}
+function subtitle(t){return {overview:"One stateful system for the profile, next actions and application risk.",profile:"Build the evidence base the model is allowed to use.",colleges:"Hybrid scoring with bounded AI and audited school-context signals.",opportunities:"Summer programs, research, competitions and self-directed pathways matched to actual gaps.",roadmap:"A persistent 9–12 month plan that survives across conversations.",applications:"Rounds, portfolio balance and Monte Carlo stress testing.",advisor:"A continuous planning conversation grounded in saved data.",history:"See how your model changes as the profile changes.",admin:"Manage model data quality and product usage."}[t]||""}

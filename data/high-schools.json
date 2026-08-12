@@ -1,0 +1,725 @@
+[
+  {
+    "id": "shsid",
+    "name": "Shanghai High School International Division (SHSID)",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "AP",
+      "IB",
+      "A-Level"
+    ],
+    "type": "international",
+    "verified": true,
+    "profile_url": "https://www.shsid.org/DOCUMENTS/School_Profile.htm",
+    "outcomes_url": "https://www.shsid.org/info/1661/133011.htm",
+    "outcome_year": 2026,
+    "graduating_class": 204,
+    "outcomes": {
+      "us_primary_destination": 116,
+      "top10_or_ivy_students": 19,
+      "top20_students": 52,
+      "top30_students": 96,
+      "top50_students": 147,
+      "mit_offers": 3,
+      "matriculation_targets": [
+        "MIT"
+      ]
+    },
+    "context_strength": 0.055,
+    "note": "Official 2026 school admissions review; aggregate school-level outcomes only, not an individual acceptance rate."
+  },
+  {
+    "id": "sas-pudong",
+    "name": "Shanghai American School — Pudong",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "AP",
+      "IB"
+    ],
+    "type": "international",
+    "verified": true,
+    "profile_url": "https://www.saschina.org/sites/default/files/public/SASPD_College_Profile.pdf",
+    "outcomes_url": "https://www.saschina.org/class-2025-matriculation",
+    "outcome_year": 2025,
+    "graduating_class": 84,
+    "outcomes": {
+      "sat_mid50": [
+        1410,
+        1540
+      ],
+      "gpa_mid50": [
+        3.48,
+        3.9
+      ],
+      "matriculation_targets": [
+        "Brown",
+        "Carnegie Mellon",
+        "Columbia",
+        "Cornell",
+        "Duke",
+        "Emory",
+        "Georgetown",
+        "Imperial College London",
+        "Johns Hopkins",
+        "McGill",
+        "NUS",
+        "Northwestern",
+        "Princeton",
+        "Purdue",
+        "Rice",
+        "Stanford",
+        "UC Berkeley",
+        "UCLA",
+        "UC San Diego",
+        "UChicago",
+        "Michigan",
+        "Notre Dame",
+        "Oxford",
+        "USC",
+        "Toronto",
+        "Vanderbilt",
+        "Yale"
+      ]
+    },
+    "context_strength": 0.045,
+    "note": "Official 2025-26 college profile and Class of 2025 university matriculation list."
+  },
+  {
+    "id": "sas-puxi",
+    "name": "Shanghai American School — Puxi",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "AP",
+      "IB"
+    ],
+    "type": "international",
+    "verified": true,
+    "profile_url": "https://www.saschina.org/sites/default/files/public/SASPX_College_Profile.pdf",
+    "outcomes_url": "https://www.saschina.org/class-2025-matriculation",
+    "outcome_year": 2025,
+    "graduating_class": 156,
+    "outcomes": {
+      "sat_mid50": [
+        1405,
+        1545
+      ],
+      "gpa_mid50": [
+        3.8,
+        3.97
+      ],
+      "matriculation_targets": [
+        "Brown",
+        "Carnegie Mellon",
+        "Columbia",
+        "Cornell",
+        "Duke",
+        "Emory",
+        "Georgetown",
+        "Imperial College London",
+        "Johns Hopkins",
+        "McGill",
+        "NUS",
+        "Northwestern",
+        "Princeton",
+        "Purdue",
+        "Rice",
+        "Stanford",
+        "UC Berkeley",
+        "UCLA",
+        "UC San Diego",
+        "UChicago",
+        "Michigan",
+        "Notre Dame",
+        "Oxford",
+        "USC",
+        "Toronto",
+        "Vanderbilt",
+        "Yale"
+      ]
+    },
+    "context_strength": 0.045,
+    "note": "Official 2025-26 college profile and Class of 2025 university matriculation list."
+  },
+  {
+    "id": "uwc-changshu",
+    "name": "UWC Changshu China",
+    "city": "Changshu",
+    "country": "China",
+    "curricula": [
+      "IB"
+    ],
+    "type": "international",
+    "verified": true,
+    "profile_url": "https://www.uwcchina.org/en/Orientation/single/113",
+    "outcomes_url": "https://www.uwcchina.org/en/show/607",
+    "outcome_year": 2026,
+    "graduating_class": 221,
+    "outcomes": {},
+    "context_strength": 0.025,
+    "note": "Official school pages confirm global university placement context but do not publish enough school-by-school acceptance counts for a stronger calibration."
+  },
+  {
+    "id": "wlsa-shanghai",
+    "name": "WLSA Shanghai Academy",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "AP",
+      "A-Level"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "yk-pao",
+    "name": "YK Pao School",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "IB"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "pinghe",
+    "name": "Shanghai Pinghe School",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "IB"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "qibao-dwight",
+    "name": "Shanghai Qibao Dwight High School",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "IB"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "scie",
+    "name": "Shenzhen College of International Education",
+    "city": "Shenzhen",
+    "country": "China",
+    "curricula": [
+      "A-Level",
+      "AP"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "is-beijing",
+    "name": "International School of Beijing",
+    "city": "Beijing",
+    "country": "China",
+    "curricula": [
+      "IB"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "wab",
+    "name": "Western Academy of Beijing",
+    "city": "Beijing",
+    "country": "China",
+    "curricula": [
+      "IB"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "keystone",
+    "name": "Keystone Academy",
+    "city": "Beijing",
+    "country": "China",
+    "curricula": [
+      "IB"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "dulwich-shanghai",
+    "name": "Dulwich College Shanghai Pudong",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "IB"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "wellington-shanghai",
+    "name": "Wellington College International Shanghai",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "IB"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "concordia-shanghai",
+    "name": "Concordia International School Shanghai",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "AP"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "harrow-shanghai",
+    "name": "Harrow International School Shanghai",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "A-Level"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "hkis",
+    "name": "Hong Kong International School",
+    "city": "Hong Kong",
+    "country": "Hong Kong",
+    "curricula": [
+      "AP"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "cis-hk",
+    "name": "Chinese International School",
+    "city": "Hong Kong",
+    "country": "Hong Kong",
+    "curricula": [
+      "IB"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "uwcsea",
+    "name": "UWC South East Asia",
+    "city": "Singapore",
+    "country": "Singapore",
+    "curricula": [
+      "IB"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "sas-singapore",
+    "name": "Singapore American School",
+    "city": "Singapore",
+    "country": "Singapore",
+    "curricula": [
+      "AP"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "andover",
+    "name": "Phillips Academy Andover",
+    "city": "Andover, MA",
+    "country": "United States",
+    "curricula": [
+      "US"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "exeter",
+    "name": "Phillips Exeter Academy",
+    "city": "Exeter, NH",
+    "country": "United States",
+    "curricula": [
+      "US"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "choate",
+    "name": "Choate Rosemary Hall",
+    "city": "Wallingford, CT",
+    "country": "United States",
+    "curricula": [
+      "US"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "deerfield",
+    "name": "Deerfield Academy",
+    "city": "Deerfield, MA",
+    "country": "United States",
+    "curricula": [
+      "US"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "lawrenceville",
+    "name": "The Lawrenceville School",
+    "city": "Lawrenceville, NJ",
+    "country": "United States",
+    "curricula": [
+      "US"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "hotchkiss",
+    "name": "The Hotchkiss School",
+    "city": "Lakeville, CT",
+    "country": "United States",
+    "curricula": [
+      "US"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "loomis",
+    "name": "Loomis Chaffee School",
+    "city": "Windsor, CT",
+    "country": "United States",
+    "curricula": [
+      "US"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "webb",
+    "name": "The Webb Schools",
+    "city": "Claremont, CA",
+    "country": "United States",
+    "curricula": [
+      "US"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "milton",
+    "name": "Milton Academy",
+    "city": "Milton, MA",
+    "country": "United States",
+    "curricula": [
+      "US"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "kent",
+    "name": "Kent School",
+    "city": "Kent, CT",
+    "country": "United States",
+    "curricula": [
+      "US"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "blair",
+    "name": "Blair Academy",
+    "city": "Blairstown, NJ",
+    "country": "United States",
+    "curricula": [
+      "US"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "stony-brook-school",
+    "name": "The Stony Brook School",
+    "city": "Stony Brook, NY",
+    "country": "United States",
+    "curricula": [
+      "US"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "westtown",
+    "name": "Westtown School",
+    "city": "West Chester, PA",
+    "country": "United States",
+    "curricula": [
+      "IB",
+      "US"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "pearson-online",
+    "name": "Pearson Online Academy",
+    "city": "Online",
+    "country": "United States",
+    "curricula": [
+      "US"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  },
+  {
+    "id": "other",
+    "name": "Other / Not listed",
+    "city": "Other",
+    "country": "Other",
+    "curricula": [
+      "Other"
+    ],
+    "type": "school",
+    "verified": false,
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+  }
+]

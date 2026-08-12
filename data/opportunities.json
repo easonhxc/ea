@@ -1,0 +1,1994 @@
+[
+  {
+    "id": "rsi",
+    "name": "Research Science Institute (RSI)",
+    "kind": "summer",
+    "provider": "Center for Excellence in Education",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      11
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "life",
+      "research"
+    ],
+    "selectivity": "elite",
+    "cost": "free",
+    "season": "summer",
+    "source_url": "https://www.cee.org/programs/research-science-institute",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Six-week research program hosted at MIT.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "ssp",
+    "name": "Summer Science Program",
+    "kind": "summer",
+    "provider": "Summer Science Program",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      10,
+      11
+    ],
+    "tags": [
+      "natural",
+      "engineering",
+      "computing",
+      "research"
+    ],
+    "selectivity": "elite",
+    "cost": "need-based",
+    "season": "summer",
+    "source_url": "https://ssp.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Team-based intensive science research.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "mites",
+    "name": "MITES Summer",
+    "kind": "summer",
+    "provider": "MIT",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      11
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "research"
+    ],
+    "selectivity": "elite",
+    "cost": "free",
+    "season": "summer",
+    "source_url": "https://mites.mit.edu",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "STEM enrichment for high-school students.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "promys",
+    "name": "PROMYS",
+    "kind": "summer",
+    "provider": "Boston University / PROMYS",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "mathematics",
+      "natural",
+      "research"
+    ],
+    "selectivity": "elite",
+    "cost": "need-based",
+    "season": "summer",
+    "source_url": "https://promys.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Intensive mathematics program.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "sumac",
+    "name": "Stanford University Mathematics Camp (SUMaC)",
+    "kind": "summer",
+    "provider": "Stanford Pre-Collegiate Studies",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      10,
+      11
+    ],
+    "tags": [
+      "mathematics",
+      "natural"
+    ],
+    "selectivity": "high",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": "https://sumac.spcs.stanford.edu",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Advanced mathematics.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "ross",
+    "name": "Ross Mathematics Program",
+    "kind": "summer",
+    "provider": "Ross Program",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "mathematics",
+      "natural"
+    ],
+    "selectivity": "high",
+    "cost": "need-based",
+    "season": "summer",
+    "source_url": "https://rossprogram.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Proof-based number theory immersion.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "jhu-ei",
+    "name": "Johns Hopkins Engineering Innovation",
+    "kind": "summer",
+    "provider": "Johns Hopkins University",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "engineering",
+      "environmental",
+      "materials",
+      "stem"
+    ],
+    "selectivity": "selective",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": "https://ei.jhu.edu",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "College-level engineering design program.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "bu-rise",
+    "name": "Boston University RISE",
+    "kind": "research",
+    "provider": "Boston University",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      11
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "life",
+      "research"
+    ],
+    "selectivity": "high",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": "https://www.bu.edu/summer/high-school-programs/rise-internship-practicum/",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Research internship/practicum.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "simons",
+    "name": "Simons Summer Research Program",
+    "kind": "research",
+    "provider": "Stony Brook University",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      11
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "life",
+      "research"
+    ],
+    "selectivity": "elite",
+    "cost": "varies",
+    "season": "summer",
+    "source_url": "https://www.stonybrook.edu/commcms/simons/",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Faculty-mentored research.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "garcia",
+    "name": "Garcia Summer Research Program",
+    "kind": "research",
+    "provider": "Stony Brook University",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      10,
+      11
+    ],
+    "tags": [
+      "materials",
+      "engineering",
+      "chemistry",
+      "research"
+    ],
+    "selectivity": "high",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Polymer and materials research.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "ucsb-rmp",
+    "name": "UCSB Research Mentorship Program",
+    "kind": "research",
+    "provider": "UC Santa Barbara",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      10,
+      11
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "life",
+      "humanities",
+      "social",
+      "research"
+    ],
+    "selectivity": "high",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Mentored interdisciplinary research.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "cosmos",
+    "name": "COSMOS",
+    "kind": "summer",
+    "provider": "University of California",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "life"
+    ],
+    "selectivity": "high",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "California State Summer School for Mathematics and Science.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "sams",
+    "name": "SAMS",
+    "kind": "summer",
+    "provider": "Carnegie Mellon University",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      11
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural"
+    ],
+    "selectivity": "elite",
+    "cost": "free",
+    "season": "summer",
+    "source_url": "https://www.cmu.edu/pre-college/academic-programs/sams.html",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Summer Academy for Math and Science.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "ai4all",
+    "name": "AI4ALL Summer Programs",
+    "kind": "summer",
+    "provider": "AI4ALL / partner universities",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "computing",
+      "artificial_intelligence",
+      "data_science"
+    ],
+    "selectivity": "selective",
+    "cost": "varies",
+    "season": "summer",
+    "source_url": "https://ai-4-all.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "AI education and project work.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "yygs",
+    "name": "Yale Young Global Scholars",
+    "kind": "summer",
+    "provider": "Yale University",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      10,
+      11
+    ],
+    "tags": [
+      "humanities",
+      "social",
+      "business",
+      "natural",
+      "life"
+    ],
+    "selectivity": "selective",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": "https://globalscholars.yale.edu",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Interdisciplinary residential program.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "launchx",
+    "name": "LaunchX",
+    "kind": "summer",
+    "provider": "LaunchX",
+    "countries": [
+      "US",
+      "Online"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "business",
+      "entrepreneurship",
+      "engineering"
+    ],
+    "selectivity": "selective",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": "https://launchx.com",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Entrepreneurship and venture building.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "mtsi",
+    "name": "M&TSI",
+    "kind": "summer",
+    "provider": "University of Pennsylvania",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      11
+    ],
+    "tags": [
+      "business",
+      "engineering",
+      "computing",
+      "entrepreneurship"
+    ],
+    "selectivity": "high",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Management & Technology Summer Institute.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "lbw",
+    "name": "Leadership in the Business World",
+    "kind": "summer",
+    "provider": "Wharton",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      11
+    ],
+    "tags": [
+      "business",
+      "finance",
+      "entrepreneurship"
+    ],
+    "selectivity": "high",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Business and leadership program.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "tass",
+    "name": "Telluride Association Summer Seminar (TASS)",
+    "kind": "summer",
+    "provider": "Telluride Association",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      10,
+      11
+    ],
+    "tags": [
+      "humanities",
+      "social",
+      "writing"
+    ],
+    "selectivity": "elite",
+    "cost": "free",
+    "season": "summer",
+    "source_url": "https://tellurideassociation.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Discussion-intensive humanities/social sciences seminar.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "stanford-humanities",
+    "name": "Stanford Summer Humanities Institute",
+    "kind": "summer",
+    "provider": "Stanford Pre-Collegiate Studies",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      10,
+      11
+    ],
+    "tags": [
+      "humanities",
+      "writing",
+      "history",
+      "philosophy"
+    ],
+    "selectivity": "high",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Humanities seminars.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "iowa-writing",
+    "name": "Iowa Young Writers Studio",
+    "kind": "summer",
+    "provider": "University of Iowa",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "humanities",
+      "writing",
+      "arts"
+    ],
+    "selectivity": "high",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": "https://iyws.clas.uiowa.edu",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Creative writing workshop.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "kenyon",
+    "name": "Kenyon Review Young Writers Workshop",
+    "kind": "summer",
+    "provider": "Kenyon College",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "humanities",
+      "writing",
+      "arts"
+    ],
+    "selectivity": "high",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Creative writing.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "brown-precollege",
+    "name": "Brown Pre-College",
+    "kind": "summer",
+    "provider": "Brown University",
+    "countries": [
+      "US",
+      "Online"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "life",
+      "business",
+      "social",
+      "humanities",
+      "arts"
+    ],
+    "selectivity": "open",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": "https://precollege.brown.edu",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Broad academic exploration; not equivalent to undergraduate admission.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "columbia-precollege",
+    "name": "Columbia Pre-College Programs",
+    "kind": "summer",
+    "provider": "Columbia University",
+    "countries": [
+      "US",
+      "Online"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "life",
+      "business",
+      "social",
+      "humanities",
+      "arts"
+    ],
+    "selectivity": "open",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": "https://precollege.sps.columbia.edu",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Broad academic exploration.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "berkeley-precollege",
+    "name": "Berkeley Pre-College Scholars",
+    "kind": "summer",
+    "provider": "UC Berkeley",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      10,
+      11
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "life",
+      "business",
+      "social",
+      "humanities"
+    ],
+    "selectivity": "open",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "University coursework / enrichment.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "cornell-precollege",
+    "name": "Cornell Precollege Studies",
+    "kind": "summer",
+    "provider": "Cornell University",
+    "countries": [
+      "US",
+      "Online"
+    ],
+    "grades": [
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "life",
+      "business",
+      "social",
+      "humanities"
+    ],
+    "selectivity": "open",
+    "cost": "paid",
+    "season": "summer",
+    "source_url": "https://sce.cornell.edu/precollege",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "College courses and residential options.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "pioneer",
+    "name": "Pioneer Academics Research Program",
+    "kind": "research",
+    "provider": "Pioneer Academics",
+    "countries": [
+      "Online"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "life",
+      "business",
+      "social",
+      "humanities",
+      "research"
+    ],
+    "selectivity": "selective",
+    "cost": "paid",
+    "season": "year-round",
+    "source_url": "https://pioneeracademics.com",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Mentored online research program.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "polygence",
+    "name": "Polygence",
+    "kind": "research",
+    "provider": "Polygence",
+    "countries": [
+      "Online"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "life",
+      "business",
+      "social",
+      "humanities",
+      "arts",
+      "research"
+    ],
+    "selectivity": "open",
+    "cost": "paid",
+    "season": "year-round",
+    "source_url": "https://www.polygence.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Independent mentor-guided projects.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "lumiere",
+    "name": "Lumiere Research Scholar Program",
+    "kind": "research",
+    "provider": "Lumiere Education",
+    "countries": [
+      "Online"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "life",
+      "business",
+      "social",
+      "humanities",
+      "research"
+    ],
+    "selectivity": "selective",
+    "cost": "paid",
+    "season": "year-round",
+    "source_url": "https://www.lumiere-education.com",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Online research mentorship.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "independent-research",
+    "name": "Independent Research Project",
+    "kind": "research",
+    "provider": "Self-directed / local mentor",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "life",
+      "business",
+      "social",
+      "humanities",
+      "arts",
+      "research"
+    ],
+    "selectivity": "self-directed",
+    "cost": "variable",
+    "season": "year-round",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Build a research question, method, output and external validation.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "local-university-lab",
+    "name": "Local University Lab Outreach",
+    "kind": "research",
+    "provider": "Local university",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "life",
+      "research"
+    ],
+    "selectivity": "self-directed",
+    "cost": "usually-free",
+    "season": "year-round",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Cold-email labs with a narrow, credible research proposal.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "amc",
+    "name": "AMC 10/12",
+    "kind": "competition",
+    "provider": "Mathematical Association of America",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "mathematics",
+      "natural",
+      "computing"
+    ],
+    "selectivity": "high",
+    "cost": "low",
+    "season": "school-year",
+    "source_url": "https://maa.org/student-programs/amc/",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Mathematics competition pathway to AIME.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "aime",
+    "name": "AIME",
+    "kind": "competition",
+    "provider": "Mathematical Association of America",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "mathematics",
+      "natural"
+    ],
+    "selectivity": "elite",
+    "cost": "low",
+    "season": "school-year",
+    "source_url": "https://maa.org/student-programs/amc/",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Invitational mathematics exam.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "usamo",
+    "name": "USAMO / USAJMO",
+    "kind": "competition",
+    "provider": "Mathematical Association of America",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "mathematics",
+      "natural"
+    ],
+    "selectivity": "elite",
+    "cost": "low",
+    "season": "school-year",
+    "source_url": "https://maa.org/student-programs/amc/",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Top U.S. olympiad-level mathematics competition.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "physics-bowl",
+    "name": "Physics Bowl",
+    "kind": "competition",
+    "provider": "AAPT",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "physics",
+      "engineering",
+      "natural"
+    ],
+    "selectivity": "high",
+    "cost": "low",
+    "season": "spring",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Physics competition.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "fma",
+    "name": "F=ma / USAPhO pathway",
+    "kind": "competition",
+    "provider": "AAPT",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "physics",
+      "engineering",
+      "natural"
+    ],
+    "selectivity": "elite",
+    "cost": "low",
+    "season": "winter",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "U.S. physics olympiad pathway.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "usnco",
+    "name": "USNCO",
+    "kind": "competition",
+    "provider": "American Chemical Society",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "chemistry",
+      "materials",
+      "natural",
+      "engineering"
+    ],
+    "selectivity": "elite",
+    "cost": "low",
+    "season": "spring",
+    "source_url": "https://www.acs.org/education/olympiad.html",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "U.S. National Chemistry Olympiad.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "ukcho",
+    "name": "UK Chemistry Olympiad",
+    "kind": "competition",
+    "provider": "Royal Society of Chemistry",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "chemistry",
+      "materials",
+      "natural",
+      "engineering"
+    ],
+    "selectivity": "high",
+    "cost": "low",
+    "season": "winter",
+    "source_url": "https://www.rsc.org/prizes-funding-and-competitions/chemistry-olympiad/",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Internationally used chemistry challenge.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "usabo",
+    "name": "USABO",
+    "kind": "competition",
+    "provider": "Center for Excellence in Education",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "biology",
+      "life",
+      "natural"
+    ],
+    "selectivity": "elite",
+    "cost": "low",
+    "season": "winter",
+    "source_url": "https://www.usabo-trc.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Biology olympiad pathway.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "isef",
+    "name": "Regeneron ISEF",
+    "kind": "competition",
+    "provider": "Society for Science",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "life",
+      "research"
+    ],
+    "selectivity": "elite",
+    "cost": "varies",
+    "season": "spring",
+    "source_url": "https://www.societyforscience.org/isef/",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "International science and engineering fair; requires affiliated fair qualification.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "sts",
+    "name": "Regeneron Science Talent Search",
+    "kind": "competition",
+    "provider": "Society for Science",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      12
+    ],
+    "tags": [
+      "engineering",
+      "computing",
+      "natural",
+      "life",
+      "research"
+    ],
+    "selectivity": "elite",
+    "cost": "low",
+    "season": "fall",
+    "source_url": "https://www.societyforscience.org/regeneron-sts/",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Research competition for U.S. high-school seniors.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "conrad",
+    "name": "Conrad Challenge",
+    "kind": "competition",
+    "provider": "Conrad Foundation",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "engineering",
+      "business",
+      "entrepreneurship",
+      "environmental"
+    ],
+    "selectivity": "high",
+    "cost": "varies",
+    "season": "school-year",
+    "source_url": "https://www.conradchallenge.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Innovation and entrepreneurship challenge.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "diamond",
+    "name": "Diamond Challenge",
+    "kind": "competition",
+    "provider": "University of Delaware Horn Entrepreneurship",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "business",
+      "entrepreneurship",
+      "social"
+    ],
+    "selectivity": "high",
+    "cost": "low",
+    "season": "school-year",
+    "source_url": "https://diamondchallenge.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "High-school entrepreneurship competition.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "blue-ocean",
+    "name": "Blue Ocean Entrepreneurship Competition",
+    "kind": "competition",
+    "provider": "Blue Ocean",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "business",
+      "entrepreneurship"
+    ],
+    "selectivity": "selective",
+    "cost": "low",
+    "season": "school-year",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Student pitch competition.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "deca",
+    "name": "DECA",
+    "kind": "competition",
+    "provider": "DECA Inc.",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "business",
+      "marketing",
+      "finance"
+    ],
+    "selectivity": "high",
+    "cost": "varies",
+    "season": "school-year",
+    "source_url": "https://www.deca.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Business and marketing competitions.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "fbla",
+    "name": "FBLA",
+    "kind": "competition",
+    "provider": "Future Business Leaders of America",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "business",
+      "computing",
+      "entrepreneurship"
+    ],
+    "selectivity": "high",
+    "cost": "varies",
+    "season": "school-year",
+    "source_url": "https://www.fbla.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Business and technology events.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "hosa",
+    "name": "HOSA",
+    "kind": "competition",
+    "provider": "HOSA-Future Health Professionals",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "life",
+      "public_health",
+      "medicine"
+    ],
+    "selectivity": "high",
+    "cost": "varies",
+    "season": "school-year",
+    "source_url": "https://hosa.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Health science competitions.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "science-olympiad",
+    "name": "Science Olympiad",
+    "kind": "competition",
+    "provider": "Science Olympiad",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "engineering",
+      "natural",
+      "life",
+      "computing"
+    ],
+    "selectivity": "high",
+    "cost": "varies",
+    "season": "school-year",
+    "source_url": "https://www.soinc.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Team-based STEM competition.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "vex",
+    "name": "VEX Robotics Competition",
+    "kind": "competition",
+    "provider": "REC Foundation",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "engineering",
+      "robotics",
+      "computing"
+    ],
+    "selectivity": "high",
+    "cost": "varies",
+    "season": "school-year",
+    "source_url": "https://www.robotevents.com",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Robotics design and competition.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "first",
+    "name": "FIRST Robotics Competition",
+    "kind": "competition",
+    "provider": "FIRST",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "engineering",
+      "robotics",
+      "computing"
+    ],
+    "selectivity": "high",
+    "cost": "varies",
+    "season": "school-year",
+    "source_url": "https://www.firstinspires.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Large-team engineering competition.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "ftc",
+    "name": "FIRST Tech Challenge",
+    "kind": "competition",
+    "provider": "FIRST",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "engineering",
+      "robotics",
+      "computing"
+    ],
+    "selectivity": "high",
+    "cost": "varies",
+    "season": "school-year",
+    "source_url": "https://www.firstinspires.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Robotics competition.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "ioi-path",
+    "name": "National Informatics Olympiad pathway",
+    "kind": "competition",
+    "provider": "National olympiad organizations",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "computing",
+      "computer_science",
+      "algorithms"
+    ],
+    "selectivity": "elite",
+    "cost": "low",
+    "season": "school-year",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Country-specific pathway toward IOI.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "ling-olympiad",
+    "name": "Linguistics Olympiad",
+    "kind": "competition",
+    "provider": "National / international organizations",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "linguistics",
+      "humanities",
+      "computing"
+    ],
+    "selectivity": "elite",
+    "cost": "low",
+    "season": "school-year",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Logic and linguistics problem solving.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "nhd",
+    "name": "National History Day",
+    "kind": "competition",
+    "provider": "National History Day",
+    "countries": [
+      "US",
+      "Global"
+    ],
+    "grades": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "history",
+      "humanities",
+      "research"
+    ],
+    "selectivity": "high",
+    "cost": "low",
+    "season": "school-year",
+    "source_url": "https://www.nhd.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Historical research projects.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "scholastic",
+    "name": "Scholastic Art & Writing Awards",
+    "kind": "competition",
+    "provider": "Alliance for Young Artists & Writers",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "arts",
+      "writing",
+      "humanities"
+    ],
+    "selectivity": "high",
+    "cost": "low",
+    "season": "school-year",
+    "source_url": "https://www.artandwriting.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Creative writing and visual arts.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "youngarts",
+    "name": "YoungArts",
+    "kind": "competition",
+    "provider": "YoungArts",
+    "countries": [
+      "US"
+    ],
+    "grades": [
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "arts",
+      "music",
+      "theatre",
+      "dance"
+    ],
+    "selectivity": "elite",
+    "cost": "low",
+    "season": "fall",
+    "source_url": "https://youngarts.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "National arts competition.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "nyt-student",
+    "name": "Student Writing / Journalism Competitions",
+    "kind": "competition",
+    "provider": "Various publishers",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "writing",
+      "journalism",
+      "humanities"
+    ],
+    "selectivity": "varies",
+    "cost": "low",
+    "season": "year-round",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Use only verified current-cycle competitions.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "model-un",
+    "name": "Model United Nations",
+    "kind": "competition",
+    "provider": "School / conference organizations",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "political_science",
+      "international_relations",
+      "social",
+      "communication"
+    ],
+    "selectivity": "varies",
+    "cost": "varies",
+    "season": "school-year",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Debate, diplomacy and leadership.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "debate",
+    "name": "Debate Tournaments",
+    "kind": "competition",
+    "provider": "Local / national circuits",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "social",
+      "humanities",
+      "communication",
+      "political_science"
+    ],
+    "selectivity": "varies",
+    "cost": "varies",
+    "season": "school-year",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Competitive debate.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "igem-highschool",
+    "name": "iGEM / synthetic biology team projects",
+    "kind": "competition",
+    "provider": "iGEM Foundation",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "biology",
+      "bioengineering",
+      "life",
+      "research"
+    ],
+    "selectivity": "high",
+    "cost": "high",
+    "season": "annual",
+    "source_url": "https://igem.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Team synthetic biology project; eligibility/categories vary by cycle.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "igem-biobuilder",
+    "name": "BioBuilder activities / competitions",
+    "kind": "competition",
+    "provider": "BioBuilder",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "biology",
+      "bioengineering",
+      "life",
+      "research"
+    ],
+    "selectivity": "selective",
+    "cost": "varies",
+    "season": "annual",
+    "source_url": "https://biobuilder.org",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Synthetic biology education and project opportunities.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "eco-challenge",
+    "name": "Environmental Innovation Challenge",
+    "kind": "competition",
+    "provider": "Various",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "environmental",
+      "engineering",
+      "sustainability",
+      "business"
+    ],
+    "selectivity": "varies",
+    "cost": "varies",
+    "season": "annual",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Use current verified local/global challenge listings.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "community-impact",
+    "name": "Community Impact Project",
+    "kind": "project",
+    "provider": "Self-directed",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "service",
+      "social",
+      "environmental",
+      "public_policy"
+    ],
+    "selectivity": "self-directed",
+    "cost": "variable",
+    "season": "year-round",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Define a measurable local problem, intervention and evidence of impact.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "open-source",
+    "name": "Open-Source Software Contribution",
+    "kind": "project",
+    "provider": "Open-source communities",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "computing",
+      "software_engineering",
+      "data_science"
+    ],
+    "selectivity": "self-directed",
+    "cost": "free",
+    "season": "year-round",
+    "source_url": "https://github.com",
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Contribute code, documentation or tooling to real projects.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "maker-prototype",
+    "name": "Engineering Prototype / Product Build",
+    "kind": "project",
+    "provider": "Self-directed",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "engineering",
+      "materials",
+      "robotics",
+      "design"
+    ],
+    "selectivity": "self-directed",
+    "cost": "variable",
+    "season": "year-round",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Build, test, iterate and document a prototype.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "documentary",
+    "name": "Documentary / Journalism Project",
+    "kind": "project",
+    "provider": "Self-directed",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "humanities",
+      "social",
+      "film",
+      "journalism"
+    ],
+    "selectivity": "self-directed",
+    "cost": "variable",
+    "season": "year-round",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Original reporting, interviews and public output.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "policy-paper",
+    "name": "Policy Research & Advocacy Project",
+    "kind": "project",
+    "provider": "Self-directed",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "social",
+      "public_policy",
+      "economics",
+      "environmental"
+    ],
+    "selectivity": "self-directed",
+    "cost": "variable",
+    "season": "year-round",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Evidence-based policy analysis with stakeholder engagement.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "internship-local",
+    "name": "Local Internship / Job",
+    "kind": "work",
+    "provider": "Employer",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "business",
+      "engineering",
+      "computing",
+      "service",
+      "arts",
+      "other"
+    ],
+    "selectivity": "varies",
+    "cost": "paid-or-unpaid",
+    "season": "year-round",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Sustained responsibility can be stronger than a short branded program.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  },
+  {
+    "id": "school-club-build",
+    "name": "Build a School Club Into a Real Program",
+    "kind": "project",
+    "provider": "School",
+    "countries": [
+      "Global"
+    ],
+    "grades": [
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "tags": [
+      "leadership",
+      "service",
+      "engineering",
+      "business",
+      "humanities"
+    ],
+    "selectivity": "self-directed",
+    "cost": "low",
+    "season": "school-year",
+    "source_url": null,
+    "deadline": null,
+    "verification": "catalog_seed",
+    "description": "Focus on durable systems, participation and measurable output.",
+    "deadline_note": "Check the official current-cycle page before applying."
+  }
+]
