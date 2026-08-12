@@ -56,3 +56,17 @@ Before a high-school outcome override is marked `verified`, record:
 - graduating class size when available;
 - whether counts are students, offers, or enrollments;
 - any overlap / double-counting limitation.
+
+### Shanghai Starriver Bilingual School
+
+- School: https://www.ssbs.sh.cn/siteIndex.action
+- 2025 official admissions report: https://www.ssbs.sh.cn/siteIndex.action?ccid=10083&method=list
+- Stored fields: graduating class 167; 132 US applicants; 78 students with at least one US News top-30 offer; reported Yale/MIT/Stanford offers.
+- Treatment: aggregate context only. Offer history is weaker than confirmed matriculation history and receives only a small relative signal.
+
+### Guanghua Cambridge International School
+
+- School / 2026 admissions update: https://www.ghcis.com/
+- School profile: https://www.ghcis.com/about/info.htm
+- Stored fields: 2026 aggregate offer counts for Oxford, Cambridge, Imperial, LSE, UCL, HKU, HKUST and CUHK.
+- Treatment: no cohort denominator is assumed, so the context strength is deliberately small.

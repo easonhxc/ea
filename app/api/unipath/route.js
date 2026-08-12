@@ -19,9 +19,11 @@ async function overrides(supabase){const {data}=await supabase.from("school_over
 async function highSchoolOverrides(supabase){const {data}=await supabase.from("high_school_outcome_overrides").select("high_school_id,data,source_url,source_year,verified");return data||[]}
 function resolveHighSchool(profile){
   if(profile.high_school_id&&highSchools.some(h=>h.id===profile.high_school_id))return profile;
-  const q=String(profile.high_school_name||"").trim().toLowerCase();if(!q)return profile;
-  const exact=highSchools.find(h=>h.name.toLowerCase()===q);
-  const fuzzy=exact||highSchools.find(h=>h.name.toLowerCase().includes(q)||q.includes(h.name.toLowerCase()));
+  const normalize=v=>String(v||"").normalize("NFKC").trim().toLowerCase().replace(/[\s·._-]+/g,"");
+  const q=normalize(profile.high_school_name);if(!q)return profile;
+  const names=h=>[h.name,h.name_zh,...(h.aliases||[])].filter(Boolean);
+  const exact=highSchools.find(h=>names(h).some(n=>normalize(n)===q));
+  const fuzzy=exact||highSchools.find(h=>names(h).some(n=>{const x=normalize(n);return x.length>=2&&(x.includes(q)||q.includes(x));}));
   return fuzzy?{...profile,high_school_id:fuzzy.id,high_school_name:fuzzy.name,school_country:fuzzy.country}:profile;
 }
 async function aiAssessment(profile,major){

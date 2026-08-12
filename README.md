@@ -9,7 +9,7 @@ A deployable Next.js + Supabase university-planning product. This rebuild replac
 - Hybrid admissions model: deterministic applicant model + bounded AI holistic assessment.
 - AI is not allowed to invent admission percentages. Its contribution is confidence-weighted and bounded inside the profile score.
 - Verified high-school aggregate outcomes can add only a small, audited context multiplier; unverified schools add **zero** probability adjustment.
-- High-school selector with 35 initial schools/directories.
+- High-school selector with 43 initial schools/directories, including additional Shanghai schools and Chinese-name aliases.
 - Official-outcome seed context for SHSID, Shanghai American School Pudong/Puxi, and limited UWC Changshu context.
 - 127 university planning records across the US, UK, Canada, Singapore, Hong Kong and Australia.
 - 114 majors.

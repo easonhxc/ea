@@ -27,7 +27,12 @@
       ]
     },
     "context_strength": 0.055,
-    "note": "Official 2026 school admissions review; aggregate school-level outcomes only, not an individual acceptance rate."
+    "note": "Official 2026 school admissions review; aggregate school-level outcomes only, not an individual acceptance rate.",
+    "aliases": [
+      "上海中学国际部",
+      "上中国际",
+      "SHSID"
+    ]
   },
   {
     "id": "sas-pudong",
@@ -178,7 +183,12 @@
     "graduating_class": null,
     "outcomes": {},
     "context_strength": 0,
-    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified.",
+    "aliases": [
+      "WLSA上海学校",
+      "WLSA上海",
+      "WLSA"
+    ]
   },
   {
     "id": "yk-pao",
@@ -196,7 +206,12 @@
     "graduating_class": null,
     "outcomes": {},
     "context_strength": 0,
-    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified.",
+    "aliases": [
+      "上海包玉刚实验学校",
+      "包玉刚",
+      "YK Pao"
+    ]
   },
   {
     "id": "pinghe",
@@ -214,7 +229,13 @@
     "graduating_class": null,
     "outcomes": {},
     "context_strength": 0,
-    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified.",
+    "aliases": [
+      "上海市民办平和学校",
+      "上海平和双语学校",
+      "平和学校",
+      "平和"
+    ]
   },
   {
     "id": "qibao-dwight",
@@ -232,7 +253,251 @@
     "graduating_class": null,
     "outcomes": {},
     "context_strength": 0,
-    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified.",
+    "aliases": [
+      "上海七宝德怀特高级中学",
+      "七宝德怀特",
+      "七德"
+    ]
+  },
+  {
+    "id": "starriver-shanghai",
+    "name": "Shanghai Starriver Bilingual School",
+    "name_zh": "上海星河湾双语学校",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "AP"
+    ],
+    "type": "school",
+    "verified": true,
+    "aliases": [
+      "上海星河湾双语学校",
+      "星河湾双语学校",
+      "星河湾",
+      "Star-River",
+      "Starriver",
+      "SSBS"
+    ],
+    "profile_url": "https://www.ssbs.sh.cn/siteIndex.action",
+    "outcomes_url": "https://www.ssbs.sh.cn/siteIndex.action?ccid=10083&method=list",
+    "outcome_year": 2025,
+    "graduating_class": 167,
+    "outcomes": {
+      "us_applicants": 132,
+      "top10_or_ivy_students": 15,
+      "top30_students": 78,
+      "offer_targets": [
+        "Yale",
+        "MIT",
+        "Stanford"
+      ]
+    },
+    "context_strength": 0.04,
+    "note": "Official 2025 school admissions report: 167 graduates; 132 US-university applicants; 78 students received at least one US News top-30 offer; Yale, MIT and Stanford offers were reported. Aggregate context only."
+  },
+  {
+    "id": "guanghua-cambridge",
+    "name": "Guanghua Cambridge International School",
+    "name_zh": "上海光华学院剑桥国际中心（光华剑桥）",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "A-Level",
+      "AP"
+    ],
+    "type": "school",
+    "verified": true,
+    "aliases": [
+      "光华剑桥",
+      "上海光华学院剑桥国际中心",
+      "光剑",
+      "Guanghua Cambridge",
+      "GHCIS"
+    ],
+    "profile_url": "https://www.ghcis.com/about/info.htm",
+    "outcomes_url": "https://www.ghcis.com/",
+    "outcome_year": 2026,
+    "graduating_class": null,
+    "outcomes": {
+      "offer_counts": {
+        "Oxford": 18,
+        "Cambridge": 15,
+        "Imperial College London": 98,
+        "LSE": 57,
+        "UCL": 521,
+        "HKU": 211,
+        "HKUST": 92,
+        "CUHK": 32
+      },
+      "offer_targets": [
+        "Oxford",
+        "Cambridge",
+        "Imperial College London",
+        "LSE",
+        "UCL",
+        "HKU",
+        "HKUST",
+        "CUHK"
+      ]
+    },
+    "context_strength": 0.02,
+    "note": "Official 2026 admissions update publishes large aggregate offer counts, but no denominator is used here; therefore school-context weight remains deliberately small."
+  },
+  {
+    "id": "ulink-shanghai",
+    "name": "Ulink College of Shanghai",
+    "name_zh": "领科教育上海校区",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "A-Level",
+      "IB"
+    ],
+    "type": "school",
+    "verified": false,
+    "aliases": [
+      "领科教育上海校区",
+      "领科上海",
+      "领科",
+      "Ulink Shanghai",
+      "Ulink College of Shanghai"
+    ],
+    "profile_url": "https://www.ulink.cn/",
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. Official school identity is verified; no admissions adjustment is applied until outcome data is normalized and audited."
+  },
+  {
+    "id": "wflms-shanghai",
+    "name": "Shanghai World Foreign Language Academy / WFLMS",
+    "name_zh": "上海市世外中学国际融合课程高中项目",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "IB",
+      "A-Level"
+    ],
+    "type": "school",
+    "verified": false,
+    "aliases": [
+      "上海市世外中学",
+      "世外中学",
+      "世外",
+      "WFLMS",
+      "World Foreign Language School",
+      "World Foreign Language Academy"
+    ],
+    "profile_url": "https://www.wflms.cn/",
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcomes are verified."
+  },
+  {
+    "id": "suis-gubei",
+    "name": "Shanghai United International School — Gubei",
+    "name_zh": "上海协和双语学校古北校区",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "IB",
+      "A-Level"
+    ],
+    "type": "school",
+    "verified": false,
+    "aliases": [
+      "上海协和双语学校古北校区",
+      "协和古北",
+      "SUIS Gubei"
+    ],
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcomes are verified."
+  },
+  {
+    "id": "suis-wanyuan",
+    "name": "Shanghai United International School — Wanyuan",
+    "name_zh": "上海协和双语学校万源校区",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "AP",
+      "IB"
+    ],
+    "type": "school",
+    "verified": false,
+    "aliases": [
+      "上海协和双语学校万源校区",
+      "协和万源",
+      "SUIS Wanyuan"
+    ],
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcomes are verified."
+  },
+  {
+    "id": "sfls",
+    "name": "Shanghai Foreign Language School (SFLS)",
+    "name_zh": "上海外国语大学附属外国语学校",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "Other"
+    ],
+    "type": "school",
+    "verified": false,
+    "aliases": [
+      "上海外国语大学附属外国语学校",
+      "上外附中",
+      "SFLS"
+    ],
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcomes are verified."
+  },
+  {
+    "id": "ecnu2-international",
+    "name": "No. 2 High School of ECNU — International / Overseas Pathway",
+    "name_zh": "华东师范大学第二附属中学国际课程方向",
+    "city": "Shanghai",
+    "country": "China",
+    "curricula": [
+      "AP",
+      "Other"
+    ],
+    "type": "school",
+    "verified": false,
+    "aliases": [
+      "华东师大二附中国际部",
+      "华二国际",
+      "华师大二附中",
+      "ECNU No.2"
+    ],
+    "profile_url": null,
+    "outcomes_url": null,
+    "outcome_year": null,
+    "graduating_class": null,
+    "outcomes": {},
+    "context_strength": 0,
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcomes are verified."
   },
   {
     "id": "scie",
@@ -323,7 +588,11 @@
     "graduating_class": null,
     "outcomes": {},
     "context_strength": 0,
-    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified.",
+    "aliases": [
+      "上海德威外籍人员子女学校",
+      "德威上海"
+    ]
   },
   {
     "id": "wellington-shanghai",
@@ -341,7 +610,11 @@
     "graduating_class": null,
     "outcomes": {},
     "context_strength": 0,
-    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified.",
+    "aliases": [
+      "上海惠灵顿外籍人员子女学校",
+      "惠灵顿上海"
+    ]
   },
   {
     "id": "concordia-shanghai",
@@ -359,7 +632,11 @@
     "graduating_class": null,
     "outcomes": {},
     "context_strength": 0,
-    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified.",
+    "aliases": [
+      "上海协和国际外籍人员子女学校",
+      "Concordia Shanghai"
+    ]
   },
   {
     "id": "harrow-shanghai",
@@ -377,7 +654,11 @@
     "graduating_class": null,
     "outcomes": {},
     "context_strength": 0,
-    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified."
+    "note": "Selectable directory entry. No admissions adjustment until public aggregate outcome data is verified.",
+    "aliases": [
+      "上海哈罗外籍人员子女学校",
+      "哈罗上海"
+    ]
   },
   {
     "id": "hkis",
