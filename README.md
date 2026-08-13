@@ -124,3 +124,19 @@ UniPath is a student planning tool, not an official admissions model. Do not pre
 
 ## Robust AI profile normalization
 AI-imported enum labels and object-shaped outputs are normalized before Zod validation; malformed residuals receive one constrained repair pass.
+
+## v2.3 — calibrated list + course/project fit
+
+- The U.S. planner now treats the Common App list as a hard **20-slot** product invariant. It is generated from the model; users do not need to save schools first.
+- The Applications page consumes that model list directly and assigns ED I / conditional ED II / EA / EA2 / REA/SCEA / RD according to the current rule catalog. Manual saves are overrides, not prerequisites.
+- AP, IB and A-level courses are evaluated subject by subject (subject, level, score/grade, completed/current/planned status) against the intended major. Aggregate counts are only a fallback when subject-level data is absent.
+- Project text is parsed into field evidence (materials, chemistry, physics, computation, engineering design, environment, writing/humanities, social science, service, etc.). Interdisciplinary fit is major-specific and requires the appropriate bridge evidence rather than generic breadth.
+- U.S. recommendation guardrails are tighter so ultra-selective schools are not inserted as decorative reaches for profiles outside the corresponding calibration band.
+- U.S. and UK ladders are displayed separately; the UK track uses its own aspirational / competitive / realistic / safer labels.
+- `data/rankings-2026.json` now has an entry for all 127 universities. QS World University Rankings 2026 and U.S. News 2026 are display context only and are not probability inputs. U.S. schools use Best Colleges 2026 National University ranks (Rose-Hulman uses its category); non-U.S. schools use Best Global Universities 2026–27 where a verified snapshot was available, otherwise `NR` is explicit rather than invented.
+
+### v2.3 final hardening
+
+- Related-course substitution avoids double counting / double penalties: AP Calculus can demonstrate mathematics; IB/A-level Mathematics can partially demonstrate calculus preparation.
+- ED I / ED II are generated from the model without saved schools, but a high-probability Likely is not turned into a binding recommendation unless the student explicitly rates it as a near-first-choice school.
+- U.S. and UK recommendation ladders are calibrated separately. UK outcomes never pull a student into an implausible U.S. reach band.

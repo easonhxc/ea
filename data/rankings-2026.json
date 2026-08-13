@@ -1,0 +1,891 @@
+{
+  "Harvard": {
+    "qs_world_2026": 5,
+    "usnews_2026": 3,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "MIT": {
+    "qs_world_2026": 1,
+    "usnews_2026": 2,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Stanford": {
+    "qs_world_2026": 3,
+    "usnews_2026": 4,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Princeton": {
+    "qs_world_2026": 25,
+    "usnews_2026": 1,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Yale": {
+    "qs_world_2026": 21,
+    "usnews_2026": 4,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Caltech": {
+    "qs_world_2026": 10,
+    "usnews_2026": 11,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Columbia": {
+    "qs_world_2026": 38,
+    "usnews_2026": 15,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UPenn": {
+    "qs_world_2026": 15,
+    "usnews_2026": 7,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Duke": {
+    "qs_world_2026": 62,
+    "usnews_2026": 7,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Brown": {
+    "qs_world_2026": 69,
+    "usnews_2026": 13,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Northwestern": {
+    "qs_world_2026": 42,
+    "usnews_2026": 7,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Cornell": {
+    "qs_world_2026": 16,
+    "usnews_2026": 12,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Rice": {
+    "qs_world_2026": 119,
+    "usnews_2026": 17,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Johns Hopkins": {
+    "qs_world_2026": 24,
+    "usnews_2026": 7,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UChicago": {
+    "qs_world_2026": 13,
+    "usnews_2026": 6,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UC Berkeley": {
+    "qs_world_2026": 17,
+    "usnews_2026": 15,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UCLA": {
+    "qs_world_2026": 46,
+    "usnews_2026": 17,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Carnegie Mellon": {
+    "qs_world_2026": 52,
+    "usnews_2026": 20,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Michigan": {
+    "qs_world_2026": 45,
+    "usnews_2026": 20,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "USC": {
+    "qs_world_2026": 146,
+    "usnews_2026": 28,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "NYU": {
+    "qs_world_2026": 55,
+    "usnews_2026": 32,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UVA": {
+    "qs_world_2026": 275,
+    "usnews_2026": 26,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UC San Diego": {
+    "qs_world_2026": 66,
+    "usnews_2026": 29,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UT Austin": {
+    "qs_world_2026": 68,
+    "usnews_2026": 30,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Florida": {
+    "qs_world_2026": 212,
+    "usnews_2026": 30,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Georgia Tech": {
+    "qs_world_2026": 123,
+    "usnews_2026": 32,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UIUC": {
+    "qs_world_2026": 70,
+    "usnews_2026": 36,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Purdue": {
+    "qs_world_2026": 88,
+    "usnews_2026": 46,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Wisconsin–Madison": {
+    "qs_world_2026": 110,
+    "usnews_2026": 36,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Maryland": {
+    "qs_world_2026": 207,
+    "usnews_2026": 42,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Ohio State": {
+    "qs_world_2026": 190,
+    "usnews_2026": 41,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Penn State": {
+    "qs_world_2026": 82,
+    "usnews_2026": 59,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Virginia Tech": {
+    "qs_world_2026": 358,
+    "usnews_2026": 51,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Minnesota Twin Cities": {
+    "qs_world_2026": 210,
+    "usnews_2026": 59,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Texas A&M": {
+    "qs_world_2026": 144,
+    "usnews_2026": 51,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Arizona State": {
+    "qs_world_2026": 173,
+    "usnews_2026": 117,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Rochester": {
+    "qs_world_2026": 236,
+    "usnews_2026": 46,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Case Western Reserve": {
+    "qs_world_2026": 294,
+    "usnews_2026": 51,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Boston University": {
+    "qs_world_2026": 88,
+    "usnews_2026": 42,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Northeastern": {
+    "qs_world_2026": 384,
+    "usnews_2026": 46,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UC Davis": {
+    "qs_world_2026": 114,
+    "usnews_2026": 32,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UC Irvine": {
+    "qs_world_2026": 293,
+    "usnews_2026": 32,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UC Santa Barbara": {
+    "qs_world_2026": 179,
+    "usnews_2026": 40,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Oxford": {
+    "qs_world_2026": 4,
+    "usnews_2026": 4,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Cambridge": {
+    "qs_world_2026": 6,
+    "usnews_2026": 5,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Imperial College London": {
+    "qs_world_2026": 2,
+    "usnews_2026": 14,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UCL": {
+    "qs_world_2026": 9,
+    "usnews_2026": 9,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "LSE": {
+    "qs_world_2026": 56,
+    "usnews_2026": "NR",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Edinburgh": {
+    "qs_world_2026": 34,
+    "usnews_2026": 41,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Manchester": {
+    "qs_world_2026": 35,
+    "usnews_2026": 68,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Warwick": {
+    "qs_world_2026": 74,
+    "usnews_2026": "NR",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "King’s College London": {
+    "qs_world_2026": 31,
+    "usnews_2026": 42,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Dartmouth": {
+    "qs_world_2026": 247,
+    "usnews_2026": 13,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Vanderbilt": {
+    "qs_world_2026": 250,
+    "usnews_2026": 17,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Notre Dame": {
+    "qs_world_2026": 294,
+    "usnews_2026": 20,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "WashU": {
+    "qs_world_2026": 167,
+    "usnews_2026": 20,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Emory": {
+    "qs_world_2026": 182,
+    "usnews_2026": 24,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Georgetown": {
+    "qs_world_2026": 285,
+    "usnews_2026": 24,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Tufts": {
+    "qs_world_2026": 334,
+    "usnews_2026": 36,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UNC Chapel Hill": {
+    "qs_world_2026": 140,
+    "usnews_2026": 26,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Wake Forest": {
+    "qs_world_2026": "791-800",
+    "usnews_2026": 51,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Boston College": {
+    "qs_world_2026": 526,
+    "usnews_2026": 36,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Brandeis": {
+    "qs_world_2026": "741-750",
+    "usnews_2026": 69,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Lehigh": {
+    "qs_world_2026": 668,
+    "usnews_2026": 46,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "RPI": {
+    "qs_world_2026": 695,
+    "usnews_2026": 64,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "WPI": {
+    "qs_world_2026": "851-900",
+    "usnews_2026": 84,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "University of Washington": {
+    "qs_world_2026": 81,
+    "usnews_2026": 42,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Colorado Boulder": {
+    "qs_world_2026": 299,
+    "usnews_2026": 97,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Rutgers–New Brunswick": {
+    "qs_world_2026": 328,
+    "usnews_2026": 42,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Stony Brook": {
+    "qs_world_2026": 452,
+    "usnews_2026": 59,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UMass Amherst": {
+    "qs_world_2026": 247,
+    "usnews_2026": 64,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Indiana Bloomington": {
+    "qs_world_2026": 306,
+    "usnews_2026": 73,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Michigan State": {
+    "qs_world_2026": 161,
+    "usnews_2026": 64,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Iowa State": {
+    "qs_world_2026": 449,
+    "usnews_2026": 117,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Colorado School of Mines": {
+    "qs_world_2026": 571,
+    "usnews_2026": 80,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Rose-Hulman": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 1,
+    "usnews_system": "Undergraduate Engineering (no doctorate)",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "RIT": {
+    "qs_world_2026": "951-1000",
+    "usnews_2026": 88,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Drexel": {
+    "qs_world_2026": "711-720",
+    "usnews_2026": 80,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Santa Clara": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 59,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Stevens Institute of Technology": {
+    "qs_world_2026": 673,
+    "usnews_2026": 80,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Syracuse": {
+    "qs_world_2026": "741-750",
+    "usnews_2026": 75,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "George Washington": {
+    "qs_world_2026": 358,
+    "usnews_2026": 59,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "American University": {
+    "qs_world_2026": 587,
+    "usnews_2026": 88,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Fordham": {
+    "qs_world_2026": "1001-1200",
+    "usnews_2026": 97,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Pepperdine": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 84,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "University of Miami": {
+    "qs_world_2026": 314,
+    "usnews_2026": 64,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Tulane": {
+    "qs_world_2026": 597,
+    "usnews_2026": 69,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Villanova": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 57,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "NC State": {
+    "qs_world_2026": 272,
+    "usnews_2026": 64,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UConn": {
+    "qs_world_2026": 534,
+    "usnews_2026": 69,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Delaware": {
+    "qs_world_2026": 553,
+    "usnews_2026": 88,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Pittsburgh": {
+    "qs_world_2026": 281,
+    "usnews_2026": 69,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Baylor": {
+    "qs_world_2026": "1001-1200",
+    "usnews_2026": 88,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Clemson": {
+    "qs_world_2026": "951-1000",
+    "usnews_2026": 75,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Virginia Commonwealth": {
+    "qs_world_2026": "901-950",
+    "usnews_2026": 139,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Illinois Tech": {
+    "qs_world_2026": 591,
+    "usnews_2026": 117,
+    "usnews_system": "National University",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "University of Toronto": {
+    "qs_world_2026": 29,
+    "usnews_2026": 20,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UBC": {
+    "qs_world_2026": 40,
+    "usnews_2026": 42,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "McGill": {
+    "qs_world_2026": 27,
+    "usnews_2026": 68,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Waterloo": {
+    "qs_world_2026": 119,
+    "usnews_2026": "NR",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "McMaster": {
+    "qs_world_2026": 173,
+    "usnews_2026": "NR",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "University of Alberta": {
+    "qs_world_2026": 94,
+    "usnews_2026": "NR",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Queen's University": {
+    "qs_world_2026": 191,
+    "usnews_2026": "NR",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Western University": {
+    "qs_world_2026": 151,
+    "usnews_2026": "NR",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "NUS": {
+    "qs_world_2026": 8,
+    "usnews_2026": 16,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "NTU Singapore": {
+    "qs_world_2026": 12,
+    "usnews_2026": 27,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "SMU Singapore": {
+    "qs_world_2026": 511,
+    "usnews_2026": "NR",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "University of Hong Kong": {
+    "qs_world_2026": 11,
+    "usnews_2026": 40,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "HKUST": {
+    "qs_world_2026": 44,
+    "usnews_2026": 82,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "CUHK": {
+    "qs_world_2026": 32,
+    "usnews_2026": 28,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "City University of Hong Kong": {
+    "qs_world_2026": 63,
+    "usnews_2026": 47,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Hong Kong Polytechnic University": {
+    "qs_world_2026": 54,
+    "usnews_2026": 52,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "University of Melbourne": {
+    "qs_world_2026": 19,
+    "usnews_2026": 28,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "UNSW Sydney": {
+    "qs_world_2026": 20,
+    "usnews_2026": "Top 100 / verify exact",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "University of Sydney": {
+    "qs_world_2026": 25,
+    "usnews_2026": 31,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Australian National University": {
+    "qs_world_2026": 32,
+    "usnews_2026": 81,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Monash": {
+    "qs_world_2026": 36,
+    "usnews_2026": 38,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Bristol": {
+    "qs_world_2026": 51,
+    "usnews_2026": "NR",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Southampton": {
+    "qs_world_2026": 87,
+    "usnews_2026": "NR",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Bath": {
+    "qs_world_2026": 132,
+    "usnews_2026": "NR",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Durham": {
+    "qs_world_2026": 94,
+    "usnews_2026": "NR",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Birmingham": {
+    "qs_world_2026": 76,
+    "usnews_2026": 97,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Leeds": {
+    "qs_world_2026": 86,
+    "usnews_2026": "NR",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Sheffield": {
+    "qs_world_2026": 92,
+    "usnews_2026": "NR",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Nottingham": {
+    "qs_world_2026": 97,
+    "usnews_2026": "NR",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Glasgow": {
+    "qs_world_2026": 79,
+    "usnews_2026": 77,
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "St Andrews": {
+    "qs_world_2026": 113,
+    "usnews_2026": "NR",
+    "usnews_system": "Best Global 2026–27",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  }
+}

@@ -180,15 +180,16 @@
       "RD"
     ],
     "default": "RD",
-    "note": "Verify current-cycle plan availability."
+    "note": "Michigan offers binding ED, non-binding EA, and RD for most first-year units; program exceptions exist."
   },
   "USC": {
     "plans": [
+      "ED1",
       "EA",
       "RD"
     ],
     "default": "RD",
-    "note": "Some programs may have special deadlines."
+    "note": "USC currently offers ED, EA and RD; eligibility can vary by program, so verify the current cycle."
   },
   "NYU": {
     "plans": [
@@ -369,5 +370,72 @@
       "UCAS"
     ],
     "default": "UCAS"
+  },
+  "Dartmouth": {
+    "plans": [
+      "ED1",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "ED I is binding; verify current-cycle deadlines."
+  },
+  "Vanderbilt": {
+    "plans": [
+      "ED1",
+      "ED2",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "ED I / ED II are binding; Vanderbilt does not offer EA."
+  },
+  "WashU": {
+    "plans": [
+      "EA",
+      "ED1",
+      "ED2",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Fall 2027 cycle offers EA, ED I, ED II and RD; verify the applicant cycle."
+  },
+  "Emory": {
+    "plans": [
+      "ED1",
+      "ED2",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "ED I / ED II are binding."
+  },
+  "Notre Dame": {
+    "plans": [
+      "REA",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Notre Dame REA is non-binding but prohibits binding ED I elsewhere; other non-binding EA may be allowed. Verify current rules."
+  },
+  "Rutgers–New Brunswick": {
+    "plans": [
+      "EA",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "EA is non-binding; verify current-cycle dates."
+  },
+  "UMass Amherst": {
+    "plans": [
+      "EA",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "EA is non-binding; UMass Amherst does not offer ED."
+  },
+  "University of Washington": {
+    "plans": [
+      "RD"
+    ],
+    "default": "RD",
+    "note": "UW does not participate in ED or EA; one first-year autumn deadline."
   }
 }
