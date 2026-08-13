@@ -1,29 +1,96 @@
-# UniPath v2.8 — guided, explorable planning
 
-UniPath is a persistent university-planning system for high-school applicants. v2.8 focuses on making the web product understandable on first use and making recommendations explorable instead of flattening everything into repeated cards.
+## Warm Academic production interface
 
-## v2.8 highlights
+UniPath 1.0 uses the selected **Warm Academic / Classic Editorial** visual system across the signed-out and signed-in web experience. The system uses an ivory canvas, forest-green primary actions, sage active states, editorial serif headings, low-contrast borders and restrained shadows. Light, Dark and System appearance controls remain available, with dark mode using the same academic identity rather than the previous blue/purple tech treatment.
 
-- First-use onboarding: a four-step guide explains Profile → College Model → original projects → persistent Advisor. It appears once per browser/account and can be replayed from Settings.
-- Sortable College Model: keep the UniPath recommendation order or sort by QS, U.S. News category rank, modeled probability, course fit, project fit, or the student's explicit school preference.
-- U.S. News category-aware sorting: National Universities and National Liberal Arts Colleges stay in separate published categories instead of being treated as one combined ranking.
-- School-specific College Detail: 34 high-priority universities/LACs now have source-backed admissions profiles built from current official admissions pages, official admissions blogs/guides, and institutional student-voice material. All other catalog schools still receive a differentiated dynamic detail view from institution type, setting, research intensity, program support, and the applicant's actual evidence.
-- School Detail now separates: what the school appears to value, how the applicant could be positioned, evidence behind fit, risks/gaps, culture/student voice, ranking/rounds, admissions context, and research sources.
-- Original Project Detail: every generated project opens into its own page with admissions role, evidence gap addressed, milestones, deliverables, success metrics, external validation, resources/risks, and legitimate application uses.
-- Project generation prompt now requests milestones, resources, risks, and an explicit non-promissory admissions-impact explanation.
-- Generated original projects are cached locally per account so navigating away/reloading does not immediately erase the latest generated set.
-- Existing v2.7 persistence remains: Advisor messages are written server-first, de-duplicated by client ID, latest-100 server-synced, mirrored locally, and refreshed on focus/visibility.
+# UniPath 1.0 — formal release feature map
 
-## Existing core
+UniPath 1.0 combines the planned College Intelligence and Applicant Intelligence releases into one formal web release.
 
-- Persistent Supabase account + structured applicant profile.
-- AI import from mixed Chinese/English résumé and transcript notes.
-- Subject-level AP / IB / A-level analysis and project-content evidence scoring.
-- 150 modeled institutions including 23 U.S. liberal arts colleges; LACs can be included/excluded globally.
-- U.S. rank scopes All / T30 / T35 / T50 / T75 / T100 by U.S. News category.
-- Profile-aware National University T20/T30 frontier plus independent LAC fit/selectivity logic.
-- 20-school Common App track, separate non-Common-App U.S. track, and independent UK track.
-- Automatic ED/EA/RD/UC/UCAS planning and Monte Carlo portfolio simulation.
-- Opportunity catalog + original project planner + graduation-year-aware Roadmap.
-- English / Simplified Chinese, comfortable/compact density, System/Light/Dark appearance.
-- Admin data overrides and ordinary classmate demo accounts.
+## Applicant Intelligence
+
+- Five-cluster applicant evidence graph:
+  - Academic readiness
+  - Intellectual profile
+  - Execution & output
+  - Leadership & impact
+  - Application narrative
+- Sub-dimension scoring with evidence traces rather than a single unexplained score.
+- Application identity generated from the student's strongest recurring evidence.
+- Strongest-signal and gap detection.
+- Evidence-confidence label based on profile completeness and auditable inputs.
+- Subject-level AP / IB / A-level preparation and major-foundation coverage.
+- Project-content, method, output, duration, ownership and measurable-impact analysis.
+- Bounded AI evidence layer remains subordinate to the deterministic model.
+
+## Probability / portfolio model
+
+- Student-facing output emphasizes a planning interval rather than a pseudo-precise percentage.
+- Range confidence is separated from the modeled range itself.
+- Internal center estimate retained for portfolio construction and Monte Carlo only.
+- Explicit preference affects list priority, not admission probability.
+- National University T20/T30 profile frontier remains separate from LAC category ranks.
+- Strict U.S. rank filters surface clearly labeled reach overflow rather than pretending extra reaches are Targets.
+- Liberal Arts Colleges can be globally included or excluded.
+- LAC recommendation priority is field-aware and capped independently from the National University frontier.
+
+## College Intelligence
+
+- 69 source-backed admissions profiles using 148 official/institutional source links.
+- Coverage includes high-priority U.S. research universities, all 23 modeled U.S. liberal arts colleges, Oxford, Cambridge, Imperial, UCL and LSE.
+- College Detail differentiates:
+  - Admissions DNA
+  - institutional values / review emphasis
+  - current applicant positioning
+  - strongest alignment
+  - open question / gap
+  - culture / institutional voice
+  - avoid / misuse guidance
+  - course and project evidence
+  - rounds, rankings and application-system context
+  - source links
+- Unresearched schools use a differentiated catalog interpretation explicitly labeled as UniPath analysis.
+- College list shows a Source-backed badge when a hand-researched profile is available.
+- Compare 2–4 schools across planning range, confidence, fit dimensions, preference, ranking context and Admissions DNA.
+- Compare view includes a deterministic decision-frame takeaway and personalized strongest/weakest fit read.
+- College sorting: UniPath recommendation / U.S. News / QS / chance high-low / chance low-high / course fit / project fit / preference.
+
+## Prediction Version History
+
+- Latest 12 runs loaded from Supabase.
+- Each 1.0 run preserves its Applicant Intelligence graph.
+- History compares the current run to the preceding saved run.
+- Shows overall applicant-signal movement and largest changed evidence dimensions.
+- Shows largest modeled school-range shifts for overlapping schools.
+- Pre-1.0 runs remain visible as legacy history.
+
+## Execution system
+
+- First-use onboarding explains Applicant Intelligence, College Intelligence, projects and persistent planning.
+- Opportunity catalog plus AI-generated original projects.
+- Project Detail with admissions role, milestones, deliverables, success metrics, validation, resources and risks.
+- Latest generated project set locally recoverable per account.
+- Graduation-year-aware Roadmap with stale-item cleanup.
+- Persistent AI Advisor grounded in saved profile, predictions, plans and roadmap.
+- Advisor messages persist server-first, de-duplicate by client ID, load the most recent 100, mirror locally and resync on focus/visibility.
+
+## Application strategy
+
+- 20-school Common App portfolio when modeled coverage permits.
+- Separate U.S. non-Common-App track.
+- Separate UK track with UK-specific competitiveness bands.
+- Automatic ED I / ED II / EA / REA / SCEA / RD / UC / UCAS planning.
+- Round-conflict validation retained.
+- Monte Carlo portfolio stress test and one visible simulated cycle.
+
+## Data / settings / admin
+
+- 150 modeled institutions.
+- 23 U.S. liberal arts colleges.
+- 114 majors.
+- QS 2026 and U.S. News 2026 ranking snapshot for display/filter context.
+- English / Simplified Chinese core interface.
+- System / Light / Dark appearance.
+- Comfortable / Compact density.
+- Default U.S. ranking scope and Liberal Arts College preference.
+- Admin school/high-school overrides and demo-account management.

@@ -11,6 +11,7 @@ import { deepseekChat } from "@/lib/deepseek";
 import { matchOpportunities, getOpportunity, catalogStats } from "@/lib/opportunities";
 import { generateRoadmapWithAI } from "@/lib/roadmap-ai";
 import { generateOriginalProjects } from "@/lib/project-planner-ai";
+import { compareApplicantIntelligence } from "@/lib/applicant-intelligence";
 import highSchools from "@/data/high-schools.json";
 import schoolCatalog from "@/data/schools.json";
 
@@ -212,7 +213,16 @@ ${JSON.stringify(roadmap||[])}`;
     if(action==="validate_strategy")return ok(validatePlan(body.plans||[]));
     if(action==="optimize_strategy")return ok({strategy:optimizeEarly(body.plans||[]),validation:validatePlan(body.plans||[])});
     if(action==="simulate"){const plans=body.plans||[],validation=validatePlan(plans);if(validation.errors.length)return fail(validation.errors.join(" "));const simulation=monteCarlo(plans,body.runs||1000);return ok({simulation,example_cycle:simulation.visible_cycle,validation})}
-    if(action==="history"){const {data,error}=await supabase.from("prediction_runs").select("id,primary_major,secondary_major,created_at,result").eq("user_id",user.id).order("created_at",{ascending:false}).limit(12);if(error)throw error;return ok({runs:data||[]})}
+    if(action==="history"){
+      const {data,error}=await supabase.from("prediction_runs").select("id,primary_major,secondary_major,created_at,result").eq("user_id",user.id).order("created_at",{ascending:false}).limit(12);if(error)throw error;
+      const runs=(data||[]).map((run,i,arr)=>{
+        const previous=arr[i+1];const intelligence_change=compareApplicantIntelligence(run.result?.applicant_intelligence,previous?.result?.applicant_intelligence);
+        const currentSchools=Object.fromEntries((run.result?.schools||[]).map(x=>[x.school,x]));const previousSchools=Object.fromEntries((previous?.result?.schools||[]).map(x=>[x.school,x]));
+        const probability_changes=Object.keys(currentSchools).filter(k=>previousSchools[k]).map(k=>({school:k,from:previousSchools[k].interval||[previousSchools[k].probability,previousSchools[k].probability],to:currentSchools[k].interval||[currentSchools[k].probability,currentSchools[k].probability],center_delta:(Number(currentSchools[k].probability)||0)-(Number(previousSchools[k].probability)||0)})).filter(x=>Math.abs(x.center_delta)>=.003).sort((a,b)=>Math.abs(b.center_delta)-Math.abs(a.center_delta)).slice(0,5);
+        return {...run,change_from_previous:previous?{applicant_intelligence:intelligence_change,probability_changes}:null};
+      });
+      return ok({runs});
+    }
     if(action==="feedback"){const message=String(body.message||"").trim();if(!message)return fail("Feedback is empty.");const {error}=await supabase.from("feedback").insert({user_id:user.id,message});if(error)throw error;return ok({saved:true})}
 
     if(action==="admin_stats"){

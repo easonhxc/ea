@@ -70,3 +70,39 @@ Before a high-school outcome override is marked `verified`, record:
 - School profile: https://www.ghcis.com/about/info.htm
 - Stored fields: 2026 aggregate offer counts for Oxford, Cambridge, Imperial, LSE, UCL, HKU, HKUST and CUHK.
 - Treatment: no cohort denominator is assumed, so the context strength is deliberately small.
+
+# UniPath 1.0 College Intelligence source policy
+
+`data/school-insights.json` contains the hand-researched College Intelligence layer. In the 1.0 release it contains 69 school profiles and 148 official/institutional source links.
+
+## Source hierarchy
+
+Prefer, in order:
+
+1. current undergraduate admissions office pages;
+2. official selection / review criteria pages;
+3. official admissions blogs, applicant guides, departmental admissions pages, and institutional student-voice pages;
+4. official university news or student publications when they add culture/context without claiming selection criteria.
+
+Do not use anonymous forum claims or admissions-consulting speculation as evidence for what a school "likes."
+
+## Interpretation rule
+
+Public admissions pages rarely disclose a complete confidential rubric. Therefore each profile must distinguish between:
+
+- what the institution explicitly states;
+- a reasonable UniPath interpretation of those statements for applicant positioning;
+- catalog-based fallback analysis when no hand-researched profile exists.
+
+The College Intelligence layer may change explanations and positioning guidance. It must not create a hidden probability multiplier.
+
+## Maintenance rule
+
+Admissions criteria, essays, testing policies, majors, aid policies, deadlines and application rounds can change. Before editing a source-backed profile:
+
+- open the current official source;
+- record a stable URL where possible;
+- avoid quoting long passages;
+- paraphrase precisely;
+- remove a claim when the current source no longer supports it;
+- keep UK course-specific requirements separate from general university-level guidance.

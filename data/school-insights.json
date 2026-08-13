@@ -933,5 +933,845 @@
         "url": "https://admission.virginia.edu/admission/application-review-process"
       }
     ]
+  },
+  "Caltech": {
+    "signature": "Extreme STEM depth, rigorous preparation, scholarly character, and a persistent drive to understand, build, test, and discover.",
+    "values": [
+      "Capacity for intense math/science rigor",
+      "Scholarly character: integrity, resilience, generosity",
+      "Scientific drive and self-directed exploration",
+      "Depth, originality, and constructive collaboration"
+    ],
+    "application_read": "Caltech explicitly frames review around capacity for rigor, scholarly character, and scientific drive. Strong files make advanced STEM readiness clear, but also show what the student repeatedly chooses to investigate or build and how they behave when work becomes difficult.",
+    "positioning": "Lead with a technically credible question, build, experiment, or research thread that has deepened over time. Pair technical independence with evidence of collaboration, generosity, and learning through failed attempts.",
+    "avoid": "A generic 'well-rounded high achiever' pitch or a long STEM activity list without evidence of technical depth, original pursuit, or authentic scientific motivation.",
+    "student_voice": "Caltech's current admissions guidance says there is no single profile and emphasizes depth of scientific engagement over the number of STEM activities.",
+    "sources": [
+      {
+        "label": "What We Look For",
+        "type": "official",
+        "url": "https://www.admissions.caltech.edu/apply/what-we-look-for"
+      },
+      {
+        "label": "How We Review",
+        "type": "official",
+        "url": "https://www.admissions.caltech.edu/apply/what-we-look-for/how-we-review"
+      },
+      {
+        "label": "Faculty & the Admissions Process",
+        "type": "official",
+        "url": "https://www.admissions.caltech.edu/apply/what-we-look-for/faculty-the-admissions-process"
+      }
+    ]
+  },
+  "Carnegie Mellon": {
+    "signature": "Program-specific academic strength paired with creativity, self-directed learning, collaboration, impact, and a clear reason for the field you chose.",
+    "values": [
+      "Academic and creative potential",
+      "Self-directed learning and critical thinking",
+      "Collaboration, integrity, empathy, and impact",
+      "Major-specific motivation"
+    ],
+    "application_read": "CMU applies holistic review but students apply directly to a college or school. Curriculum rigor and performance matter heavily, while essays and experiences help readers understand the person, academic direction, and values behind the record.",
+    "positioning": "Show that your intended program is the natural next step in a sustained intellectual or creative trajectory. Use specific work to prove both technical/academic preparation and the way you collaborate, create, or make an impact.",
+    "avoid": "Treating Carnegie Mellon as one generic university or relying on scores without explaining why the specific college/program fits your learning goals.",
+    "student_voice": "CMU says no single grade, score, factor, or activity determines admission and asks applicants to show who they are beyond a list of accomplishments.",
+    "sources": [
+      {
+        "label": "Admission Consideration",
+        "type": "official",
+        "url": "https://www.cmu.edu/admission/admission/admission-consideration"
+      },
+      {
+        "label": "Undergraduate Admission Catalog",
+        "type": "official",
+        "url": "https://coursecatalog.web.cmu.edu/aboutcmu/undergraduateadmission/"
+      }
+    ]
+  },
+  "Notre Dame": {
+    "signature": "Rigorous academics and curiosity joined with authentic values, service, leadership, community impact, and a sense of purpose.",
+    "values": [
+      "Strong performance in rigorous coursework",
+      "Academic curiosity and preparation",
+      "Leadership, service, and meaningful impact",
+      "Authentic values and community contribution"
+    ],
+    "application_read": "Notre Dame reviews applicants comprehensively in context. Its published criteria move from academic performance and rigor to how students spend their time, lead, serve, and express the values and perspectives behind their record.",
+    "positioning": "Make academic readiness obvious, then connect your most sustained work to people, community, service, or a purpose larger than résumé-building. Essays should sound like you and reveal the values guiding your choices.",
+    "avoid": "A prestige-driven narrative or service activities presented as hours collected rather than commitments that changed how you think or contribute.",
+    "student_voice": "Notre Dame explicitly asks applicants to show how they pursue truth, community and progress, and says essays help readers learn the real person beyond courses, numbers and activities.",
+    "sources": [
+      {
+        "label": "Evaluation Criteria",
+        "type": "official",
+        "url": "https://admissions.nd.edu/apply/evaluation-criteria/"
+      }
+    ]
+  },
+  "UC San Diego": {
+    "signature": "High academic preparation plus sustained achievement, initiative, originality, intellectual independence, and contribution to a diverse research community.",
+    "values": [
+      "Achievement beyond minimum UC requirements",
+      "Rigor and strong academic performance",
+      "Leadership, initiative, originality, and maturity",
+      "Sustained intellectual, creative, or community achievement"
+    ],
+    "application_read": "UC San Diego uses holistic review across academic and personal factors, including the UC Personal Insight Questions. It explicitly values rigor, achievement in context, sustained accomplishment, intellectual independence, and contribution.",
+    "positioning": "Use the UC application to connect academic preparation with sustained work that shows initiative and intellectual independence. Quantify impact where possible, but explain what you learned and why the work mattered.",
+    "avoid": "Building the application around SAT/ACT scores; UC San Diego does not use them in admission. Avoid shallow activity volume without sustained achievement or insight.",
+    "student_voice": "UC San Diego says it looks for students prepared to contribute and thrive and names leadership, tenacity, initiative, originality, responsibility and concern for others among valued qualities.",
+    "sources": [
+      {
+        "label": "First-Year Application Review",
+        "type": "official",
+        "url": "https://admissions.ucsd.edu/first-year/application-review.html"
+      }
+    ]
+  },
+  "UT Austin": {
+    "signature": "Strong academics evaluated in context, meaningful achievements and service, clear written thinking, and competitiveness for the specific major requested.",
+    "values": [
+      "Academic performance and preparation",
+      "Achievements, work, service, and leadership",
+      "Strong essays and contextual story",
+      "Major-level competitiveness and fit"
+    ],
+    "application_read": "UT Austin describes an individualized holistic review that considers academic background, achievements, service/work, essays, recommendations where applicable, and the competitiveness of the requested major.",
+    "positioning": "Make the case for both UT and the major. Highlight the experiences that created your academic direction, then show impact, responsibility, and evidence you are prepared for that program's specific demands.",
+    "avoid": "Assuming general university admissibility equals admission to a highly competitive major, or performing demonstrated interest for admissions advantage; UT says demonstrated interest is not used.",
+    "student_voice": "UT Austin emphasizes individualized review and major competitiveness rather than a single numerical formula.",
+    "sources": [
+      {
+        "label": "Review & Decision Process",
+        "type": "official",
+        "url": "https://admissions.utexas.edu/apply/review-decision-process/"
+      },
+      {
+        "label": "Frequently Asked Questions",
+        "type": "official",
+        "url": "https://admissions.utexas.edu/apply/frequently-asked-questions/"
+      }
+    ]
+  },
+  "Florida": {
+    "signature": "Strong preparation in challenging courses, sustained involvement and contribution, thoughtful writing, and evidence of the motivation to thrive.",
+    "values": [
+      "Academic rigor and performance",
+      "Sustained extracurricular involvement",
+      "Contribution, initiative, and context",
+      "Quality of reflection and writing"
+    ],
+    "application_read": "UF uses comprehensive review across academic and nonacademic evidence. Its public process highlights rigor, testing where applicable, sustained activities and contribution, contextual circumstances, and essay quality.",
+    "positioning": "Show consistency: challenging coursework plus a few sustained commitments where you contributed rather than merely participated. Use writing to explain motivation, growth, and context that numbers cannot show.",
+    "avoid": "A high-statistics-only application that leaves readers little evidence of sustained contribution, motivation, or personal context.",
+    "student_voice": "UF's published process stresses that academic and nonacademic evidence are considered together rather than through a single threshold.",
+    "sources": [
+      {
+        "label": "Our Decision Process",
+        "type": "official",
+        "url": "https://admissions.ufl.edu/apply/freshman/our-decision-process"
+      }
+    ]
+  },
+  "Georgia Tech": {
+    "signature": "Rigorous academic preparation, a credible connection to the intended major, and evidence of innovative problem-solving, engagement, leadership, and contribution.",
+    "values": [
+      "Academic preparation and intellectual challenge",
+      "Demonstrated interest in the chosen major",
+      "Innovative thinking and problem solving",
+      "Community contribution, leadership, and engagement"
+    ],
+    "application_read": "Georgia Tech's holistic review explicitly includes academic preparation, community contribution, major selection, essays, recommendations where used, and testing. Institutional fit centers on engaged learners and innovative problem-solvers.",
+    "positioning": "Connect your strongest technical or intellectual work directly to the major you selected. Show the problem you noticed, what you actually did, how you iterated, and how you contributed with or for other people.",
+    "avoid": "A generic STEM résumé that could be sent unchanged to any engineering university, especially if it does not explain the intended major or real problem-solving work.",
+    "student_voice": "Georgia Tech describes the class it is building in terms of innovative thinkers, problem-solvers, leaders, global citizens and engaged learners.",
+    "sources": [
+      {
+        "label": "Application Review",
+        "type": "official",
+        "url": "https://admission.gatech.edu/first-year/application-review"
+      },
+      {
+        "label": "Institutional Fit",
+        "type": "official",
+        "url": "https://admission.gatech.edu/first-year/institutional-fit"
+      },
+      {
+        "label": "Academic Preparation",
+        "type": "official",
+        "url": "https://admission.gatech.edu/first-year/academic-preparation"
+      }
+    ]
+  },
+  "UIUC": {
+    "signature": "Excellent performance in challenging coursework, strong preparation and motivation for the specific major, and meaningful accomplishment beyond class.",
+    "values": [
+      "Consistent achievement in rigorous courses",
+      "Major-specific preparation and motivation",
+      "Long-term extracurricular quality and impact",
+      "Leadership, perseverance, creativity, and curiosity"
+    ],
+    "application_read": "Illinois evaluates the academic record first, then considers the specific college/program, why the student chose that major, related experiences, achievements outside class, context, and the student's story.",
+    "positioning": "Treat the major response as substantive evidence, not a generic 'why major' essay. Connect course choices, activities, outputs, and future questions into one program-specific trajectory.",
+    "avoid": "A broad application with no credible evidence for the selected major, or activity quantity without long-term commitment and accomplishment.",
+    "student_voice": "Illinois explicitly says its colleges look for different qualities and that quality of extracurricular involvement matters more than quantity.",
+    "sources": [
+      {
+        "label": "First-Year Application Review",
+        "type": "official",
+        "url": "https://www.admissions.illinois.edu/apply/freshman/review"
+      },
+      {
+        "label": "First-Year Requirements",
+        "type": "official",
+        "url": "https://www.admissions.illinois.edu/apply/freshman/requirements"
+      }
+    ]
+  },
+  "Purdue": {
+    "signature": "Academic readiness for the chosen program, strong subject preparation, and a clear ability to succeed within a competitive, capacity-limited major.",
+    "values": [
+      "Grades and curriculum rigor",
+      "Performance in subjects related to intended major",
+      "Ability to succeed in the selected program",
+      "Essays, experiences, and context"
+    ],
+    "application_read": "Purdue frames review around two questions: whether the student is prepared for the desired academic program and whether the student is competitive within that program's applicant pool and available space.",
+    "positioning": "For selective programs, prove preparation at the subject level. Make the connection between relevant courses, technical or intellectual experiences, and the specific program explicit.",
+    "avoid": "Assuming a strong overall GPA is enough when grades in major-related courses or program preparation are weaker, or selecting an alternate major you would not genuinely pursue.",
+    "student_voice": "Purdue states that applications are reviewed individually and holistically, with program readiness and capacity at the center.",
+    "sources": [
+      {
+        "label": "Freshman Admission Criteria",
+        "type": "official",
+        "url": "https://www.admissions.purdue.edu/apply/criteriafreshmen.php"
+      }
+    ]
+  },
+  "Wisconsin–Madison": {
+    "signature": "Academic excellence across a rigorous, broad curriculum plus sustained commitments, community contribution, leadership, and a personal reason for Wisconsin and the chosen field.",
+    "values": [
+      "Grades, rigor, and breadth",
+      "Sustained extracurricular commitments",
+      "Leadership and community contribution",
+      "Personal story and academic purpose"
+    ],
+    "application_read": "UW–Madison says academic preparation and day-to-day performance are primary, but holistic review also considers activities, leadership, contributions, experiences, essays, and potential to add to the Wisconsin community.",
+    "positioning": "Lead with academic consistency and breadth, then use the Wisconsin writing to show a specific intellectual direction and how your sustained commitments would translate into contribution on campus.",
+    "avoid": "A generic 'great campus and ranking' Why Wisconsin response or an application that uses activities as a list rather than evidence of commitment.",
+    "student_voice": "Wisconsin explicitly says it does not use a formula and looks for students who will add to the university's legacy and community.",
+    "sources": [
+      {
+        "label": "What We Look For",
+        "type": "official",
+        "url": "https://admissions.wisc.edu/can-i-get-in-to-uw-madison/"
+      },
+      {
+        "label": "Apply as a First-Year Student",
+        "type": "official",
+        "url": "https://admissions.wisc.edu/apply-as-a-freshman/"
+      }
+    ]
+  },
+  "Maryland": {
+    "signature": "Strong academic merit and potential viewed in context, combined with leadership, service, intellectual activity, written expression, and persistence.",
+    "values": [
+      "Academic achievement and potential",
+      "Quality of coursework and progression",
+      "Leadership, service, and extracurricular contribution",
+      "Persistence, context, and written expression"
+    ],
+    "application_read": "UMD publishes an individualized holistic process with more than twenty review factors spanning academics, extracurricular activity, service, leadership, work, talents, context, and writing.",
+    "positioning": "Show how you used the opportunities actually available to you. Pair rigorous academic choices with one or two concrete examples of leadership, contribution, or intellectual work that reveal your trajectory.",
+    "avoid": "Trying to reverse-engineer a single admissions formula from GPA or testing; UMD explicitly uses a broad individualized review.",
+    "student_voice": "UMD says it seeks a talented, diverse, and interesting class of students who will enrich and benefit from the campus learning environment.",
+    "sources": [
+      {
+        "label": "Admission Review Process & Factors",
+        "type": "official",
+        "url": "https://admissions.umd.edu/apply/admission-review-process-factors"
+      }
+    ]
+  },
+  "Ohio State": {
+    "signature": "Academic readiness plus curiosity, drive, collaborative problem-solving, leadership or engagement, and a credible desire to contribute to a large campus community.",
+    "values": [
+      "Strong high-school performance and preparation",
+      "Curiosity and drive",
+      "Leadership or engaged involvement",
+      "Collaboration, resilience, and contribution"
+    ],
+    "application_read": "Ohio State describes holistic review of academic achievement alongside interests, talents, accomplishments, challenges, leadership, collaboration, determination, and ability to contribute to a community of varied experiences.",
+    "positioning": "Present academic readiness first, then use involvement to show what kind of problem-solver and collaborator you are. Large-scale participation matters less than evidence that you take responsibility and contribute.",
+    "avoid": "A purely numerical application with no sense of how you engage, collaborate, or contribute to a large university community.",
+    "student_voice": "Ohio State says successful applicants are not just leaders but problem-solvers who value collaboration and teamwork.",
+    "sources": [
+      {
+        "label": "Who Gets In?",
+        "type": "official",
+        "url": "https://undergrad.osu.edu/apply/freshmen-columbus/who-gets-in"
+      }
+    ]
+  },
+  "Rochester": {
+    "signature": "Intellectual curiosity, flexible self-direction, ethical character, and engagement that fits a research university built around creating an individualized academic path.",
+    "values": [
+      "Strong performance in challenging coursework",
+      "Intellectual curiosity and growth",
+      "Extracurricular engagement",
+      "Ethical character and authentic voice"
+    ],
+    "application_read": "Rochester describes a holistic, integrated review of academic ability, extracurricular engagement, and ethical character. Its current supplement emphasizes combining academic flexibility and co-curricular opportunities into a path reflecting the student's interests.",
+    "positioning": "Show how you connect fields or opportunities rather than following a pre-packaged track. Explain the questions you want to pursue, why Rochester's flexibility matters, and how prior work proves you will use that freedom productively.",
+    "avoid": "A generic research-university pitch or polished AI-sounding writing that obscures your own voice; Rochester explicitly emphasizes authentic voice.",
+    "student_voice": "Rochester describes best-fit students as intellectually curious and actively seeking opportunities for growth.",
+    "sources": [
+      {
+        "label": "How to Apply / What We Look For",
+        "type": "official",
+        "url": "https://admissions.rochester.edu/applying/how-to-apply/"
+      },
+      {
+        "label": "First-Year Students",
+        "type": "official",
+        "url": "https://admissions.rochester.edu/applying/first-year-students/"
+      }
+    ]
+  },
+  "University of Washington": {
+    "signature": "Academic preparation and performance first, then responsibility, service, leadership, unique perspective, and a clear personal story told mainly through the application itself.",
+    "values": [
+      "Grades, rigor, and positive academic trend",
+      "Community service and leadership",
+      "Significant responsibility and perspective",
+      "Authentic writing and context"
+    ],
+    "application_read": "UW says academic preparation and performance remain primary, while holistic review also considers personal achievements, service, leadership, responsibility, experiences, and essays. It does not use formal interviews, demonstrated interest, or recommendation letters in standard first-year review.",
+    "positioning": "Because the written application carries unusual weight, use it to show both preparation and context clearly. If applying to a direct-to-major program, make sure the selected first-choice major and evidence for it are strategically aligned.",
+    "avoid": "Trying to signal interest through visits or extra recommendations, or burying the most important context outside the required writing; UW says those items are not considered in standard review.",
+    "student_voice": "UW asks what it should know about you beyond grades and coursework and what you will bring to the community.",
+    "sources": [
+      {
+        "label": "Holistic Review",
+        "type": "official",
+        "url": "https://admit.washington.edu/apply/first-year/holistic-review/"
+      },
+      {
+        "label": "First-Year Application",
+        "type": "official",
+        "url": "https://admit.washington.edu/apply/first-year/"
+      },
+      {
+        "label": "How to Apply",
+        "type": "official",
+        "url": "https://admit.washington.edu/apply/first-year/how-to-apply/"
+      }
+    ]
+  },
+  "Rutgers–New Brunswick": {
+    "signature": "Academic promise is the anchor, especially strength of program and performance, with broader context used in a comprehensive review.",
+    "values": [
+      "Academic promise",
+      "Strength of academic program",
+      "Sustained high-school performance",
+      "Context and qualitative contribution"
+    ],
+    "application_read": "Rutgers–New Brunswick says first-year decisions use comprehensive review with primary emphasis on academic promise demonstrated through required subjects, performance, and strength of program.",
+    "positioning": "Make transcript strength and preparation unmistakable, then use the rest of the application to add context and evidence of contribution rather than trying to substitute activities for academic readiness.",
+    "avoid": "Treating Rutgers as an automatic safety based only on headline university selectivity; admission can vary by school and available capacity.",
+    "student_voice": "Rutgers emphasizes academic promise and a comprehensive review rather than a single cutoff.",
+    "sources": [
+      {
+        "label": "How We Make Decisions",
+        "type": "official",
+        "url": "https://admissions.rutgers.edu/apply/how-we-make-decisions"
+      }
+    ]
+  },
+  "Harvey Mudd College": {
+    "signature": "Serious love of math/science/engineering combined with humanities awareness, authenticity, collaboration, and fit with a tightly integrated STEM liberal-arts community.",
+    "values": [
+      "Excitement for math and science",
+      "Rigorous preparation including calculus, chemistry, and physics",
+      "Appreciation of humanities and social sciences",
+      "Collaborative community fit and authentic curiosity"
+    ],
+    "application_read": "Harvey Mudd explicitly seeks students who thrive in challenging courses, love STEM, value HSA fields, and want to participate actively in a supportive collaborative community. Fit with the college mission is a meaningful part of review.",
+    "positioning": "Show both technical intensity and the human context of your work. A strong Mudd story explains what you love building or understanding and why you also care about the societal, ethical, creative, or human dimensions of that work.",
+    "avoid": "Applying as a generic engineering applicant with no appreciation for humanities/social science or collaborative community, or applying to a non-STEM major path Mudd does not offer.",
+    "student_voice": "Mudd's admissions guidance says students should genuinely love STEM while valuing a curriculum in which a substantial share is humanities, social sciences, and arts.",
+    "sources": [
+      {
+        "label": "Application FAQ",
+        "type": "official",
+        "url": "https://www.hmc.edu/admission/apply/faqs/"
+      },
+      {
+        "label": "Counselor Page / Review Process",
+        "type": "official",
+        "url": "https://www.hmc.edu/admission/counselor-page/"
+      }
+    ]
+  },
+  "Davidson College": {
+    "signature": "Rigorous academics, thoughtful extracurricular commitment, and a community-oriented character that can be seen through teachers, peers, and meaningful engagement.",
+    "values": [
+      "Academic rigor and achievement in school context",
+      "Thoughtful extracurricular involvement",
+      "Character visible through recommendations",
+      "Genuine engagement with the Davidson community"
+    ],
+    "application_read": "Davidson reviews transcripts in the context of what the school offers, asks for two academic teacher recommendations and an unusual peer recommendation, and also considers extracurricular involvement. It currently considers demonstrated interest.",
+    "positioning": "Show what people close to you would recognize as your contribution to a community, not only your achievements. If Davidson is a serious choice, engage meaningfully enough to understand why its community fits you.",
+    "avoid": "A transactional demonstrated-interest strategy or a résumé persona that conflicts with the character and relationships reflected in recommendations.",
+    "student_voice": "Davidson's peer recommendation and demonstrated-interest guidance make personal/community fit unusually visible in the process.",
+    "sources": [
+      {
+        "label": "First-Year Applicants",
+        "type": "official",
+        "url": "https://www.davidson.edu/admission-and-financial-aid/apply/first-year-applicants"
+      },
+      {
+        "label": "Demonstrated Interest",
+        "type": "official",
+        "url": "https://www.davidson.edu/admission-and-financial-aid/admission-process-help/demonstrated-interest"
+      }
+    ]
+  },
+  "Grinnell College": {
+    "signature": "Academic excellence in a challenging program plus whole-person evidence of values, intellectual independence, teamwork, leadership, and purposeful engagement.",
+    "values": [
+      "Excellent academics in context",
+      "Values and intellectual engagement",
+      "Leadership and teamwork",
+      "Commitment and hard work"
+    ],
+    "application_read": "Grinnell describes holistic review of transcript rigor and grades, recommendations, essays, and engagement outside class, with attention to what applicants value and how they use their time.",
+    "positioning": "Show why you want the freedom and responsibility of a highly self-directed liberal-arts education. Depth, intellectual ownership, and the way you participate in communities should reinforce one another.",
+    "avoid": "Treating Grinnell as only a statistical target or listing achievements without revealing what you value and how you would use academic freedom.",
+    "student_voice": "Grinnell says it wants to understand each applicant as a whole person and values leadership, teamwork, and commitment alongside challenging academics.",
+    "sources": [
+      {
+        "label": "First-Year FAQ",
+        "type": "official",
+        "url": "https://www.grinnell.edu/admission/apply/first-year/faqs-domestic"
+      },
+      {
+        "label": "First-Year Applicants",
+        "type": "official",
+        "url": "https://www.grinnell.edu/admission/apply/first-year"
+      }
+    ]
+  },
+  "Hamilton College": {
+    "signature": "Academic promise and intellectual curiosity first, followed by deep commitments, contribution, and readiness to use an open, writing-intensive liberal-arts environment.",
+    "values": [
+      "Academic achievement and intellectual potential",
+      "Intellectual curiosity",
+      "Deep rather than numerous commitments",
+      "Meaningful contribution to community"
+    ],
+    "application_read": "Hamilton says academics and intellectual potential are primary. After that threshold, readers use essays, recommendations, optional interviews and how students spend their time to judge who will use Hamilton's opportunities and contribute meaningfully.",
+    "positioning": "Focus on a few commitments you can discuss with real depth. Show a curious, independent mind and how Hamilton's flexible curriculum would let you develop connections across those interests.",
+    "avoid": "A long activity list with shallow involvement; Hamilton explicitly says deep passion in a few areas matters more than activity volume.",
+    "student_voice": "Hamilton describes its goal as admitting able, promising students who will thrive and contribute to the community in meaningful ways.",
+    "sources": [
+      {
+        "label": "Application Details",
+        "type": "official",
+        "url": "https://sophosupdate.hamilton.edu/admission/apply/details"
+      }
+    ]
+  },
+  "Vassar College": {
+    "signature": "Academic breadth and rigor paired with motivation, personal strengths, community engagement, and creative or intellectual individuality.",
+    "values": [
+      "Breadth, depth, and rigor in academics",
+      "Personal strength and motivation",
+      "Community involvement",
+      "Creative individuality and self-expression"
+    ],
+    "application_read": "Vassar's published selection criteria weigh academic performance alongside personal strengths, motivation, potential, essays, recommendations and community involvement. Its optional 'Your Space' also reflects openness to distinctive creative self-expression.",
+    "positioning": "Build a coherent liberal-arts story but preserve range. Show rigorous preparation, then let writing, community work, or creative evidence reveal the individual interests and perspective you would bring.",
+    "avoid": "Over-specializing the application into a narrow preprofessional pitch or submitting optional creative material that adds no new dimension.",
+    "student_voice": "Vassar describes a flexible, interdisciplinary culture and explicitly invites applicants to share an optional reflection of themselves beyond the standard application.",
+    "sources": [
+      {
+        "label": "How to Apply / Selection Criteria",
+        "type": "official",
+        "url": "https://www.vassar.edu/admission/apply/how-to-apply/"
+      },
+      {
+        "label": "First-Year Requirements",
+        "type": "official",
+        "url": "https://www.vassar.edu/admission/apply/requirements/"
+      }
+    ]
+  },
+  "Wesleyan University": {
+    "signature": "Intellectual curiosity, academic risk-taking, open-mindedness, collaborative spirit, and a personal narrative that fits an unusually flexible liberal-arts education.",
+    "values": [
+      "Intellectual curiosity",
+      "Academic commitment and risk-taking",
+      "Collaborative spirit",
+      "Open-mindedness and independent exploration"
+    ],
+    "application_read": "Wesleyan publicly names intellectual curiosity, academic commitment, and collaborative spirit among applicant traits. Review is holistic and contextual, while rigorous day-to-day academic work remains central.",
+    "positioning": "Show questions as much as answers. Strong Wesleyan positioning connects rigorous work with curiosity across fields, evidence that you change your mind when warranted, and a reason you would use an open curriculum productively.",
+    "avoid": "A rigid career-only narrative that leaves no room for exploration, or trying to manufacture demonstrated interest; Wesleyan says it does not factor demonstrated interest into admission.",
+    "student_voice": "Wesleyan describes successful students as curious, willing to engage different perspectives, and able to go beyond minimum expectations for the sake of learning.",
+    "sources": [
+      {
+        "label": "Application Process",
+        "type": "official",
+        "url": "https://www.wesleyan.edu/admission/application-process.html"
+      },
+      {
+        "label": "Admission FAQ",
+        "type": "official",
+        "url": "https://www.wesleyan.edu/admission/admission-faq.html"
+      }
+    ]
+  },
+  "Washington and Lee University": {
+    "signature": "Whole-person review grounded in academic challenge, intellectual curiosity, personal character, and the ways a student will contribute to a close university community.",
+    "values": [
+      "Academic challenge and achievement",
+      "Intellectual curiosity",
+      "Character and personal statement",
+      "Contribution through activities and talents"
+    ],
+    "application_read": "W&L describes whole-person review and asks whether students challenged themselves within what their school offered. Personal statement, recommendations, activities, portfolios, and interviews can add context to the academic record.",
+    "positioning": "Show both ambition and community fit. Explain the intellectual challenges you chose and how your activities or relationships reveal the kind of participant you would be in a small, highly interactive environment.",
+    "avoid": "A prestige-only or rankings-first story that gives little evidence of personal contribution or willingness to engage deeply in a close community.",
+    "student_voice": "W&L says it is continually impressed by the talent, potential, intellectual curiosity, and diversity of interests and experiences in its entering students.",
+    "sources": [
+      {
+        "label": "Apply to W&L / Our Review",
+        "type": "official",
+        "url": "https://www.wlu.edu/admissions/apply"
+      }
+    ]
+  },
+  "Colgate University": {
+    "signature": "Academic skill and curiosity, cultural and intellectual breadth, sustained interests, empathy, and character that will add to an energetic liberal-arts community.",
+    "values": [
+      "Academic achievement and intellectual engagement",
+      "Curiosity and commitment",
+      "Empathy and character",
+      "Distinctive interests, talents, and perspectives"
+    ],
+    "application_read": "Colgate says the academic record is at the heart of the decision, evaluated through course choice and achievement in context. It also values intellectual/creative promise, curiosity, sustained interests, empathy, character, and wide-ranging perspectives.",
+    "positioning": "Anchor the file in academic motivation, then show the interests or talents you developed deeply enough to contribute a recognizable perspective to a residential liberal-arts community.",
+    "avoid": "A generic high-achiever profile with no evidence of what you care about, or breadth without commitment.",
+    "student_voice": "Colgate explicitly looks for intellectual and cultural diversity, wide-ranging interests, empathy, and excitement for intellectual pursuits.",
+    "sources": [
+      {
+        "label": "Apply / What We Look For",
+        "type": "official",
+        "url": "https://www.colgate.edu/admission-aid/apply"
+      }
+    ]
+  },
+  "University of Richmond": {
+    "signature": "Academic strength plus character, independence, creativity, involvement, special talents, and life experience in a holistic, highly personalized review.",
+    "values": [
+      "Grades and curricular rigor",
+      "Character and independence",
+      "Creativity and special talents",
+      "Involvement and potential contribution"
+    ],
+    "application_read": "Richmond says there is no typical applicant. Readers consider traditional academic measures together with character, involvement, talents, creativity, independence, essays, recommendations, and life experience.",
+    "positioning": "Present a strong academic base, then emphasize the parts of your profile that show independence and initiative—work you chose, built, led, or pursued because it mattered to you.",
+    "avoid": "Trying to match an imagined 'Richmond type' or reducing fit to a score; the university explicitly describes a no-formula, whole-person process.",
+    "student_voice": "Richmond's admissions language centers on individuality rather than a standard applicant template.",
+    "sources": [
+      {
+        "label": "Admission Requirements",
+        "type": "official",
+        "url": "https://www.admissions.richmond.edu/process/materials/requirements.html"
+      },
+      {
+        "label": "Admission Process",
+        "type": "official",
+        "url": "https://admissions.richmond.edu/process/index.html"
+      }
+    ]
+  },
+  "Bates College": {
+    "signature": "Rigorous academics and strong writing paired with authenticity, reflection, open-minded exploration, and contribution to a collaborative civic-minded community.",
+    "values": [
+      "Transcript rigor and academic readiness",
+      "Authentic personal voice and strong writing",
+      "Reflection and growth",
+      "Community engagement and intellectual openness"
+    ],
+    "application_read": "Bates has long emphasized transcript context and test-optional holistic review. Its admissions guidance places unusual emphasis on authenticity, reflection on experiences, writing quality, and what is meaningful to the applicant.",
+    "positioning": "Write and present the file as a reflective person rather than a collection of achievements. Show what you learned from a few meaningful commitments and how they connect to intellectual discovery or community action.",
+    "avoid": "Overwritten, overly polished, or borrowed-sounding personal statements; Bates explicitly advises applicants to use their own voice and show rather than merely tell.",
+    "student_voice": "Bates describes its liberal-arts mission in terms of rigorous collaborative scholarship, intellectual discovery, and informed civic action.",
+    "sources": [
+      {
+        "label": "Application Tips",
+        "type": "official",
+        "url": "https://www.bates.edu/admission/3-simple-tips-for-a-great-college-application/"
+      },
+      {
+        "label": "Enrollment Profile / Mission",
+        "type": "official",
+        "url": "https://www.bates.edu/admission/student-profile/"
+      }
+    ]
+  },
+  "Colby College": {
+    "signature": "Intellectually adventurous students with sustained academic achievement, meaningful extracurricular dedication, and the capacity to contribute to a diverse collaborative community.",
+    "values": [
+      "Intellectual adventure",
+      "Consistent achievement in challenging study",
+      "Meaningful academic and extracurricular dedication",
+      "Contribution to a diverse collaborative community"
+    ],
+    "application_read": "Colby describes holistic contextual review with no set formula. It seeks intellectually adventurous students who achieve consistently in challenging programs and seem likely to contribute meaningfully to the community.",
+    "positioning": "Show curiosity that travels beyond class and a few commitments you have pursued with sustained energy. Explain what the experiences taught you rather than only presenting the outcome.",
+    "avoid": "A generic prestige narrative or accomplishment list without the intellectual questions, learning, and contribution behind it.",
+    "student_voice": "Colby asks applicants to tell what interests them, what they have learned, and how they dedicated themselves inside and outside class.",
+    "sources": [
+      {
+        "label": "Application Requirements",
+        "type": "official",
+        "url": "https://afa.colby.edu/apply/requirements/"
+      },
+      {
+        "label": "College Catalog Admission",
+        "type": "official",
+        "url": "https://www.colby.edu/academics/course-catalogue/admission-fees-about-colby/admission/"
+      }
+    ]
+  },
+  "College of the Holy Cross": {
+    "signature": "Intellectual curiosity and rigorous readiness joined to a humanistic concern for creativity, growth, and the realization of other people's potential.",
+    "values": [
+      "Intellectual curiosity",
+      "Readiness for rigorous academic work",
+      "Humanistic breadth and creativity",
+      "Commitment to human potential and community"
+    ],
+    "application_read": "Holy Cross states that it seeks intellectually curious students who appreciate human creativity and are committed to the realization of each person's potential, with preferential consideration for those proven in rigorous intellectual work.",
+    "positioning": "Pair academic strength with a human-centered reason for learning. Show how your interests connect to people, ethics, community, service, culture, or larger questions rather than only future credentials.",
+    "avoid": "A purely transactional preprofessional story that leaves little evidence of reflection, curiosity, or concern for others.",
+    "student_voice": "Holy Cross's published criteria explicitly connect intellectual curiosity with a broad humanistic mission.",
+    "sources": [
+      {
+        "label": "Admission Catalog",
+        "type": "official",
+        "url": "https://catalog.holycross.edu/about/admissions/"
+      }
+    ]
+  },
+  "Macalester College": {
+    "signature": "Very strong academics in context paired with leadership potential, engagement, personal qualities, and readiness to contribute to an internationally minded urban liberal-arts community.",
+    "values": [
+      "High academic performance in rigorous coursework",
+      "Leadership experience and potential",
+      "Extracurricular engagement",
+      "Personal qualities and community contribution"
+    ],
+    "application_read": "Macalester says classroom performance is the most important part of review, considered in school context. Recommendations, essays, leadership, extracurricular involvement, personal qualities, and potential contribution then round out the holistic read.",
+    "positioning": "Make the academic foundation clear, then show how your engagement reaches beyond yourself—especially where it connects to people, perspectives, communities, or an urban/global context.",
+    "avoid": "Treating internationalism or service as slogans without concrete engagement, or relying on activities to compensate for weak academic preparation.",
+    "student_voice": "Macalester says it seeks students who can thrive in rigorous academics and be engaged, contributing members of the community.",
+    "sources": [
+      {
+        "label": "First-Year FAQ",
+        "type": "official",
+        "url": "https://www.macalester.edu/admissions/us-admissions/faq/"
+      },
+      {
+        "label": "International First-Year FAQ",
+        "type": "official",
+        "url": "https://www.macalester.edu/admissions/international/faq/"
+      }
+    ]
+  },
+  "Bucknell University": {
+    "signature": "Academically successful students with curiosity, innovation, collaborative spirit, character, leadership, and a distinct purpose that fits one of Bucknell's three undergraduate colleges.",
+    "values": [
+      "Academic preparation and curriculum rigor",
+      "Curiosity and innovation",
+      "Collaborative spirit and community engagement",
+      "Character, leadership, and distinct purpose"
+    ],
+    "application_read": "Bucknell's holistic process evaluates academic record, application quality, recommendations, activities, talents, character, leadership, and contribution. Applicants also apply directly to Arts & Sciences, Engineering, or Management.",
+    "positioning": "Show both fit with your chosen Bucknell college and a broader reason you will contribute to the residential community. A good story combines preparation with curiosity, collaboration, and a recognizable personal purpose.",
+    "avoid": "A generic application that ignores the selected undergraduate college, or letting AI-polished language replace your own voice; Bucknell explicitly says application work should be the student's own.",
+    "student_voice": "Bucknell describes students who thrive as curious, innovative, collaborative, and engaged with the world around them.",
+    "sources": [
+      {
+        "label": "What Bucknell Is Looking For",
+        "type": "official blog",
+        "url": "https://www.bucknell.edu/admissions-aid/admissions-blog/students-who-thrive-bucknell"
+      },
+      {
+        "label": "Qualifications for Admission",
+        "type": "official",
+        "url": "https://coursecatalog.bucknell.edu/admissions/qualificationsforadmission/"
+      }
+    ]
+  },
+  "Oxford": {
+    "signature": "Course-specific academic excellence: deep subject interest, academic potential, analytical curiosity, and performance in the assessments most relevant to the chosen course.",
+    "values": [
+      "Academic ability and potential",
+      "Deep course-specific interest",
+      "Curiosity and motivation for tutorial learning",
+      "Performance in relevant tests, written work, and interviews"
+    ],
+    "application_read": "Oxford selects for the chosen course rather than a broad extracurricular persona. Academic record, subject requirements, admissions tests, written work where required, reference, statement, and interviews are considered together using course-specific criteria.",
+    "positioning": "Treat Oxford as an academic case. Show sustained super-curricular engagement with the exact subject, the ability to analyze unfamiliar ideas, and preparation for any course-specific test or written work.",
+    "avoid": "Using unrelated extracurricular leadership or service as a substitute for subject depth; Oxford says extracurriculars matter only when relevant to the course selection criteria.",
+    "student_voice": "Oxford says it seeks academic ability, curiosity, motivation, and potential to thrive in tutorial-based study.",
+    "sources": [
+      {
+        "label": "Applying",
+        "type": "official",
+        "url": "https://www.ox.ac.uk/admissions/undergraduate/applying"
+      },
+      {
+        "label": "Admissions Requirements",
+        "type": "official",
+        "url": "https://www.ox.ac.uk/admissions/undergraduate/courses/admissions-requirements"
+      },
+      {
+        "label": "International Selection Criteria",
+        "type": "official",
+        "url": "https://www.ox.ac.uk/admissions/undergraduate/applying/for-international-students"
+      }
+    ]
+  },
+  "Cambridge": {
+    "signature": "Exceptional recent academic performance and subject-specific potential, with critical independent thinking, analytical skill, curiosity, and strong fit for the exact course.",
+    "values": [
+      "Academic ability and potential",
+      "Critical and independent thinking",
+      "Subject enthusiasm and super-curricular depth",
+      "Performance in interviews, assessments, and relevant written work"
+    ],
+    "application_read": "Cambridge says academic ability—especially recent relevant performance—is its central interest. Colleges consider record, reference, statement, written work, admissions assessments, context, and interview together, with course fit central.",
+    "positioning": "Build the application around the subject itself. Develop opinions from reading or exploration beyond school, practice explaining reasoning aloud, and prepare for course-specific assessments instead of maximizing unrelated extracurricular breadth.",
+    "avoid": "A US-style leadership-heavy narrative with thin academic subject depth or a personal statement dominated by unrelated extracurricular activity.",
+    "student_voice": "Cambridge explicitly looks for critical, independent thinkers who can consider multiple viewpoints and are genuinely enthusiastic about their chosen subject.",
+    "sources": [
+      {
+        "label": "How We Make a Decision",
+        "type": "official",
+        "url": "https://www.undergraduate.study.cam.ac.uk/apply/after/application-decisions"
+      },
+      {
+        "label": "Improve Your Application",
+        "type": "official",
+        "url": "https://www.undergraduate.study.cam.ac.uk/apply/before/improve-application"
+      }
+    ]
+  },
+  "Imperial College London": {
+    "signature": "Course-level academic excellence in science, engineering, medicine, or business with strong technical preparation, subject motivation, and performance in department-specific tests or interviews where used.",
+    "values": [
+      "Meeting demanding course prerequisites",
+      "High academic potential",
+      "Clear subject motivation",
+      "Performance in relevant tests/interviews and academic reference"
+    ],
+    "application_read": "Imperial first checks course entry requirements, then departmental admissions tutors review the application holistically, including grades, reference, personal statement, admissions tests where required, and interview/admissions day where applicable.",
+    "positioning": "Make the application technically course-specific. Prioritize subject mastery, challenging preparation, and evidence that you already engage with the discipline beyond normal school requirements.",
+    "avoid": "A broad extracurricular story that does not demonstrate readiness for the exact Imperial course or underpreparing for required admissions tests/interviews.",
+    "student_voice": "Imperial's current selection process is department-led after minimum requirements are met, so course-specific preparation matters more than a generic university fit narrative.",
+    "sources": [
+      {
+        "label": "Selection Process",
+        "type": "official",
+        "url": "https://www.imperial.ac.uk/study/apply/undergraduate/process/selection/"
+      },
+      {
+        "label": "Entry Requirements",
+        "type": "official",
+        "url": "https://www.imperial.ac.uk/study/help-centre/undergraduate-admissions/-what-are-the-entry-requirements-and-what-qualifications-do-you-accept.php"
+      }
+    ]
+  },
+  "UCL": {
+    "signature": "Strong course-specific academic preparation, clear motivation and extended learning beyond class, supported by critical thinking, communication, and independent-study skills.",
+    "values": [
+      "Meeting course-specific academic requirements",
+      "Academic potential and subject motivation",
+      "Evidence of learning beyond the classroom",
+      "Critical thinking, communication, and independent learning"
+    ],
+    "application_read": "UCL selectors first assess past and predicted academics against course requirements, then use the personal statement and academic reference to assess potential, motivation, and core course skills; some programs add tests, tasks, or interviews.",
+    "positioning": "Keep the UCAS case focused on the exact degree. Show how you extended the subject beyond class and what those experiences taught you, not just that you participated in them.",
+    "avoid": "A generic London/UCL lifestyle pitch or unrelated certificates; UCL says it normally bases assessment on the UCAS application and does not accept unsolicited extra supporting documents.",
+    "student_voice": "UCL explicitly looks for demonstrable subject interest, motivation, critical thinking and the ability to undertake independent learning.",
+    "sources": [
+      {
+        "label": "How We Assess Your Application",
+        "type": "official",
+        "url": "https://www.ucl.ac.uk/study/prospective-students/undergraduate/how-apply/how-we-assess-your-application"
+      },
+      {
+        "label": "Applying to UCL",
+        "type": "official",
+        "url": "https://www.ucl.ac.uk/study/prospective-students/school-teachers-and-counsellors/applying-ucl"
+      }
+    ]
+  },
+  "LSE": {
+    "signature": "Highly course-specific academic fit: exceptional achievement, rigorous subject combinations, critical engagement with the discipline, and a personal statement dominated by relevant super-curricular thinking.",
+    "values": [
+      "Exceptional academic achievement",
+      "Strong course-relevant subject combination",
+      "Critical super-curricular engagement",
+      "Clear academic motivation and fit for the exact programme"
+    ],
+    "application_read": "LSE evaluates the full UCAS application but gives unusual weight to academic fit. It does not normally interview, and its guidance says the personal statement should be overwhelmingly focused on subject interest, reflection, and alignment with the chosen programme.",
+    "positioning": "Use the UCAS statement as an academic argument for the programme. Discuss ideas encountered through reading, research, competitions, lectures, or other super-curricular work and reflect critically rather than listing them.",
+    "avoid": "A US-style personal narrative dominated by leadership, service, or unrelated extracurriculars, or a statement aimed at a nearby but materially different academic field.",
+    "student_voice": "LSE advises applicants that at least 80% of the personal statement should emphasize programme interest and critical engagement with the subject.",
+    "sources": [
+      {
+        "label": "Personal Statement Guidance",
+        "type": "official",
+        "url": "https://www.lse.ac.uk/study-at-lse/Undergraduate/Prospective-Students/How-to-Apply/Completing-the-UCAS-form/Personal-Statement"
+      },
+      {
+        "label": "Admissions Information",
+        "type": "official",
+        "url": "https://www.lse.ac.uk/study-at-lse/undergraduate/prospective-students/how-to-apply/admissions-information"
+      }
+    ]
+  },
+  "Carleton College": {
+    "signature": "Carleton’s current admissions-facing prompts put unusual emphasis on what an applicant wants to understand, what kind of learner they are, how they want to keep growing, and how making or creating can connect them with other people.",
+    "values": [
+      "Intellectual curiosity expressed as real questions",
+      "Self-awareness about how you learn and grow",
+      "Creation, inquiry and contribution connected to community",
+      "Breadth of involvement without losing depth"
+    ],
+    "application_read": "Carleton’s public admissions materials do not reveal a complete confidential selection rubric. Its current prompts nevertheless make curiosity, learner identity, growth and community-facing creation unusually visible themes. A strong application should answer those themes with concrete work and habits rather than generic claims about loving the liberal arts.",
+    "positioning": "Show the question or problem that repeatedly pulls you into deeper work, then connect that pattern to how you learn with other people. For Carleton, a finished research, writing, creative or technical output is strongest when it also shows reflection and continued curiosity.",
+    "avoid": "Treating a small liberal-arts college as automatically interchangeable with every other LAC, or writing only about rankings, friendliness and small classes without showing how you actually learn.",
+    "student_voice": "Carleton’s 2026 Taste of Carleton application asks students what they want to understand better, what kind of learner they are, and how creating has brought them into community. UniPath uses those prompts as current institutional voice—not as a claim that they constitute the full first-year admissions rubric.",
+    "sources": [
+      {
+        "label": "Carleton Supplement 2026–27",
+        "type": "official",
+        "url": "https://www.admissions.carleton.edu/register/supplement"
+      },
+      {
+        "label": "Taste of Carleton 2026 application prompts",
+        "type": "institutional",
+        "url": "https://www.admissions.carleton.edu/register/f26toc"
+      }
+    ]
   }
 }
