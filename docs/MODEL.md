@@ -1,54 +1,59 @@
-# UniPath Hybrid Model
+# UniPath Hybrid Planning Model
 
 ## Purpose
 
-UniPath is a student-facing planning model. It is not an admissions-office model and should not be presented as a university-issued probability.
+UniPath is a student-facing planning model, not an admissions-office model. Probability intervals are used to balance a portfolio, not to claim an official personal acceptance probability.
 
-## 1. Deterministic applicant score
+## 1. Deterministic applicant evidence
 
-The base score is field-aware and uses:
+The deterministic core is field-aware and uses:
 
-- academic record / testing / curriculum rigor;
-- activities with duration, responsibility, impact and measurable output;
+- transcript/rank/testing context;
+- AP / IB / A-level subjects evaluated course-by-course against the intended major;
+- activities with duration, responsibility, scope and measurable outcomes;
+- project descriptions, methods, outputs and major alignment;
+- interdisciplinary evidence appropriate to the field;
 - awards / external validation;
-- distinctive finished outputs;
-- narrative preparation.
+- finished distinctive outputs;
+- essay/recommendation preparation when supplied.
 
-Planned activities and planned awards are discounted heavily. They cannot be treated as completed achievements.
+Planned activities and awards are strongly discounted and never treated as completed achievements.
 
-## 2. Bounded AI holistic layer
+## 2. Bounded AI evidence layer
 
-DeepSeek evaluates six evidence dimensions:
+AI assesses holistic evidence but does **not** invent an admissions probability. The deterministic score remains primary. The current AI contribution is confidence-weighted and capped at 6% of the combined applicant score. Repeated predictions reuse a cached AI assessment when the applicant evidence has not changed, which prevents list drift caused by model wording randomness.
 
-- academic context;
-- intellectual vitality;
-- activity coherence;
-- major fit;
-- narrative strength;
-- execution evidence.
+If AI is unavailable, UniPath falls back to the deterministic model.
 
-The AI does **not** output an admissions probability. Its overall evidence score receives a confidence-weighted share of the applicant score. Current maximum AI weight: 12%.
+## 3. Project + interdisciplinary fit
 
-If DeepSeek fails, UniPath falls back to the deterministic model instead of failing the entire prediction flow.
+Project labels alone are insufficient. UniPath analyzes project descriptions for evidence such as experimental method, data work, engineering design, writing, policy analysis, creative production, community context, computation and finished deliverables. Interdisciplinary fit is major-specific: e.g. environmental engineering can value technical + environmental/policy bridges, while sociology can value writing + qualitative research + statistics/data.
 
-## 3. High-school aggregate context
+## 4. High-school aggregate context
 
-High-school name by itself receives no boost.
+High-school name by itself receives no boost. A small context multiplier is used only for verified public aggregate outcome data and is capped at a small relative adjustment (max +6% relative, not +6 percentage points). Unverified directory schools have no adjustment.
 
-A context multiplier can be used only when a high-school record is marked verified and has public aggregate outcome data. The adjustment is capped at a small relative effect (currently max +6% relative to the modeled probability, not +6 percentage points).
+## 5. U.S. portfolio construction
 
-Direct historical matriculation at a target university can add only a very small extra signal. A historical destination is evidence that the pathway exists; it is not an individual acceptance rate.
+The U.S. list is built separately from the applicant probability model. It considers:
 
-Unverified directory schools have `context_strength = 0`.
+- deterministic applicant band;
+- course/project/interdisciplinary fit;
+- explicit school preferences;
+- risk-band balance;
+- selected U.S. ranking scope (T30/T35/T50/T75/T100/all);
+- Common App vs separate application systems.
 
-## 4. University baseline and major context
+Rankings are a filter/display context only and do not raise or lower admission probability.
 
-The university catalog contains a planning selectivity baseline. Some institutions are modeled schoolwide; others receive field-category adjustments. Expanded records are intentionally marked `data_quality: seed` until a verified current-cycle source is entered through Admin.
+## 6. UK track
 
-## 5. International / aid context
+UK recommendations are separate from the U.S. reach/target/likely ladder and are more subject/academic-centric. Oxford/Cambridge and field-compatible Imperial/LSE options are intentionally preserved as aspirational/competitive choices rather than being mislabeled as safeties.
 
-International and aid adjustments remain conservative and must be updated when school policies change. No race, religion, gender, sexuality, disability, health status or other protected/sensitive trait is scored.
+## 7. Round strategy
 
-## 6. Probability interval
+ED I / ED II / EA / REA / SCEA / RD recommendations are generated from the current modeled portfolio; users do not need to manually save schools first. Binding ED requires genuine preference and is never assigned merely because a school is easier.
 
-The displayed interval is a planning uncertainty band around the modeled center. It should be used for portfolio balance, not as a literal forecast of a university decision.
+## 8. International / aid context
+
+International and aid adjustments are conservative planning heuristics and must be updated as university policies change. Race, religion, gender, sexuality, disability, health status and other protected/sensitive traits are not scored.
