@@ -1,9 +1,10 @@
-# UniPath v2.7 — Admissions Planning OS
+# UniPath v2.8 — Admissions Planning OS
 
 UniPath is a deployable Next.js + Supabase university-planning system for high-school applicants. It keeps one persistent applicant profile and connects subject-level academics, project evidence, school/major recommendations, round strategy, opportunity planning, roadmap generation, simulation, and a continuous AI advisor.
 
 ## Core product
 
+- First-use four-step onboarding with a replay control in Settings.
 - Persistent Supabase account + applicant profile.
 - AI profile import from mixed Chinese/English résumé-style text.
 - Subject-level AP / IB / A-level evaluation rather than AP-5 counts or IB totals alone.
@@ -17,11 +18,12 @@ UniPath is a deployable Next.js + Supabase university-planning system for high-s
 - Automatic 20-school U.S. Common App planning list when catalog coverage permits.
 - Separate U.S. non-Common-App track and separate UK track; UK schools are not mixed into the U.S. reach/target ladder.
 - UK modeling is more academic/subject-centric and explicitly preserves Oxford/Cambridge/Imperial/LSE when the field is compatible.
-- QS 2026 and U.S. News 2026 ranking snapshot displayed as context only; rankings do not alter probability.
+- QS 2026 and U.S. News 2026 ranking snapshots displayed as context only; rankings do not alter probability. College results can be sorted by QS, category-aware U.S. News rank, probability, fit, or explicit preference.
+- School-specific College Detail pages: a growing source-backed admissions-insight layer (34 researched institutions in v2.8) plus differentiated data-driven fallback pages for the rest of the catalog.
 - ED I / ED II / EA / REA / SCEA / RD / UC / UCAS strategy generated automatically from the modeled list; manually saving schools is optional.
 - Monte Carlo portfolio stress test plus one visible sample application cycle, including T20-category and T30-category hit rates.
 - 150-institution seed catalog including 23 U.S. liberal arts colleges, 114 majors, 43 high-school directory/context records, and 69 curated opportunity pathways.
-- Curated summer/research/competition/work catalog plus AI-generated original projects based on the student's concrete strengths and gaps.
+- Curated summer/research/competition/work catalog plus AI-generated original projects based on the student's concrete strengths and gaps. Every generated project opens into a milestone, deliverable, validation, risk and application-impact plan.
 - Persistent roadmap anchored to the current date and graduation year, with a cleanup action for stale past-dated open items.
 - Persistent AI advisor conversation grounded in saved profile, predictions, plans and roadmap. User turns are persisted before AI generation; the latest 100 messages are server-synced and mirrored locally so navigation/reload does not silently discard recent chat.
 - English / Simplified Chinese core interface setting, AI output language, compact/comfortable density, System/Light/Dark appearance, default U.S. ranking scope and a liberal-arts-college preference.
@@ -90,7 +92,7 @@ For a fresh installation, run the complete file:
 supabase/schema.sql
 ```
 
-If the existing UniPath database already has the v2.x schema (profiles, plans, prediction runs, opportunity saves, roadmap, conversation messages with `metadata`, overrides and feedback), v2.7 adds no required table migration.
+If the existing UniPath database already has the v2.x schema (profiles, plans, prediction runs, opportunity saves, roadmap, conversation messages with `metadata`, overrides and feedback), v2.8 adds no required table migration.
 
 ## Classmate demo accounts
 

@@ -1,0 +1,937 @@
+{
+  "Harvard": {
+    "signature": "Broad liberal-arts range with an unusually strong emphasis on future contribution, character, and how a student uses opportunity.",
+    "values": [
+      "Academic accomplishment in context",
+      "Meaningful contribution and leadership",
+      "Character, maturity, and concern for others",
+      "Distinctive talents or perspectives"
+    ],
+    "application_read": "A strong Harvard file should make the academic case quickly, then show what the student has done with available opportunities and what kind of person and community member sits behind the record.",
+    "positioning": "Connect your strongest work to a credible future direction, while keeping room for the breadth of a Harvard education. Depth matters more than filling every activity slot.",
+    "avoid": "A résumé-only story that treats prestige or raw achievement as the reason for fit.",
+    "student_voice": "Harvard's own guidance repeatedly stresses quality over quantity in activities and treats family, work, school, and community contributions as meaningful evidence of character.",
+    "sources": [
+      {
+        "label": "Admissions criteria",
+        "type": "official",
+        "url": "https://college.harvard.edu/resources/faq/what-admissions-criteria-do-you-use"
+      },
+      {
+        "label": "Application requirements",
+        "type": "official",
+        "url": "https://college.harvard.edu/admissions/apply/application-requirements"
+      },
+      {
+        "label": "Application tips",
+        "type": "official guide",
+        "url": "https://college.harvard.edu/index.php/guides/application-tips"
+      }
+    ]
+  },
+  "MIT": {
+    "signature": "A mission-driven, hands-on environment where intellectual intensity is paired with collaboration, initiative, and comfort with failure.",
+    "values": [
+      "Mission-aligned impact",
+      "Collaboration and cooperation",
+      "Initiative and thoughtful risk-taking",
+      "Hands-on creativity and deep curiosity"
+    ],
+    "application_read": "MIT is less interested in a polished 'perfect applicant' than in evidence that you like solving hard problems, build or test ideas, work with others, and pursue a few things because you genuinely care about them.",
+    "positioning": "Show the loop from curiosity → action → iteration → learning. Technical depth is strongest when paired with collaboration, real use, or service to others.",
+    "avoid": "Stacking competitions and research labels without evidence of making, experimenting, helping, or learning from failure.",
+    "student_voice": "MIT Admissions explicitly advises students to choose activities because they delight, intrigue, or challenge them—not because they look impressive.",
+    "sources": [
+      {
+        "label": "What we look for",
+        "type": "official",
+        "url": "https://mitadmissions.org/apply/process/what-we-look-for/"
+      },
+      {
+        "label": "Extracurricular activities",
+        "type": "official guide",
+        "url": "https://mitadmissions.org/apply/prepare/activities/"
+      },
+      {
+        "label": "Selection process",
+        "type": "official",
+        "url": "https://mitadmissions.org/apply/process/selection/"
+      }
+    ]
+  },
+  "Stanford": {
+    "signature": "Academic excellence is the floor; intellectual vitality, depth, and the way experiences changed you are the differentiators.",
+    "values": [
+      "Distinguished academic achievement",
+      "Intellectual vitality",
+      "Sustained depth and leadership",
+      "Impact understood in personal context"
+    ],
+    "application_read": "Stanford first establishes academic readiness, then looks for energy, curiosity, initiative, and a pattern of meaningful commitment rather than a long list of shallow involvements.",
+    "positioning": "Make your intellectual interests feel alive: show where you pushed beyond the expected path, what questions you chased, and how one or two commitments developed over time.",
+    "avoid": "Trying to manufacture breadth. Stanford explicitly notes that exceptional depth in one or two activities can be more revealing than light participation in many.",
+    "student_voice": "The admissions overview frames intellectual vitality as curiosity, openness, imagination, and expanding one's perspective—not simply advanced coursework.",
+    "sources": [
+      {
+        "label": "Holistic admission overview",
+        "type": "official",
+        "url": "https://admission.stanford.edu/apply/overview/index.html"
+      },
+      {
+        "label": "Decision criteria FAQ",
+        "type": "official",
+        "url": "https://admission.stanford.edu/faqs/decision.html"
+      }
+    ]
+  },
+  "Princeton": {
+    "signature": "A rigorous undergraduate culture built around intellectual curiosity, independent thought, close faculty work, and service beyond the classroom.",
+    "values": [
+      "Intellectual curiosity and excellence",
+      "Independent thought and creativity",
+      "Sustained commitments",
+      "Service and contribution to community"
+    ],
+    "application_read": "Princeton wants to understand both the scholar and the citizen: how you think, what you commit to, and how you would use a strongly undergraduate-focused academic environment.",
+    "positioning": "Turn your strongest project or question into evidence that you can pursue serious independent work, then connect it to the kind of conversation, research, thesis, or service you would continue at Princeton.",
+    "avoid": "Generic 'world-class professors' language or a list of campus resources without a clear intellectual or civic through-line.",
+    "student_voice": "Princeton's admissions blog advises applicants to know themselves, research the institution deeply, envision the future, and explain what they would bring to the community.",
+    "sources": [
+      {
+        "label": "Helpful tips",
+        "type": "official",
+        "url": "https://admission.princeton.edu/apply/before-you-apply/helpful-tips"
+      },
+      {
+        "label": "Princeton-specific questions",
+        "type": "official",
+        "url": "https://admission.princeton.edu/apply/princeton-specific-questions"
+      },
+      {
+        "label": "Admissions blog: applying to college",
+        "type": "official blog",
+        "url": "https://admission.princeton.edu/blogs/applying-college"
+      }
+    ]
+  },
+  "Yale": {
+    "signature": "An academically demanding residential community that looks first for intellectual potential, then for generosity toward others and willingness to explore.",
+    "values": [
+      "Academic potential and intellectual initiative",
+      "Collegiality and concern for others",
+      "Curiosity and willingness to stretch",
+      "Positive contribution to residential learning"
+    ],
+    "application_read": "Yale's public criteria are unusually explicit: academic potential comes first, but strong files also show how the student supports others, explores beyond a fixed lane, and makes use of context.",
+    "positioning": "Pair your strongest academic evidence with examples of how you changed a classroom, team, research group, or community—not just what you achieved individually.",
+    "avoid": "Treating high scores as sufficient. Yale emphasizes qualitative evidence, teacher observations, and the person behind the metrics.",
+    "student_voice": "The Inside the Yale Admissions Office podcast repeatedly stresses that standing out is not a points exercise; the committee is building a varied learning community from many already-strong applicants.",
+    "sources": [
+      {
+        "label": "What Yale looks for",
+        "type": "official",
+        "url": "https://admissions.yale.edu/what-yale-looks-for"
+      },
+      {
+        "label": "What stands out podcast transcript",
+        "type": "official podcast",
+        "url": "https://admissions.yale.edu/posts/2021-03-02-episode-13-what-stands-out"
+      },
+      {
+        "label": "Course selection",
+        "type": "official guide",
+        "url": "https://admissions.yale.edu/course-selection"
+      }
+    ]
+  },
+  "Brown": {
+    "signature": "The Open Curriculum rewards students who can explain what they genuinely want to explore and who are ready to take ownership of an unusually self-directed education.",
+    "values": [
+      "Intellectual self-direction",
+      "Curiosity across and within fields",
+      "Contribution to community",
+      "Authentic interests, perspective, and joy"
+    ],
+    "application_read": "Brown is a strong fit when the application shows a student who already behaves like an architect of their own education—connecting interests across fields without needing a prescribed path.",
+    "positioning": "Make the link between your current questions and the freedom you would actually use at Brown. Interdisciplinary evidence should feel purposeful rather than scattered.",
+    "avoid": "Saying you like the Open Curriculum only because it gives freedom. Explain what you would do with that freedom and why your existing work suggests you can handle it.",
+    "student_voice": "Brown's current essay set asks directly about academic interests, the contribution shaped by your background, and something that brings you joy—three different windows into intellectual and personal fit.",
+    "sources": [
+      {
+        "label": "Applying to Brown",
+        "type": "official",
+        "url": "https://admission.brown.edu/apply"
+      },
+      {
+        "label": "How to apply / current essays",
+        "type": "official",
+        "url": "https://admission.brown.edu/apply/how-apply"
+      },
+      {
+        "label": "About the Open Curriculum",
+        "type": "official",
+        "url": "https://admission.brown.edu/ask/about-brown"
+      }
+    ]
+  },
+  "UChicago": {
+    "signature": "A distinctly idea-driven application culture that values intellectual personality, serious curiosity, and the ability to enjoy difficult or unusual questions.",
+    "values": [
+      "Intellectual play and rigor",
+      "Distinctive thought and writing",
+      "Specific fit with a demanding learning culture",
+      "Meaningful use of time rather than résumé choreography"
+    ],
+    "application_read": "UChicago's supplements are designed to reveal how you think. A strong file often has an identifiable intellectual point of view rather than only impressive credentials.",
+    "positioning": "Use your best research, reading, or project question as evidence of how your mind works. Specificity about the kind of discussion and inquiry you want matters more than prestige language.",
+    "avoid": "A generic 'I love rigorous academics' story. The uncommon essay format rewards voice, ideas, and a willingness to take an intellectually interesting angle.",
+    "student_voice": "UChicago explains that its extended essay prompts can be approached seriously, playfully, or somewhere in between; the point is to learn the applicant's tastes, ambitions, and way of thinking.",
+    "sources": [
+      {
+        "label": "Essay questions",
+        "type": "official",
+        "url": "https://collegeadmissions.uchicago.edu/apply/essay/"
+      },
+      {
+        "label": "Required materials",
+        "type": "official",
+        "url": "https://collegeadmissions.uchicago.edu/apply/application/required-materials/"
+      }
+    ]
+  },
+  "Northwestern": {
+    "signature": "A highly interdisciplinary university that defines fit as the story of how you would grow, contribute, and connect across its academic and community ecosystems.",
+    "values": [
+      "Academic growth and curiosity",
+      "Interdisciplinary collaboration",
+      "Meaningful community involvement",
+      "Self-awareness and personal contribution"
+    ],
+    "application_read": "Northwestern explicitly thinks about fit as a story: what questions drive you, what communities shaped you, and how you can imagine plugging into and contributing to the campus.",
+    "positioning": "Show a plausible intersection—two fields, a research + creative interest, or a community + academic question—and name how you would collaborate rather than only consume resources.",
+    "avoid": "Treating the six undergraduate schools as prestige tiers or applying to one for strategic advantage; Northwestern says the same review criteria apply across them.",
+    "student_voice": "Current supplement options foreground interdisciplinarity, community and belonging, location, and the perspectives a student would add to campus.",
+    "sources": [
+      {
+        "label": "The Fit Factor",
+        "type": "official",
+        "url": "https://admissions.northwestern.edu/apply/advice/the-fit-factor.html"
+      },
+      {
+        "label": "Application materials / supplements",
+        "type": "official",
+        "url": "https://admissions.northwestern.edu/apply/requirements.html"
+      },
+      {
+        "label": "Your academic path",
+        "type": "official guide",
+        "url": "https://admissions.northwestern.edu/apply/advice/academic-path.html"
+      }
+    ]
+  },
+  "Cornell": {
+    "signature": "Cornell combines enormous academic breadth with a very specific application decision: you must choose the undergraduate college or school that fits your interests and preparation.",
+    "values": [
+      "Program- and college-specific fit",
+      "Academic preparation for the chosen path",
+      "Classroom contribution",
+      "Breadth used with purpose"
+    ],
+    "application_read": "At Cornell, the institution-wide brand matters less than whether your record and story make sense for the specific college or school you select. Requirements and supplements can differ materially by college.",
+    "positioning": "Explain why your intended field belongs in the particular Cornell college you are choosing, and let courses/projects prove that the choice is substantive rather than cosmetic.",
+    "avoid": "Writing a generic 'Why Cornell' story that could apply equally to any of Cornell's undergraduate colleges.",
+    "student_voice": "Cornell's admissions blog repeatedly frames the search around fit and authentic voice; one recent student post specifically warns against polishing essays until the applicant's voice disappears.",
+    "sources": [
+      {
+        "label": "First-year applicants",
+        "type": "official",
+        "url": "https://admissions.cornell.edu/how-to-apply/first-year-applicants"
+      },
+      {
+        "label": "College & school requirements",
+        "type": "official",
+        "url": "https://admissions.cornell.edu/how-to-apply/first-year-applicants/college-and-school-admissions-requirements"
+      },
+      {
+        "label": "Admissions blog: senior year",
+        "type": "official blog",
+        "url": "https://admissions.cornell.edu/community/blog/what-i-wish-i-knew-senior-year"
+      }
+    ]
+  },
+  "Johns Hopkins": {
+    "signature": "Hopkins publishes a clear three-part read: academic character, impact & initiative, and overall match with the opportunities and community around you.",
+    "values": [
+      "Academic character",
+      "Impact and initiative",
+      "Depth over activity count",
+      "Overall match and contribution"
+    ],
+    "application_read": "A Hopkins-ready profile shows not only that you can handle the academics, but that you dig into interests beyond class and turn them into initiative, impact, or contribution.",
+    "positioning": "Frame your best project around the question you pursued, the initiative you took, and the effect on people, knowledge, or practice. That structure maps directly to Hopkins' published review language.",
+    "avoid": "A purely research-prestige narrative. Hopkins says it values quality over quantity and has no preferred activity type.",
+    "student_voice": "Hopkins' admissions blog and planning guide emphasize students who are energized by ideas, dig deeper into topics that matter, and make an impact in communities they call home.",
+    "sources": [
+      {
+        "label": "What we look for",
+        "type": "official",
+        "url": "https://apply.jhu.edu/how-to-apply/what-we-look-for/"
+      },
+      {
+        "label": "Preparing for college",
+        "type": "official guide",
+        "url": "https://apply.jhu.edu/college-planning-guide/preparing-for-college/"
+      },
+      {
+        "label": "Admissions blog: review tips",
+        "type": "official blog",
+        "url": "https://apply.jhu.edu/hopkins-insider/application-tips-how-we-review-applications/"
+      }
+    ]
+  },
+  "UPenn": {
+    "signature": "Penn's admissions identity is practical and interdisciplinary: develop talent, connect fields, and apply knowledge in service to society.",
+    "values": [
+      "Practical + interdisciplinary learning",
+      "Curiosity and invention",
+      "Community contribution",
+      "Using knowledge for social good"
+    ],
+    "application_read": "Penn wants a whole-person story that connects academic interests with what you actually do in communities. The strongest fit often has a 'learn → apply → contribute' structure.",
+    "positioning": "Make your school/major choice specific and show how your interests cross into real problems, people, organizations, or systems. Practical application is an asset here.",
+    "avoid": "Treating interdisciplinarity as collecting majors. Penn's own language stresses making connections across fields and turning learning into useful action.",
+    "student_voice": "Penn's current application guidance asks how you use time and energy, what sustains you, what you care about, and how you hope to contribute to Penn and Philadelphia.",
+    "sources": [
+      {
+        "label": "Preparing your application",
+        "type": "official",
+        "url": "https://admissions.upenn.edu/how-to-apply/preparing-your-application"
+      },
+      {
+        "label": "Activities",
+        "type": "official guide",
+        "url": "https://admissions.upenn.edu/how-to-apply/preparing-your-application/activities"
+      },
+      {
+        "label": "Writing",
+        "type": "official guide",
+        "url": "https://admissions.upenn.edu/how-to-apply/preparing-your-application/writing"
+      }
+    ]
+  },
+  "Duke": {
+    "signature": "Duke describes an energetic applicant: intellectually ambitious, curious, persistent, imaginative, and ready to make an impact with other people.",
+    "values": [
+      "Rigor and academic performance",
+      "Curiosity and imagination",
+      "Passion-driven involvement",
+      "Impact, humanity, and community"
+    ],
+    "application_read": "Duke explicitly welcomes both well-rounded and 'well-lopsided' applicants. The common thread is not breadth but meaningful engagement, strong thinking, and the potential to make things better.",
+    "positioning": "Let one or two areas of unusual depth lead the story, then show the human side—collaboration, service, creativity, humor, or care—that makes the profile more than a technical résumé.",
+    "avoid": "Trying to look perfectly balanced if your real strength is concentrated. Duke publicly values applicants who do one thing brilliantly as well as those with multiple strengths.",
+    "student_voice": "Duke's preparation guidance highlights engagement with ideas, people, and community; willingness to be challenged; drive for impact; and imagination, curiosity, and fun.",
+    "sources": [
+      {
+        "label": "What we look for",
+        "type": "official",
+        "url": "https://admissions.duke.edu/what-we-look-for/"
+      },
+      {
+        "label": "College preparation tips",
+        "type": "official guide",
+        "url": "https://admissions.duke.edu/college-prep/"
+      }
+    ]
+  },
+  "Georgetown": {
+    "signature": "A globally oriented, service-conscious institution where academic performance is central but character, motivation, community commitment, and whole-person development matter visibly.",
+    "values": [
+      "Strong academic performance",
+      "Character and motivation",
+      "Commitment to broader community",
+      "Global viewpoint and service"
+    ],
+    "application_read": "Georgetown is particularly coherent for students whose intellectual interests connect to public life, policy, service, global issues, or community responsibility.",
+    "positioning": "Connect your academic direction to people and institutions beyond the classroom. For policy/social-science applicants, show how analysis leads to engagement or service.",
+    "avoid": "An abstract politics/international-affairs story with no evidence that you have engaged people, institutions, service, or competing viewpoints.",
+    "student_voice": "Georgetown College describes intellectual vitality, a global viewpoint, and dedication to service as core to the undergraduate experience.",
+    "sources": [
+      {
+        "label": "Undergraduate admissions",
+        "type": "official",
+        "url": "https://uadmissions.georgetown.edu/applying/"
+      },
+      {
+        "label": "College of Arts & Sciences admissions",
+        "type": "official",
+        "url": "https://college.georgetown.edu/admissions/"
+      },
+      {
+        "label": "Preparation process",
+        "type": "official guide",
+        "url": "https://uadmissions.georgetown.edu/applying/preparation-process/"
+      }
+    ]
+  },
+  "Columbia": {
+    "signature": "A dense intellectual environment where the Core and New York setting favor students who can think independently, pursue serious ideas, and use a shared academic conversation.",
+    "values": [
+      "Academic potential and intellectual strength",
+      "Independent thought",
+      "Curiosity and maturity",
+      "Productive use of Columbia's distinctive environment"
+    ],
+    "application_read": "Columbia's public criteria emphasize how a student thinks—not only grades—and whether the applicant is likely to make productive use of four years in its particular educational setting.",
+    "positioning": "Show that you can contribute to a common intellectual conversation while also pursuing your own questions. Specific academic and New York connections should emerge from the work you already do.",
+    "avoid": "A generic city-focused essay that never explains the academic habits or questions that make Columbia's Core and programs useful to you.",
+    "student_voice": "Columbia's admissions FAQ names intellectual strength, independent thinking, maturity, motivation, curiosity, character, and likely use of the four-year experience as review considerations.",
+    "sources": [
+      {
+        "label": "Admissions FAQ / selection criteria",
+        "type": "official",
+        "url": "https://undergrad.admissions.columbia.edu/faq?body_value=&field_question_topics_tid=405&page=0"
+      }
+    ]
+  },
+  "Rice": {
+    "signature": "Rice pairs high-level academics with a culture of care, residential-college belonging, and collaboration over competition.",
+    "values": [
+      "Curiosity and initiative",
+      "Collaboration and care",
+      "Authentic community-building",
+      "Applying learning beyond class"
+    ],
+    "application_read": "A Rice fit story is often strongest when intellectual curiosity and community are inseparable: you pursue serious work, but you also build, support, or create alongside other people.",
+    "positioning": "Use evidence that you make communities better—through mentoring, building groups, collaborative research, service, or creative initiative—alongside your academic depth.",
+    "avoid": "Presenting yourself as a lone high achiever with no indication of how you collaborate or contribute to a residential community.",
+    "student_voice": "Rice's official student blog repeatedly returns to care, curiosity, community, the residential colleges, and the idea that if a community does not exist, students can build it.",
+    "sources": [
+      {
+        "label": "Rice community / Culture of Care",
+        "type": "official",
+        "url": "https://admission.rice.edu/life-rice/community"
+      },
+      {
+        "label": "Student blog: Care, Curiosity and Community",
+        "type": "official student blog",
+        "url": "https://admission.rice.edu/blog/in-the-know/care-curiosity-community"
+      },
+      {
+        "label": "Application advice series",
+        "type": "official admissions blog",
+        "url": "https://admission.rice.edu/blog/in-the-know/application-advice-series"
+      }
+    ]
+  },
+  "Vanderbilt": {
+    "signature": "A high-achieving residential university that pairs rigorous academics and intellectual curiosity with leadership, growth, and substantial involvement beyond class.",
+    "values": [
+      "Strong academic skills",
+      "Intellectual curiosity",
+      "Leadership and growth",
+      "Contextual, sustained involvement"
+    ],
+    "application_read": "Vanderbilt's published philosophy starts with academic readiness, then asks how activities, leadership, writing, and context reveal what the student would add to the community.",
+    "positioning": "Show rigorous preparation and then choose the extracurricular evidence that best reveals growth, leadership, and what you will contribute—not necessarily the most prestigious label.",
+    "avoid": "Assuming demonstrated interest or a long activity list compensates for weak academic preparation; Vanderbilt says it does not consider demonstrated interest.",
+    "student_voice": "Vanderbilt's admissions guidance describes a context-based holistic review and has long emphasized commitment of time/effort and leadership rather than one preferred activity category.",
+    "sources": [
+      {
+        "label": "Apply / philosophy",
+        "type": "official",
+        "url": "https://admissions.vanderbilt.edu/apply/"
+      },
+      {
+        "label": "Expert advice",
+        "type": "official guide",
+        "url": "https://admissions.vanderbilt.edu/apply/expert-advice/"
+      },
+      {
+        "label": "Admissions blog: what we look for",
+        "type": "official blog",
+        "url": "https://admissions.vanderbilt.edu/vandybloggers/2014/02/what-we-look-for-in-an-application/"
+      }
+    ]
+  },
+  "Dartmouth": {
+    "signature": "A small, highly social academic community that looks for distinctive people who are curious, kind, collaborative, creative, and able to animate discussion.",
+    "values": [
+      "Authentic personal story",
+      "Curiosity and intellectual energy",
+      "Collaboration and kindness",
+      "Contribution to a small residential community"
+    ],
+    "application_read": "Dartmouth's size makes the community case unusually important: the file should make it easy to imagine how you would contribute to a classroom, house community, team, or conversation in Hanover.",
+    "positioning": "Show why and how you do what you do, not only what you accomplished. Peer contribution and personality can be strategic strengths here.",
+    "avoid": "A polished list of achievements with no sense of the person classmates would actually meet.",
+    "student_voice": "Dartmouth's admissions dean has described admitted students as smart and curious, kind, collaborative and creative, and as people who can make small-class dialogue more nuanced.",
+    "sources": [
+      {
+        "label": "What Dartmouth looks for",
+        "type": "official",
+        "url": "https://admissions.dartmouth.edu/glossary-question/what-does-dartmouth-look-applicant"
+      },
+      {
+        "label": "Application advice",
+        "type": "official guide",
+        "url": "https://admissions.dartmouth.edu/apply/application-advice"
+      },
+      {
+        "label": "Admitted class story",
+        "type": "official news",
+        "url": "https://admissions.dartmouth.edu/news/2024/03/class-2028-draws-record-number-applicants"
+      }
+    ]
+  },
+  "Tufts": {
+    "signature": "An intellectually playful, collaborative, globally minded and civically engaged culture where specificity and authentic curiosity matter.",
+    "values": [
+      "Intellectual curiosity and playfulness",
+      "Collaborative spirit",
+      "Civic engagement",
+      "Specific, genuine interests and personality"
+    ],
+    "application_read": "Tufts wants an academically strong student whose application also feels alive: distinctive curiosities, community participation, and a concrete sense of why Tufts fits those interests.",
+    "positioning": "Lean into combinations that feel a little unexpected—academic + civic, technical + creative, global + local—and research specific Tufts opportunities deeply enough to explain why they matter to you.",
+    "avoid": "Generic fit claims. Tufts' own supplement advice says not to repeat facts from a landing page; go deeper into a course, group, professor, or community that actually connects to you.",
+    "student_voice": "Tufts describes its students as kind, collaborative, intellectually playful, inclusive, globally minded and civically engaged; its admissions blog strongly emphasizes authentic voice.",
+    "sources": [
+      {
+        "label": "Applying to Tufts",
+        "type": "official",
+        "url": "https://admissions.tufts.edu/apply/applying-to-tufts/"
+      },
+      {
+        "label": "Class profile",
+        "type": "official",
+        "url": "https://admissions.tufts.edu/apply/enrolled-student-profile/"
+      },
+      {
+        "label": "Inside Admissions: supplement guide",
+        "type": "official admissions blog",
+        "url": "https://admissions.tufts.edu/blogs/inside-admissions/post/a-short-guide-to-the-tufts-supplemental-questions/"
+      }
+    ]
+  },
+  "Williams College": {
+    "signature": "A small, rigorous learning community built around intellectual curiosity, close faculty contact, collaboration, and serious undergraduate engagement.",
+    "values": [
+      "Distinguished academic record",
+      "Intellectual curiosity",
+      "Eagerness to collaborate",
+      "Leadership and contribution in a tight-knit community"
+    ],
+    "application_read": "Williams is a strong match when academic depth comes with evidence that you enjoy close discussion, collaboration, and contributing to a small community—not only accessing elite resources.",
+    "positioning": "Use a specific intellectual interest and show how you learn with others: seminars, research, tutoring, editing, team projects, or community work can all demonstrate that pattern.",
+    "avoid": "Treating a liberal arts college as simply a smaller university. The small learning community is part of the educational model and should fit how you actually learn.",
+    "student_voice": "Williams describes applicants it hopes to attract as intellectually curious, eager to collaborate, excited to interact with a tight-knit community, and prepared for rigorous academics.",
+    "sources": [
+      {
+        "label": "First-year application review",
+        "type": "official",
+        "url": "https://www.williams.edu/admission-aid/how-to-apply/first-year/"
+      },
+      {
+        "label": "Additional applicant information",
+        "type": "official",
+        "url": "https://www.williams.edu/admission-aid/how-to-apply/additional-applicant-information/"
+      },
+      {
+        "label": "Admission catalog",
+        "type": "official",
+        "url": "https://catalog.williams.edu/admission/"
+      }
+    ]
+  },
+  "Amherst College": {
+    "signature": "An open-curriculum liberal arts college where freedom of inquiry, self-directed exploration, and analytical writing are central signals of fit.",
+    "values": [
+      "Freedom of inquiry",
+      "Intellectual or creative passion",
+      "Independent course choice",
+      "Strong analytical reasoning and writing"
+    ],
+    "application_read": "Amherst makes sense for students who can explain how they use academic freedom, not just that they want it. The application can be especially revealing when it shows a sustained question and strong analytical writing.",
+    "positioning": "Use your strongest research paper, argument, or intellectual project as proof that you know how to pursue inquiry without a heavily prescribed curriculum.",
+    "avoid": "Equating an open curriculum with an easier curriculum. The fit is self-direction plus serious engagement, not avoidance of requirements.",
+    "student_voice": "Current Amherst application materials emphasize freedom of inquiry, curiosity, intellectual/creative passion, the Open Curriculum, and—in one option—a tightly reasoned analytical paper.",
+    "sources": [
+      {
+        "label": "2026 application supplement",
+        "type": "official",
+        "url": "https://admission.amherst.edu/register/qbrdsupplement"
+      },
+      {
+        "label": "Access to Amherst application",
+        "type": "official",
+        "url": "https://admission.amherst.edu/register/?id=8c0fea68-446c-4856-90e9-c686a2af9cd5"
+      }
+    ]
+  },
+  "Pomona College": {
+    "signature": "A highly selective small-college environment that explicitly values probing inquiry, creative learning, collaboration across perspectives, and community-building.",
+    "values": [
+      "Academic commitment",
+      "Probing inquiry and creative learning",
+      "Collaborative engagement",
+      "Community/network building"
+    ],
+    "application_read": "Pomona's public 'valued qualities' provide an unusually direct lens: the strongest fit shows intellectual curiosity, authentic voice, collaboration with different people, and meaningful community investment.",
+    "positioning": "Show what you wonder about, how you pursued it, and how other people or perspectives changed the work. Small-college collaboration should be visible in the evidence, not only claimed.",
+    "avoid": "A hyper-individual achievement narrative that never shows how you learn with or from other people.",
+    "student_voice": "Pomona's current prompts ask about academic interests and about community, experiences that changed how you think or engage peers, or how people close to you would describe you.",
+    "sources": [
+      {
+        "label": "Applying to Pomona",
+        "type": "official",
+        "url": "https://www.pomona.edu/admissions/apply"
+      },
+      {
+        "label": "Valued qualities",
+        "type": "official",
+        "url": "https://www.pomona.edu/admissions/apply/valued-qualities"
+      },
+      {
+        "label": "Paths to apply / essays",
+        "type": "official",
+        "url": "https://www.pomona.edu/admissions/paths-apply"
+      }
+    ]
+  },
+  "Swarthmore College": {
+    "signature": "A demanding, cooperative liberal arts culture that values curiosity, proactive problem-solving, generosity, sustained commitment, and open-mindedness.",
+    "values": [
+      "Intellectual curiosity",
+      "Creative and proactive problem-solving",
+      "Hard work plus help-seeking",
+      "Generosity, community engagement, and open-mindedness"
+    ],
+    "application_read": "Swarthmore fit is not just high academic intensity. Its own materials pair rigor with generosity, collaboration, sustained commitments, and willingness to ask for help.",
+    "positioning": "Show serious intellectual work alongside evidence that you make teams or communities stronger. A challenging project with collaboration and iteration can read particularly well.",
+    "avoid": "Using 'intense academics' as the entire fit story; the cooperative and community dimensions are equally distinctive.",
+    "student_voice": "Swarthmore's current viewbook directly lists curiosity, proactive problem-solving, enthusiasm for learning, help-seeking, generosity, sustained commitment, community engagement and open-mindedness among qualities it values.",
+    "sources": [
+      {
+        "label": "Swarthmore viewbook",
+        "type": "official",
+        "url": "https://digital.swarthmore.edu/viewbook/"
+      }
+    ]
+  },
+  "Bowdoin College": {
+    "signature": "A cooperative, intellectually fearless community where curiosity, respectful engagement with difference, kindness, and the common good are central themes.",
+    "values": [
+      "Academic strength and challenge",
+      "Curiosity and intellectual risk",
+      "Respect for different viewpoints",
+      "Common-good orientation and character"
+    ],
+    "application_read": "Bowdoin's academic bar is high, but its identity is unusually clear about cooperative learning and the common good. Strong fit evidence combines intellectual ambition with how you treat and contribute to others.",
+    "positioning": "Connect your intellectual work to a wider group, question, or responsibility. Service does not need to be formal; what matters is a pattern of thinking beyond private advantage.",
+    "avoid": "A prestige-first narrative or a purely competitive achievement story that conflicts with Bowdoin's cooperative, common-good culture.",
+    "student_voice": "Bowdoin describes its academic life as cooperative rather than competitive and says it tends to attract students who brainstorm with faculty, work in teams, welcome difficult questions, and root for one another.",
+    "sources": [
+      {
+        "label": "Apply / what we look for",
+        "type": "official",
+        "url": "https://www.bowdoin.edu/admissions/apply/index.html"
+      },
+      {
+        "label": "The Common Good",
+        "type": "official",
+        "url": "https://www.bowdoin.edu/about/common-good/index.html"
+      },
+      {
+        "label": "Bowdoin at a glance",
+        "type": "official",
+        "url": "https://www.bowdoin.edu/admissions/at-a-glance/index.html"
+      }
+    ]
+  },
+  "Middlebury College": {
+    "signature": "A rigorous residential liberal arts environment with a strong emphasis on whole-person context, intellectual engagement, and contribution to community.",
+    "values": [
+      "Rigorous academic preparation",
+      "Whole-person context",
+      "Commitment outside class",
+      "Potential contribution to Middlebury's community and mission"
+    ],
+    "application_read": "Middlebury's review is explicitly broad: school, family, community, academic record, recommendations, activities, background, story, and personal characteristics all contribute to the read.",
+    "positioning": "Show the full shape of your commitments instead of isolating one achievement. Language, global, environmental, community, or interdisciplinary interests can be especially coherent when they are already present in your record.",
+    "avoid": "A one-dimensional academic story that gives no sense of who you are in a family, school, or community.",
+    "student_voice": "Middlebury's admissions philosophy says who you are 'in the fullest sense' matters, and its counselor guidance emphasizes academic achievement, community contribution, and engagement with concepts central to Middlebury's mission.",
+    "sources": [
+      {
+        "label": "Apply to Middlebury",
+        "type": "official",
+        "url": "https://www.middlebury.edu/college/admissions/apply-midd"
+      },
+      {
+        "label": "Counselor information",
+        "type": "official",
+        "url": "https://www.middlebury.edu/college/admissions/counselor-information"
+      }
+    ]
+  },
+  "Claremont McKenna College": {
+    "signature": "A leadership-centered liberal arts college focused on economics, government, public affairs, research, and constructive dialogue across viewpoints.",
+    "values": [
+      "Academic achievement",
+      "Demonstrated leadership",
+      "Responsible citizenship",
+      "Constructive dialogue and viewpoint diversity"
+    ],
+    "application_read": "CMC is unusually mission-specific: the strongest files connect intellectual interests to responsible leadership in business, government, professions, or public life—and show that the student can engage disagreement constructively.",
+    "positioning": "Turn policy, business, economics, data, service, or leadership work into evidence of decision-making and responsibility. If your profile includes debate or public issues, show listening and revision as well as advocacy.",
+    "avoid": "Leadership as title-collecting. CMC's mission is responsible leadership, research, dialogue, and real engagement with public questions.",
+    "student_voice": "CMC's Open Academy and current supplement explicitly focus on freedom of expression, viewpoint diversity, constructive dialogue, and learning from people who see issues differently.",
+    "sources": [
+      {
+        "label": "First-year application review",
+        "type": "official",
+        "url": "https://www.cmc.edu/admission/first-year-application-instructions"
+      },
+      {
+        "label": "CMC mission and motto",
+        "type": "official",
+        "url": "https://www.cmc.edu/about/mission-and-motto"
+      },
+      {
+        "label": "Why CMC",
+        "type": "official",
+        "url": "https://www.cmc.edu/admission/why-cmc"
+      }
+    ]
+  },
+  "Haverford College": {
+    "signature": "A trust-based academic community where scholarship, service, student agency, collaboration, and the Honor Code shape both learning and campus life.",
+    "values": [
+      "High-level scholarship and service",
+      "Deep community engagement",
+      "Student agency and integrity",
+      "Collaboration over competition"
+    ],
+    "application_read": "Haverford's Honor Code is not decorative branding; it describes the type of student agency and trust the college expects. Fit is strongest when intellectual independence coexists with responsibility to others.",
+    "positioning": "Show moments where you earned trust, worked through disagreement, took ownership, or contributed to a group without needing external control. Pair that with serious academic curiosity.",
+    "avoid": "Talking about the Honor Code as an abstract tradition without evidence that trust, agency, or collaborative responsibility already appear in your life.",
+    "student_voice": "Haverford says students drawn to the college want high-level intellectual work, research and hands-on experience, but also value trust, integrity, shared governance, and active contribution to the greater good.",
+    "sources": [
+      {
+        "label": "Application instructions",
+        "type": "official",
+        "url": "https://www.haverford.edu/admission/applying/application-instructions"
+      },
+      {
+        "label": "Haverford supplement / Honor Code",
+        "type": "official",
+        "url": "https://www.haverford.edu/admission/supplement"
+      },
+      {
+        "label": "Counselor view of Haverford students",
+        "type": "official",
+        "url": "https://www.haverford.edu/admission/contact/counselors"
+      }
+    ]
+  },
+  "USC": {
+    "signature": "A large, interdisciplinary Los Angeles university that explicitly looks for students who will use opportunity, cross boundaries, and become active partners in learning, research and community life.",
+    "values": [
+      "Rigorous preparation for the intended field",
+      "Distinctive personal narrative and perspective",
+      "Leadership, involvement and contribution",
+      "Curiosity across disciplines and willingness to stretch"
+    ],
+    "application_read": "USC's current admissions guidance is unusually direct about imagining whether a student will thrive there. The file should connect academic preparation to how the applicant already explores, collaborates and contributes—not just to career ambition.",
+    "positioning": "Show a clear academic center, then demonstrate range: a project, leadership role or community commitment that proves you act on interests and would use USC's interdisciplinary environment rather than simply name it.",
+    "avoid": "A Hollywood/Los Angeles pitch, generic Trojan-network language, or listing famous programs without evidence that your current work points toward them.",
+    "student_voice": "USC describes successful students as intellectually ambitious, globally interested, willing to leave their comfort zones, involved with others and oriented toward service as well as personal growth.",
+    "sources": [
+      {
+        "label": "What We Look For",
+        "type": "official",
+        "url": "https://admission.usc.edu/prospective-students/how-to-apply/what-we-look-for/"
+      },
+      {
+        "label": "Prospective Students",
+        "type": "official",
+        "url": "https://admission.usc.edu/prospective-students/"
+      }
+    ]
+  },
+  "Michigan": {
+    "signature": "A large public research university that evaluates rigorous academics alongside depth, leadership, service and evidence that a student will actively use a complex campus.",
+    "values": [
+      "Academic excellence in context",
+      "Passion and depth beyond the classroom",
+      "Leadership, service and contribution",
+      "Curiosity about new ideas, people and experiences"
+    ],
+    "application_read": "Michigan's published selection process treats the application as a whole record. Coursework and grades establish readiness, while activities and essays help show original thinking, self-knowledge and the motivation to contribute.",
+    "positioning": "Tie your strongest academic interests to concrete work outside class, then make the case for how you would extend that work through Michigan's scale. Specificity matters more than naming many resources.",
+    "avoid": "Presenting yourself as one-dimensional, using rankings or school spirit as fit, or listing involvement without time, depth, responsibility or impact.",
+    "student_voice": "A recent Michigan student admissions post recommends leading with genuine strengths and using the application to show what you learned, what you are proud of and why the academic direction fits you.",
+    "sources": [
+      {
+        "label": "Selection Process",
+        "type": "official",
+        "url": "https://admissions.umich.edu/apply/first-year-applicants/selection-process"
+      },
+      {
+        "label": "Application Tips From a U-M Student",
+        "type": "official student blog",
+        "url": "https://admissions.umich.edu/explore-visit/blog/application-tips-university-michigan-student"
+      }
+    ]
+  },
+  "NYU": {
+    "signature": "A global, urban university where program and campus choice matter and where the current application emphasizes authentic interests, impact, collaboration across difference and the student's own evolving direction.",
+    "values": [
+      "Academic and program-specific direction",
+      "Impact and growth in meaningful activities",
+      "Ability to work across perspectives",
+      "Authentic voice and self-awareness"
+    ],
+    "application_read": "NYU's admissions guidance encourages applicants to prioritize experiences that best align with interests and goals, show impact and growth, and reveal personal qualities through a holistic application rather than trying to reverse-engineer a formula.",
+    "positioning": "Make the selected NYU school/campus feel intentional. Connect the academic choice to existing work, then use the rest of the file to show how you engage with people, ideas and a global urban environment.",
+    "avoid": "A generic 'New York is exciting' essay, an overstuffed activity list, or treating NYU as interchangeable across campuses and undergraduate schools.",
+    "student_voice": "Current NYU application guidance and admissions posts repeatedly stress prioritizing meaningful experiences, showing growth, and resisting message-board formulas for the 'perfect' applicant.",
+    "sources": [
+      {
+        "label": "Inside the 2026–27 NYU Common Application",
+        "type": "official admissions blog",
+        "url": "https://meet.nyu.edu/advice/application-tips/inside-the-2026-2027-common-application-for-nyu/"
+      },
+      {
+        "label": "How to Approach the Common Application",
+        "type": "official admissions blog",
+        "url": "https://meet.nyu.edu/advice/depth-and-breadth-two-approaches-to-the-common-application/"
+      }
+    ]
+  },
+  "Boston University": {
+    "signature": "A large urban research university that describes its desired class as highly motivated, intellectually curious and ready to contribute to a diverse community.",
+    "values": [
+      "Strong academics in context",
+      "Intellectual curiosity and motivation",
+      "Contribution inside and outside the classroom",
+      "A coherent story for the chosen BU school or college"
+    ],
+    "application_read": "BU says it conducts a comprehensive review of achievement and activity in the context of the student's environment, life experiences and background. The selected undergraduate school is part of the application, so academic direction should be legible.",
+    "positioning": "Lead with a credible academic path and one or two areas of sustained contribution. Use Boston or BU resources only where they naturally extend work you already do.",
+    "avoid": "A city-only Why BU argument, assuming test scores carry the file, or presenting breadth with no clear motivation or contribution.",
+    "student_voice": "BU's admissions materials frame applicants as whole people rather than GPAs and scores, emphasizing motivation, curiosity, social engagement and community contribution.",
+    "sources": [
+      {
+        "label": "First-Year Applicant Information",
+        "type": "official",
+        "url": "https://www.bu.edu/admissions/apply/first-year/"
+      },
+      {
+        "label": "Bring Your Whole Self",
+        "type": "official guide",
+        "url": "https://www.bu.edu/admissions/stories/bring-your-whole-self/"
+      }
+    ]
+  },
+  "Emory": {
+    "signature": "A collaborative university that explicitly looks for rigorous academic preparation, authentic voice, intellectual curiosity and students who will create positive impact in community.",
+    "values": [
+      "Academic rigor and performance in context",
+      "Authentic voice and intellectual curiosity",
+      "Resilience and character visible to teachers",
+      "Impact beyond class and contribution to community"
+    ],
+    "application_read": "Emory's current admissions page separates the read into preparation, teacher insight, authentic voice and time outside class. That makes a coherent file—where academic choices, recommendations and activities reinforce one another—especially valuable.",
+    "positioning": "Show the question or issue that drives your work, then pair it with evidence of collaboration or impact. A recommender who can describe how you learn can strengthen the same narrative without duplicating your activity list.",
+    "avoid": "Polished but impersonal essays, service language without actual responsibility, or relying on testing to outweigh a weak academic record.",
+    "student_voice": "Emory's application tips say essays should let the committee hear the applicant's own voice and that teacher recommendations can be strongest when they show challenge, growth and character rather than only high grades.",
+    "sources": [
+      {
+        "label": "First-Year Applicants · What We Look For",
+        "type": "official",
+        "url": "https://apply.emory.edu/apply/first-year/index.html"
+      },
+      {
+        "label": "Application Tips",
+        "type": "official guide",
+        "url": "https://apply.emory.edu/apply/first-year/tips/index.html"
+      }
+    ]
+  },
+  "UC Berkeley": {
+    "signature": "A public research university using holistic review to identify students with strong academic preparation, initiative, originality, persistence and potential to contribute to Berkeley's intellectual and cultural community.",
+    "values": [
+      "Rigorous academic achievement in context",
+      "Initiative, originality and intellectual independence",
+      "Sustained achievement and leadership",
+      "Concern for others and likely campus contribution"
+    ],
+    "application_read": "Berkeley publishes unusually detailed holistic-review criteria. Academic rigor remains central, but readers also consider personal qualities, depth in enrichment, sustained achievement, context and how fully a student used available opportunities.",
+    "positioning": "Use the UC application to show both academic readiness and what you actually initiated or sustained. The strongest PIQ material should add information that the transcript and activity labels cannot communicate.",
+    "avoid": "Treating minimum UC requirements as competitive preparation, sending unrequested portfolio-style material, or writing PIQs as generic personal statements with no concrete choices or actions.",
+    "student_voice": "Berkeley says it looks beyond numbers for persistence, passion and a desire to give back, and its PIQ guidance highlights initiative, motivation, leadership, service and substantial experience.",
+    "sources": [
+      {
+        "label": "First-Year Applicants · Holistic Review",
+        "type": "official",
+        "url": "https://admissions.berkeley.edu/apply-to-berkeley/first-year-applicants-uc-berkeley/"
+      },
+      {
+        "label": "Personal Insight Questions",
+        "type": "official guide",
+        "url": "https://www.admissions.berkeley.edu/apply-to-berkeley/application-resources/personal-insight-questions/"
+      }
+    ]
+  },
+  "UCLA": {
+    "signature": "A highly selective public university that combines rigorous academic preparation with intellectual curiosity, tenacity, authentic personal perspective and likely contribution to campus life.",
+    "values": [
+      "High achievement in the strongest available curriculum",
+      "Intellectual curiosity and independence",
+      "Tenacity, initiative and personal qualities",
+      "Meaningful contribution and community engagement"
+    ],
+    "application_read": "UCLA's comprehensive review considers the full academic and personal record in context, and its PIQs are intended to let the individual student come through rather than repeat the activities list.",
+    "positioning": "Make the academic preparation undeniable, then use PIQs to reveal decisions, initiative, growth and contribution. For engineering and other school-specific programs, keep preparation for the declared field especially clear.",
+    "avoid": "Trying to sound universally impressive, repeating résumé bullets in the PIQs, or assuming SAT/ACT scores can strengthen the file—UCLA does not use them for admission.",
+    "student_voice": "UCLA's PIQ guidance says it wants evidence of intellectual curiosity and personal development and encourages an open, reflective, individual voice.",
+    "sources": [
+      {
+        "label": "Application Review Process",
+        "type": "official",
+        "url": "https://admission.ucla.edu/apply/first-year/first-year-requirements/application-review-process"
+      },
+      {
+        "label": "Personal Insight Questions",
+        "type": "official guide",
+        "url": "https://admission.ucla.edu/apply/personal-insight-questions"
+      }
+    ]
+  },
+  "UVA": {
+    "signature": "A rigorous public university that explicitly seeks students who embrace academic challenge, love learning and problem-solving, engage with peers and can contribute to a vibrant intellectual community.",
+    "values": [
+      "Academic success relative to available challenge",
+      "Love of learning and problem-solving",
+      "Active engagement with peers",
+      "Authentic voice, trust and integrity"
+    ],
+    "application_read": "UVA's current guidance starts with performance in context and willingness to take on challenge, then asks whether the student appears intellectually engaged and capable of contributing to classroom and community life.",
+    "positioning": "Show how you think and learn with others, not just what you achieved alone. If applying to a specific undergraduate school, make the preparation for that school credible while preserving genuine breadth where it exists.",
+    "avoid": "Prestige language, an artificially optimized personality, or essay prose that sounds unlike the student. UVA explicitly emphasizes original voice and integrity in submitted writing.",
+    "student_voice": "UVA says it is interested in who the applicant is and what the applicant has to say; current application guidance warns that writing dominated by generative AI misses the personal reflection the committee wants to hear.",
+    "sources": [
+      {
+        "label": "Characteristics & Qualities of Competitive Applicants",
+        "type": "official",
+        "url": "https://admission.virginia.edu/admission/characteristics-qualities-competitive-applicants"
+      },
+      {
+        "label": "Application Review Process",
+        "type": "official",
+        "url": "https://admission.virginia.edu/admission/application-review-process"
+      }
+    ]
+  }
+}
