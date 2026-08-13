@@ -887,5 +887,166 @@
     "usnews_system": "Best Global 2026–27",
     "snapshot_year": "2026",
     "ranking_use": "display_only"
+  },
+  "Williams College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 1,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Amherst College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 2,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Swarthmore College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 4,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Bowdoin College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 5,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Claremont McKenna College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 7,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Pomona College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 7,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Carleton College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 10,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Harvey Mudd College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 10,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Davidson College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 13,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Grinnell College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 13,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Hamilton College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 13,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Middlebury College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 13,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Vassar College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 13,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Wesleyan University": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 13,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Washington and Lee University": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 21,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Colgate University": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 22,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "University of Richmond": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 22,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Bates College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 24,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Colby College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 24,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Haverford College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 24,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "College of the Holy Cross": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 27,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Macalester College": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 28,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
+  },
+  "Bucknell University": {
+    "qs_world_2026": "NR",
+    "usnews_2026": 30,
+    "usnews_system": "National Liberal Arts College",
+    "snapshot_year": "2026",
+    "ranking_use": "display_only"
   }
 }

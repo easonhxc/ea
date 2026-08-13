@@ -1,4 +1,4 @@
-# UniPath v2.5 — Admissions Planning OS
+# UniPath v2.7 — Admissions Planning OS
 
 UniPath is a deployable Next.js + Supabase university-planning system for high-school applicants. It keeps one persistent applicant profile and connects subject-level academics, project evidence, school/major recommendations, round strategy, opportunity planning, roadmap generation, simulation, and a continuous AI advisor.
 
@@ -11,18 +11,20 @@ UniPath is a deployable Next.js + Supabase university-planning system for high-s
 - Hybrid admissions planning model: deterministic engine is primary; AI holistic evidence is bounded and cached for stability.
 - Re-running an unchanged profile reuses the same AI assessment so the school list does not drift randomly.
 - Explicit school preferences are normalized across common aliases and materially influence list/ED planning without changing admission probabilities.
-- U.S. recommendation scope can be limited to T30 / T35 / T50 / T75 / T100 or all modeled universities.
+- U.S. recommendation scope can be limited to T30 / T35 / T50 / T75 / T100 or all modeled institutions, with National Universities and National Liberal Arts Colleges kept in separate ranking categories.
+- Liberal arts colleges can be globally included/excluded; LAC recommendation priority is field-aware rather than a blanket bonus.
+- T20/T30 portfolio construction uses a profile-aware frontier separate from the admission-probability calculation, with explicit warnings when a strict rank scope forces extra reaches.
 - Automatic 20-school U.S. Common App planning list when catalog coverage permits.
 - Separate U.S. non-Common-App track and separate UK track; UK schools are not mixed into the U.S. reach/target ladder.
 - UK modeling is more academic/subject-centric and explicitly preserves Oxford/Cambridge/Imperial/LSE when the field is compatible.
 - QS 2026 and U.S. News 2026 ranking snapshot displayed as context only; rankings do not alter probability.
 - ED I / ED II / EA / REA / SCEA / RD / UC / UCAS strategy generated automatically from the modeled list; manually saving schools is optional.
-- Monte Carlo portfolio stress test plus one visible sample application cycle.
-- 127-university seed catalog, 114 majors, 43 high-school directory/context records, and 69 curated opportunity pathways.
+- Monte Carlo portfolio stress test plus one visible sample application cycle, including T20-category and T30-category hit rates.
+- 150-institution seed catalog including 23 U.S. liberal arts colleges, 114 majors, 43 high-school directory/context records, and 69 curated opportunity pathways.
 - Curated summer/research/competition/work catalog plus AI-generated original projects based on the student's concrete strengths and gaps.
 - Persistent roadmap anchored to the current date and graduation year, with a cleanup action for stale past-dated open items.
-- Persistent AI advisor conversation grounded in saved profile, predictions, plans and roadmap.
-- English / Simplified Chinese core interface setting, AI output language, compact/comfortable density, and default U.S. ranking scope.
+- Persistent AI advisor conversation grounded in saved profile, predictions, plans and roadmap. User turns are persisted before AI generation; the latest 100 messages are server-synced and mirrored locally so navigation/reload does not silently discard recent chat.
+- English / Simplified Chinese core interface setting, AI output language, compact/comfortable density, System/Light/Dark appearance, default U.S. ranking scope and a liberal-arts-college preference.
 - Admin data overrides and one-click creation/reset of five ordinary non-admin classmate demo accounts.
 
 ## Architecture
@@ -88,7 +90,7 @@ For a fresh installation, run the complete file:
 supabase/schema.sql
 ```
 
-If the existing UniPath database already has the v2.x schema (profiles, plans, prediction runs, opportunity saves, roadmap, conversation, overrides and feedback), v2.5 adds no required table migration.
+If the existing UniPath database already has the v2.x schema (profiles, plans, prediction runs, opportunity saves, roadmap, conversation messages with `metadata`, overrides and feedback), v2.7 adds no required table migration.
 
 ## Classmate demo accounts
 
@@ -111,7 +113,7 @@ Two pieces are deliberately separated:
 1. **Applicant evidence** — academic/course fit, activities, awards, finished outputs, project-major fit, interdisciplinary fit and a small bounded AI holistic layer.
 2. **Portfolio construction** — explicit school preference, U.S. ranking scope, risk bands, Common App slot balance and round availability.
 
-For an unchanged applicant profile, the API reuses the latest AI evidence assessment. Changing only T30/T35/T50 scope does not re-run AI. This prevents random model wording from producing a materially different college list on every click.
+For an unchanged applicant profile, the API reuses the latest AI evidence assessment. Changing only T30/T35/T50 scope or the liberal-arts-college include/exclude setting does not re-run AI. This prevents random model wording from producing a materially different college list on every click.
 
 ## Important model boundaries
 

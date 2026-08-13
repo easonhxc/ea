@@ -437,5 +437,58 @@
     ],
     "default": "RD",
     "note": "UW does not participate in ED or EA; one first-year autumn deadline."
+  },
+  "Williams College": {
+    "plans": [
+      "ED1",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Binding Early Decision; official Williams first-year admissions page verified for the current published cycle."
+  },
+  "Claremont McKenna College": {
+    "plans": [
+      "ED1",
+      "ED2",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Binding Early Decision I and II; official CMC first-year instructions verified."
+  },
+  "Pomona College": {
+    "plans": [
+      "ED1",
+      "ED2",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Binding Early Decision I and II; official Pomona application paths verified."
+  },
+  "Middlebury College": {
+    "plans": [
+      "ED1",
+      "ED2",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Binding Early Decision I and II; official Middlebury admissions options verified."
+  },
+  "Bowdoin College": {
+    "plans": [
+      "ED1",
+      "ED2",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Binding Early Decision I and II; official Bowdoin first-year admissions information verified."
+  },
+  "Swarthmore College": {
+    "plans": [
+      "ED1",
+      "ED2",
+      "RD"
+    ],
+    "default": "RD",
+    "note": "Binding Fall/Winter Early Decision plans; official Swarthmore admissions materials verified."
   }
 }

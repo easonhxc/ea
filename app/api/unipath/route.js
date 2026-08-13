@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { createHash } from "node:crypto";
+import { createHash, randomUUID } from "node:crypto";
 import { requireUser, getSupabaseAdmin, isAdminEmail } from "@/lib/supabase-server";
 import { ApplicantProfileSchema } from "@/lib/schema";
 import { extractProfileWithAI } from "@/lib/profile-ai";
@@ -18,7 +18,7 @@ export const runtime="nodejs";
 const ok=data=>NextResponse.json(data);
 const fail=(message,status=400)=>NextResponse.json({error:message},{status});
 function profileFingerprint(profile,primary,secondary){
-  const {us_rank_cap:_,...applicantProfile}=profile||{};
+  const {us_rank_cap:_,include_liberal_arts_colleges:__,...applicantProfile}=profile||{};
   const stable=JSON.stringify({profile:applicantProfile,primary:primary||profile?.primary_major||null,secondary:secondary||profile?.secondary_major||null});
   return createHash("sha256").update(stable).digest("hex").slice(0,24);
 }
@@ -57,7 +57,7 @@ export async function POST(request){
         supabase.from("application_plans").select("*").eq("user_id",user.id).order("created_at"),
         supabase.from("saved_opportunities").select("*").eq("user_id",user.id).order("created_at"),
         supabase.from("roadmap_items").select("*").eq("user_id",user.id).order("created_at"),
-        supabase.from("conversation_messages").select("id,role,content,created_at").eq("user_id",user.id).eq("thread_key",body.thread_key||"advisor").order("created_at").limit(80),
+        supabase.from("conversation_messages").select("id,role,content,metadata,created_at").eq("user_id",user.id).eq("thread_key",body.thread_key||"advisor").order("created_at",{ascending:false}).limit(100),
         supabase.from("prediction_runs").select("result,created_at").eq("user_id",user.id).order("created_at",{ascending:false}).limit(1).maybeSingle()
       ]);
       for(const r of [profileRow,plansRow,savedRow,roadmapRow,chatRow,latestRow])if(r.error)throw r.error;
@@ -99,7 +99,8 @@ export async function POST(request){
         else ai=await aiAssessment(profile,primary);
       }
       const [ovs,hsovs]=await configPromise;const predictions=predict(profile,primary,secondary,ovs,ai.assessment,hsovs);predictions.ai_status=ai.status;predictions.ai_error=ai.error;predictions.profile_fingerprint=fp;
-      await supabase.from("prediction_runs").insert({user_id:user.id,primary_major:predictions.primary_major,secondary_major:predictions.secondary_major,result:predictions});return ok({predictions});
+      const savedProfile=await supabase.from("profiles").upsert({user_id:user.id,profile,updated_at:new Date().toISOString()});if(savedProfile.error)throw savedProfile.error;
+      await supabase.from("prediction_runs").insert({user_id:user.id,primary_major:predictions.primary_major,secondary_major:predictions.secondary_major,result:predictions});return ok({predictions,profile});
     }
     if(action==="recommend"){
       const profile=ApplicantProfileSchema.parse(body.profile);return ok({recommendations:buildRecommendations(profile,body.primary_major||profile.primary_major,body.predictions)});
@@ -143,16 +144,34 @@ export async function POST(request){
     }
 
     if(action==="chat_history"){
-      const {data,error}=await supabase.from("conversation_messages").select("id,role,content,created_at").eq("user_id",user.id).eq("thread_key",body.thread_key||"advisor").order("created_at").limit(80);if(error)throw error;return ok({messages:data||[]});
+      const {data,error}=await supabase.from("conversation_messages").select("id,role,content,metadata,created_at").eq("user_id",user.id).eq("thread_key",body.thread_key||"advisor").order("created_at",{ascending:false}).limit(100);if(error)throw error;return ok({messages:data||[]});
     }
     if(action==="counsel"){
-      const question=String(body.question||"").trim();if(!question)return fail("Question is required.");const thread=body.thread_key||"advisor";
+      const question=String(body.question||"").trim();if(!question)return fail("Question is required.");const thread=body.thread_key||"advisor";const clientId=String(body.client_id||randomUUID()).slice(0,120);
       const [{data:history},{data:roadmap}]=await Promise.all([supabase.from("conversation_messages").select("role,content").eq("user_id",user.id).eq("thread_key",thread).order("created_at",{ascending:false}).limit(18),supabase.from("roadmap_items").select("title,status,priority,due_window,why,success_metric").eq("user_id",user.id).limit(30)]);
       const prior=(history||[]).reverse();
-      const context=`Applicant profile:\n${JSON.stringify(body.profile||{})}\n\nUniPath prediction engine output:\n${JSON.stringify(body.predictions||{})}\n\nSaved application plans:\n${JSON.stringify(body.plans||[])}\n\nCurrent roadmap:\n${JSON.stringify(roadmap||[])}`;
+      // Persist the user's turn before calling the model. If the browser closes mid-generation, the question still survives.
+      const existingUser=await supabase.from("conversation_messages").select("id,role,content,metadata,created_at").eq("user_id",user.id).eq("thread_key",thread).contains("metadata",{client_id:clientId}).eq("role","user").limit(1).maybeSingle();
+      let userMessage=existingUser.data||null;
+      if(!userMessage){const inserted=await supabase.from("conversation_messages").insert({user_id:user.id,thread_key:thread,role:"user",content:question,metadata:{source:"client",client_id:clientId,status:"received"}}).select("id,role,content,metadata,created_at").single();if(inserted.error)throw inserted.error;userMessage=inserted.data;}
+      // Idempotency: if this client turn already has a completed reply, return it instead of generating a duplicate.
+      const existingAssistant=await supabase.from("conversation_messages").select("id,role,content,metadata,created_at").eq("user_id",user.id).eq("thread_key",thread).contains("metadata",{reply_to:clientId}).eq("role","assistant").limit(1).maybeSingle();
+      if(existingAssistant.data)return ok({answer:existingAssistant.data.content,client_id:clientId,user_message:userMessage,assistant_message:existingAssistant.data,reused:true});
+      const context=`Applicant profile:
+${JSON.stringify(body.profile||{})}
+
+UniPath prediction engine output:
+${JSON.stringify(body.predictions||{})}
+
+Saved application plans:
+${JSON.stringify(body.plans||[])}
+
+Current roadmap:
+${JSON.stringify(roadmap||[])}`;
       const lang=body.language==="zh"?"Respond in Simplified Chinese.":body.language==="en"?"Respond in English.":"Respond in the user's language.";
       const answer=await deepseekChat([{role:"system",content:`You are UniPath AI Advisor, a persistent student-facing university-planning counselor. Be concrete, critical and action-oriented. Use only probability intervals supplied by UniPath; never invent admissions percentages. Distinguish completed work from future plans. Prefer depth, evidence and fit over prestige collecting. When suggesting summer programs, research, competitions or projects, explain the role they play in the student's strategy. Do not infer sensitive traits. Keep continuity with prior conversation. ${lang}`},{role:"system",content:context},...prior.map(m=>({role:m.role==="assistant"?"assistant":"user",content:m.content})),{role:"user",content:question}],{temperature:.12,max_tokens:2600,thinking:false});
-      await supabase.from("conversation_messages").insert([{user_id:user.id,thread_key:thread,role:"user",content:question},{user_id:user.id,thread_key:thread,role:"assistant",content:answer,metadata:{source:"ai"}}]);return ok({answer});
+      const inserted=await supabase.from("conversation_messages").insert({user_id:user.id,thread_key:thread,role:"assistant",content:answer,metadata:{source:"ai",reply_to:clientId,status:"complete"}}).select("id,role,content,metadata,created_at").single();if(inserted.error)throw inserted.error;
+      return ok({answer,client_id:clientId,user_message:userMessage,assistant_message:inserted.data});
     }
     if(action==="clear_chat"){
       const {error}=await supabase.from("conversation_messages").delete().eq("user_id",user.id).eq("thread_key",body.thread_key||"advisor");if(error)throw error;return ok({deleted:true});
