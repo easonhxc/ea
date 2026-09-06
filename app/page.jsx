@@ -115,11 +115,11 @@ export default function Home(){
       const d=await api("bootstrap");
       setIsAdmin(!!d.is_admin);
       setUnlocked(!!d.unlocked);
-      if(d.profile)setProfile({...EmptyProfile,...d.profile});
+      setProfile({...EmptyProfile,...(d.profile||{})});
       let loadedPlans=d.plans||[];
-      if(d.predictions){setPredictions(d.predictions);if(loadedPlans.length){try{const synced=await api("sync_plans",{predictions:d.predictions});loadedPlans=synced.plans||loadedPlans}catch{}}}
+      setPredictions(d.predictions||null);if(d.predictions&&loadedPlans.length){try{const synced=await api("sync_plans",{predictions:d.predictions});loadedPlans=synced.plans||loadedPlans}catch{}}
       setPlans(loadedPlans);setSavedOpps(d.saved_opportunities||[]);setRoadmap(d.roadmap||[]);
-      try{const cachedProjects=JSON.parse(localStorage.getItem(projectCacheKey(session.user.id))||"null");if(cachedProjects?.projects?.length)setGeneratedProjects(cachedProjects)}catch{}
+      setGeneratedProjects(null);try{const cachedProjects=JSON.parse(localStorage.getItem(projectCacheKey(session.user.id))||"null");if(cachedProjects?.projects?.length)setGeneratedProjects(cachedProjects)}catch{}
       let cached=[];try{cached=JSON.parse(localStorage.getItem(chatCacheKey(session.user.id))||"[]")}catch{}
       setChat(mergeChatMessages(cached,(d.messages||[]).map(serverChatMessage)));setChatHydrated(true);
       try{if(d.unlocked&&!localStorage.getItem(onboardingKey(session.user.id))){setOnboardingStep(0);setShowOnboarding(true)}}catch{}
@@ -127,7 +127,7 @@ export default function Home(){
   }
   async function signIn(e){e.preventDefault();setAuthMsg("");try{if(!supabase)throw new Error("Supabase is not configured.");if(authMode==="signup"){const res=await fetch("/api/unipath",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"signup",email,password})});const data=await res.json();if(!res.ok)throw new Error(data.error||"Account creation failed.");const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error}else{const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error}try{if(rememberMe)localStorage.setItem("unipath.remember_email",email);else localStorage.removeItem("unipath.remember_email")}catch{}}catch(e){setAuthMsg(e.message)}}
   async function unlockAccess(e){e.preventDefault();setUnlockMsg("");try{setLoading("unlock");await api("unlock",{key:accessKey});setUnlocked(true);setAccessKey("");await bootstrap()}catch(e){setUnlockMsg(e.message)}finally{setLoading("")}}
-  async function logout(){await supabase?.auth.signOut();setNavOpen(false);setSession(null)}
+  async function logout(){await supabase?.auth.signOut();setNavOpen(false);setSession(null);setUnlocked(false);setProfile({...EmptyProfile});setPredictions(null);setPlans([]);setSavedOpps([]);setRoadmap([]);setGeneratedRoadmap(null);setGeneratedProjects(null);setChat([]);setHistory([]);setStrategy(null);setSimulation(null)}
   const update=(k,v)=>setProfile(p=>({...p,[k]:v}));
   async function saveProfile(){try{setLoading("save");const d=await api("save_profile",{profile});setProfile({...EmptyProfile,...d.profile})}catch(e){alert(e.message)}finally{setLoading("")}}
   async function syncPlansWithPredictions(nextPredictions){
