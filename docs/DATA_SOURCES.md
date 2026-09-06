@@ -1,5 +1,11 @@
 # Initial verified high-school context sources
 
+## U.S. Common Data Set layer
+
+U.S. institutional records are refreshed from school-published Common Data Set documents. `scripts/update-cds-data.mjs` uses the open CollegeData index to locate and normalize those documents, but stores the original institution URL, archived copy, academic year, CDS field identifiers, and extraction quality with every record. Only CDS-layer values marked reported or derived are accepted. Documents with an unknown academic year are held for review and cannot change the admissions baseline. Non-U.S. records are left unchanged.
+
+Coverage and exceptions are recorded in [CDS_COVERAGE.md](./CDS_COVERAGE.md).
+
 These sources support only the initial high-school aggregate context layer. They do not justify individual acceptance probabilities.
 
 ## Shanghai High School International Division (SHSID)
