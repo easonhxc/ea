@@ -52,6 +52,7 @@ export default function Home(){
   const [chat,setChat]=useState([]),[question,setQuestion]=useState(""),[chatHydrated,setChatHydrated]=useState(false),[history,setHistory]=useState([]),[isAdmin,setIsAdmin]=useState(false),[adminData,setAdminData]=useState(null);
   const [loading,setLoading]=useState(""),[importText,setImportText]=useState(""),[feedback,setFeedback]=useState("");
   const [language,setLanguage]=useState("en"),[density,setDensity]=useState("comfortable"),[theme,setTheme]=useState("light");
+  const [navOpen,setNavOpen]=useState(false);
   const [collegeTrack,setCollegeTrack]=useState("common20"),[collegeCountry,setCollegeCountry]=useState("all"),[collegeTier,setCollegeTier]=useState("all"),[collegeInstitution,setCollegeInstitution]=useState("all"),[collegeQuery,setCollegeQuery]=useState(""),[collegeSort,setCollegeSort]=useState("recommended"),[selectedCollege,setSelectedCollege]=useState(null),[compareSchools,setCompareSchools]=useState([]),[showComparison,setShowComparison]=useState(false);
   const [oppKind,setOppKind]=useState("all"),[oppQuery,setOppQuery]=useState(""),[selectedProject,setSelectedProject]=useState(null);
   const [showOnboarding,setShowOnboarding]=useState(false),[onboardingStep,setOnboardingStep]=useState(0);
@@ -78,7 +79,7 @@ export default function Home(){
   },[]);
   useEffect(()=>{if(session){setChatHydrated(false);bootstrap()}},[session]);
   useEffect(()=>{if(session&&tab==="opportunities"&&!opps.length)loadOpportunities()},[tab,session]);
-  useEffect(()=>{try{localStorage.setItem("unipath.language",language)}catch{}},[language]);
+  useEffect(()=>{try{localStorage.setItem("unipath.language",language)}catch{}if(typeof document!=="undefined")document.documentElement.lang=language==="zh"?"zh-CN":"en"},[language]);
   useEffect(()=>{try{localStorage.setItem("unipath.density",density)}catch{}},[density]);
   useEffect(()=>{
     try{localStorage.setItem("unipath.theme",theme)}catch{}
@@ -122,7 +123,7 @@ export default function Home(){
     }catch(e){alert(e.message)}finally{setLoading("")}
   }
   async function signIn(e){e.preventDefault();setAuthMsg("");try{if(!supabase)throw new Error("Supabase is not configured.");if(authMode==="signup"){const {error}=await supabase.auth.signUp({email,password});if(error)throw error;setAuthMsg("Account created. Check email if confirmation is enabled.")}else{const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error}try{if(rememberMe)localStorage.setItem("unipath.remember_email",email);else localStorage.removeItem("unipath.remember_email")}catch{}}catch(e){setAuthMsg(e.message)}}
-  async function logout(){await supabase?.auth.signOut();setSession(null)}
+  async function logout(){await supabase?.auth.signOut();setNavOpen(false);setSession(null)}
   const update=(k,v)=>setProfile(p=>({...p,[k]:v}));
   async function saveProfile(){try{setLoading("save");const d=await api("save_profile",{profile});setProfile({...EmptyProfile,...d.profile})}catch(e){alert(e.message)}finally{setLoading("")}}
   async function syncPlansWithPredictions(nextPredictions){
@@ -179,14 +180,15 @@ export default function Home(){
   const effectiveApplicationPlans=draftPlans.length?draftPlans:plans;
   useEffect(()=>{if(predictions?.round_strategy)setStrategy({strategy:predictions.round_strategy,validation:{errors:[],warnings:[]}})},[predictions]);
   const completedRoadmap=roadmap.filter(x=>x.status==="done").length;
+  const navigate=id=>{setNavOpen(false);if(id==="history")loadHistory();else setTab(id)};
 
   if(!session)return <AuthScreen mode={authMode} setMode={setAuthMode} email={email} setEmail={setEmail} password={password} setPassword={setPassword} remember={rememberMe} setRemember={setRememberMe} submit={signIn} msg={authMsg} language={language} setLanguage={setLanguage}/>;
   const hs=highSchools.find(h=>h.id===profile.high_school_id);const copy=ui(language);
 
   return <div className={`shell ${density==="compact"?"compactUI":""}`}>
-    <aside className="rail">
-      <div className="brand"><div className="mark">U</div><div><b>UniPath</b><small>Admissions OS 1.0</small></div></div>
-      <nav>{NAV_IDS.map(id=><button key={id} className={tab===id?"active":""} onClick={()=>id==="history"?loadHistory():setTab(id)}>{copy.nav[id]}</button>)}{isAdmin&&<button className={tab==="admin"?"active":""} onClick={loadAdmin}>{copy.nav.admin}</button>}</nav>
+    <aside className={`rail ${navOpen?"menuOpen":""}`}>
+      <div className="railTop"><div className="brand"><div className="mark">U</div><div><b>UniPath</b><small>Admissions OS 1.0</small></div></div><button type="button" className="navToggle" aria-expanded={navOpen} aria-controls="primary-navigation" onClick={()=>setNavOpen(v=>!v)}><span>{copy.nav[tab]||"Menu"}</span><i aria-hidden="true">{navOpen?"×":"☰"}</i></button></div>
+      <nav id="primary-navigation" className={navOpen?"open":""}>{NAV_IDS.map(id=><button key={id} className={tab===id?"active":""} onClick={()=>navigate(id)}>{copy.nav[id]}</button>)}{isAdmin&&<button className={tab==="admin"?"active":""} onClick={()=>{setNavOpen(false);loadAdmin()}}>{copy.nav.admin}</button>}</nav>
       <div className="account"><div className="accountIdentity"><span className="accountAvatar">{String(session.user.email||"U").slice(0,1).toUpperCase()}</span><div><b>{String(session.user.email||"UniPath").split("@")[0]}</b><span>{session.user.email}</span></div></div><button onClick={logout}>{copy.logout}</button></div>
     </aside>
 

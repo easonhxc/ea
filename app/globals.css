@@ -256,3 +256,54 @@ input,select,textarea{background:var(--field);border:1px solid var(--line2);colo
 @media(max-width:820px){.shell{grid-template-columns:1fr}.rail{position:static;height:auto;border-right:0;border-bottom:1px solid var(--line)}.workspace{padding:22px}.overviewHero{grid-template-columns:1fr}.overviewScore{border-left:0;border-top:1px solid var(--line);padding:18px 0 0}.overviewGrid{grid-template-columns:1fr}}
 /* Warm Academic — legacy component normalization */
 .courseHead small,.roundSchool small,.roundSchool em,.projectCard ul,.projectCard ol,.authHint,.demoLogin>span{color:var(--muted)!important}.courseRow{border-top-color:var(--line)}.filterStatic{background:var(--surface-soft);border-color:var(--line);color:var(--muted)}.strategyCard.selected{background:color-mix(in srgb,var(--accentSoft) 42%,var(--surface));border-color:color-mix(in srgb,var(--accent) 24%,var(--line))}.roundGroup{background:var(--surface);border-color:var(--line);border-radius:11px}.roundGroup>span{color:var(--muted2)}.roundSchool i{color:var(--accent);border-color:var(--line2);background:var(--surface-soft)}.fitColumns em{color:var(--warn)}.tier.ukaspirational,.tier.ukcompetitive,.tier.ukrealistic,.tier.uksafer{background:var(--surface-soft);border-color:var(--line);color:var(--text)}.rememberRow{color:var(--muted)!important}.authHint strong,.projectCard b{color:var(--accent)}.demoAccounts code{color:var(--muted)}.preferenceTrace>b,.preferenceTrace strong{color:var(--text)}.preferenceTrace>span{color:var(--muted)}.cycleResult{background:var(--surface);border-color:var(--line);border-radius:11px}.cycleRow small{color:var(--muted)}.outcome.withdrawn{color:var(--muted)}
+
+/* 1.0 readability and responsive navigation pass */
+:root{
+  --serif:"Iowan Old Style","Palatino Linotype","Book Antiqua","Songti SC","STSong","Noto Serif CJK SC",Georgia,serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",sans-serif;
+}
+html{font-size:16px;text-rendering:optimizeLegibility;font-synthesis:none}
+body{font-family:var(--sans);font-size:13px;line-height:1.55;-webkit-font-smoothing:antialiased}
+button,input,select,textarea{font-family:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid color-mix(in srgb,var(--accent) 62%,transparent);outline-offset:2px}
+.railTop{display:contents}.navToggle{display:none}
+.authTop{display:flex;align-items:flex-start;justify-content:space-between;gap:18px}.authTop>div{min-width:0}.languageMini{flex:0 0 132px}
+.shell,.workspace,.panel,.mast>div,.overviewMain,.collegeName,.compactWhy,.projectCard,.opp,.message,.sourceLinks a>*{min-width:0}
+.panel p,.overviewMain p,.schoolSignature,.message,.cleanList li,.roadItem small,.roadItem em,.projectCard li,.opp p,.opp li,.contextCallout span,.gapList span,.milestone small,.personalRead span,.sourceLinks b,.authHint{overflow-wrap:anywhere}
+
+/* Keep supporting text small, but readable on standard laptop displays. */
+.rail nav button{font-size:12px;line-height:1.35}
+.brand small,.accountIdentity span,.account>button,.kicker,.overline,.overviewScore span,.overviewScore small,.actionLine>span,.actionLine small,.mini span,.tierStrip span,.intelClusterHead div span,.intelClusterHead>i,.trackTabs button,.toolbarHint,.collegeName>span,.confidenceLine,.rankStrip i,.fitStrip i,.priority,.feedback span,footer{font-size:10px!important;line-height:1.45}
+.facts span,.chips span,.tags span,.badges i,.portfolioShape span,.projectMeta span,.preferenceTrace>span,.signalChips span,.field>span,.countryChecks label,.chance span,.why span,.why small,.oppTop .kind,.oppFoot span,.roundGroup>span,.roundSchool small,.roundSchool i,.projectSignal span,.milestone>span,.chatSync,.valueCard span,.personalRead b,.sourceLinks span,.detailChance>span,.detailChance>small,.detailEvidence i,.detailStatRows b,.detailStatRows i,.historyRunHead small,.historySignal span,.deltaGrid b,.deltaGrid small,.probabilityDeltas>b,.compareRange span,.compareRange small,.compareStats i,.compareDNA span,.comparePersonal span,.comparePersonal small,.trackContext small,.authHint,.demoLogin>span{font-size:10px!important;line-height:1.45}
+.panel p,.overviewMain p,.opp p,.opp ul,.projectCard ul,.projectCard ol,.message,.prompts button,.roadItem small,.roadItem em,.appRow span,.strategyCard>small,.notice,.error,.modelNote.concise span,.contextCallout span,.gapList span,.personalRead span,.sourceLinks b,.milestone small,.cleanList li,.historySignal i,.probabilityDeltas span,.comparePersonal b,.compareStats b,.compareDNA b,.valueCard b,.projectSignal b,.signalLine b,.signalLine span{font-size:11px!important}
+.solid,.quiet,.saved,.feedback button,.oppFoot button,.textButton,.segmented button{font-size:11px;line-height:1.25}
+input,select,textarea{font-size:12px;line-height:1.45}
+.auth form label{font-size:11px}.authHint{line-height:1.55!important}
+
+@media(max-width:820px){
+  .rail{position:sticky;top:0;z-index:100;display:block;height:auto;padding:10px 14px;background:color-mix(in srgb,var(--rail) 94%,transparent);box-shadow:0 6px 22px rgba(55,49,37,.06)}
+  .railTop{display:flex;align-items:center;justify-content:space-between;gap:14px}.brand{padding:0}.brand small{display:block}
+  .navToggle{display:flex;align-items:center;justify-content:space-between;gap:12px;min-width:148px;min-height:40px;padding:8px 11px;border:1px solid var(--line2);border-radius:9px;background:var(--surface);color:var(--text);font-size:11px;font-weight:700}.navToggle i{font-style:normal;font-size:17px;line-height:1;color:var(--accent)}
+  .rail nav{display:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;overflow:visible;margin-top:10px;padding-top:10px;border-top:1px solid var(--line)}.rail nav.open{display:grid}.rail nav button{white-space:normal;text-align:center;padding:10px 8px}.rail nav button.active:before{left:20%;right:20%;top:auto;bottom:3px;width:auto;height:2px}
+  .account{display:none}.rail.menuOpen .account{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;margin-top:10px;padding:11px 2px 2px}.account>button{padding:8px 4px;text-align:right;font-size:10px!important}
+  .workspace{padding:22px 18px 30px;overflow-x:hidden}.mast{align-items:flex-start}.mastActions{flex:0 0 auto}
+  .toolbarPrimary{grid-template-columns:minmax(0,1fr) 190px}.toolbarPrimary .solid{grid-column:1/-1}
+  .projectDetailHero,.detailHero{grid-template-columns:1fr}.detailChance{border-left:0;border-top:1px solid var(--line);padding:18px 0 0}.detailMetrics{grid-template-columns:1fr 1fr}
+  .metricRow.five{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+
+@media(max-width:560px){
+  .rail{padding:9px 12px}.brand b{font-size:17px}.brand small{display:none}.navToggle{min-width:136px}
+  .rail nav{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .workspace{padding:18px 12px 26px}.mast{display:grid;grid-template-columns:1fr;gap:16px}.mastActions{display:grid;grid-template-columns:1fr 1fr;width:100%}.mast h1{font-size:clamp(30px,9vw,36px)}
+  .authModern{padding:24px 16px 34px;gap:22px}.authCopy{margin:30px 0 8px}.authCopy h1{font-size:clamp(38px,12vw,48px)!important}.authTop{display:grid;grid-template-columns:1fr;gap:12px}.languageMini{width:100%;min-width:0}
+  .toolbarPrimary{grid-template-columns:1fr}.toolbarPrimary .solid{grid-column:auto;width:100%}.toolbarSecondary{display:grid;grid-template-columns:1fr}.toolbarSecondary>*{width:100%!important;min-width:0!important}
+  .projectGrid.v28,.projectColumns,.detailGrid,.detailGrid.lower,.detailEvidence,.schoolReadGrid,.projectImpactGrid,.comparisonGrid{grid-template-columns:1fr!important}
+  .collegeRow.rich.v27{grid-template-columns:1fr}.collegeActions,.collegeActions.triple{grid-template-columns:1fr 1fr;width:100%;min-width:0}.collegeActions.triple button:first-child{grid-column:1/-1}
+  .personalRead span,.sourceLinks a,.milestone{grid-template-columns:1fr;gap:5px}.sourceLinks i{justify-self:start}
+  .signalLine{grid-template-columns:1fr auto}.signalLine span{grid-column:1/-1}.metricRow.five{grid-template-columns:1fr 1fr}
+  .onboardingBackdrop{padding:12px}.onboardingCard{width:calc(100vw - 24px);padding:20px}.onboardingTop h2{font-size:27px}.onboardingPreview{grid-template-columns:46px 1fr}.guideIcon{width:46px;height:46px}.onboardingActions button{min-width:0}
+  .feedback{display:grid;grid-template-columns:1fr}.feedback>*{width:100%}
+}
+
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
