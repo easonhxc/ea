@@ -255,7 +255,7 @@ function ProfileEditor({profile,update,importText,setImportText,importProfile,lo
   const addIB=()=>update("ib_courses",[...(profile.ib_courses||[]),{subject:"",level:"HL",score:null,status:"completed"}]);
   const addAL=()=>update("alevel_courses",[...(profile.alevel_courses||[]),{subject:"",grade:"unknown",status:"completed"}]);
   const addPref=()=>update("school_preferences",[...(profile.school_preferences||[]),{school_name:"",interest:null,note:""}]);
-  return <section className="stack">
+  return <section className="stack"><article className="panel diyBackgroundIntro"><span className="overline">DIY BACKGROUND</span><h2>Build your own applicant background.</h2><p>This is your unlocked workspace for academics, activities, outputs, preferences and the evidence used by the college model.</p></article>
     <article className="panel"><div className="panelHead"><div><span className="overline">CONTEXT</span><h3>School & application direction</h3></div></div><div className="formGrid three">
       <Field label="High school"><select value={profile.high_school_id||""} onChange={chooseHS}><option value="">Select or use Other</option>{highSchools.map(h=><option key={h.id} value={h.id}>{h.name}{h.name_zh?` / ${h.name_zh}`:""}</option>)}</select></Field>
       <Field label="School name / custom"><input value={profile.high_school_name||""} onChange={e=>update("high_school_name",e.target.value)} placeholder="Type your school if not listed"/></Field>
