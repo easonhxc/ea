@@ -49,10 +49,27 @@ async function aiAssessment(profile,major){
 
 export async function POST(request){
   try{
-    const body=await request.json();const action=String(body.action||"");const user=await requireUser(request);const supabase=getSupabaseAdmin();const admin=isAdminEmail(user.email);
+    const body=await request.json();const action=String(body.action||"");const supabase=getSupabaseAdmin();
+    if(action==="signup"){
+      const email=String(body.email||"").trim().toLowerCase(),password=String(body.password||"");
+      if(!/^\S+@\S+\.\S+$/.test(email))return fail("Enter a valid email address.");
+      if(password.length<6)return fail("Password must contain at least 6 characters.");
+      const created=await supabase.auth.admin.createUser({email,password,email_confirm:true,app_metadata:{unipath_unlocked:false}});
+      if(created.error)return fail(created.error.message,created.error.status||400);
+      return ok({created:true,email});
+    }
+    const user=await requireUser(request);const admin=isAdminEmail(user.email);const unlocked=admin||user.app_metadata?.unipath_unlocked===true;
 
-    if(action==="me")return ok({user:{id:user.id,email:user.email},is_admin:admin,catalog:{high_schools:highSchools.length,...catalogStats()}});
+    if(action==="unlock"){
+      const supplied=createHash("sha256").update(String(body.key||"")).digest("hex");
+      if(supplied!=="2bfa0e43ea8a0757f6d202899a22b9587c7a6bc64b6440498f9ac343937307f2")return fail("Invalid access key.",403);
+      const updated=await supabase.auth.admin.updateUserById(user.id,{app_metadata:{...(user.app_metadata||{}),unipath_unlocked:true}});
+      if(updated.error)throw updated.error;return ok({unlocked:true});
+    }
+
+    if(action==="me")return ok({user:{id:user.id,email:user.email},is_admin:admin,unlocked,catalog:{high_schools:highSchools.length,...catalogStats()}});
     if(action==="bootstrap"){
+      if(!unlocked)return ok({is_admin:admin,unlocked:false,profile:null,plans:[],saved_opportunities:[],roadmap:[],messages:[],predictions:null});
       const [profileRow,plansRow,savedRow,roadmapRow,chatRow,latestRow]=await Promise.all([
         supabase.from("profiles").select("profile,updated_at").eq("user_id",user.id).maybeSingle(),
         supabase.from("application_plans").select("*").eq("user_id",user.id).order("created_at"),
@@ -64,6 +81,7 @@ export async function POST(request){
       for(const r of [profileRow,plansRow,savedRow,roadmapRow,chatRow,latestRow])if(r.error)throw r.error;
       return ok({
         is_admin:admin,
+        unlocked:true,
         profile:profileRow.data?.profile||null,
         plans:(plansRow.data||[]).map(enrichPlan),
         saved_opportunities:(savedRow.data||[]).map(x=>({...x,opportunity:getOpportunity(x.opportunity_id)})),
@@ -73,6 +91,7 @@ export async function POST(request){
         prediction_created_at:latestRow.data?.created_at||null
       });
     }
+    if(!unlocked)return fail("Enter the UniPath access key to unlock this feature.",403);
     if(action==="load_profile"){
       const {data}=await supabase.from("profiles").select("profile,updated_at").eq("user_id",user.id).maybeSingle();return ok({profile:data?.profile||null,updated_at:data?.updated_at||null});
     }
@@ -245,6 +264,7 @@ ${JSON.stringify(roadmap||[])}`;
   }catch(error){
     console.error("UniPath API error:",error);
     if(error?.message==="AUTH_REQUIRED")return fail("Please log in.",401);
+    if(error?.message==="JWT_CLOCK_SKEW")return fail("Your session token has an invalid issue time. UniPath will refresh it automatically; retry if this message remains.",401);
     if(error?.name==="ZodError" || Array.isArray(error?.issues)){
       return fail("AI returned profile fields in an unsupported format. Please retry; UniPath now normalizes common enum and output-format variations.",422);
     }

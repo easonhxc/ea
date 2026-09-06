@@ -53,6 +53,7 @@ export default function Home(){
   const [loading,setLoading]=useState(""),[importText,setImportText]=useState(""),[feedback,setFeedback]=useState("");
   const [language,setLanguage]=useState("en"),[density,setDensity]=useState("comfortable"),[theme,setTheme]=useState("light");
   const [navOpen,setNavOpen]=useState(false);
+  const [unlocked,setUnlocked]=useState(false),[accessKey,setAccessKey]=useState(""),[unlockMsg,setUnlockMsg]=useState("");
   const [collegeTrack,setCollegeTrack]=useState("common20"),[collegeCountry,setCollegeCountry]=useState("all"),[collegeTier,setCollegeTier]=useState("all"),[collegeInstitution,setCollegeInstitution]=useState("all"),[collegeQuery,setCollegeQuery]=useState(""),[collegeSort,setCollegeSort]=useState("recommended"),[selectedCollege,setSelectedCollege]=useState(null),[compareSchools,setCompareSchools]=useState([]),[showComparison,setShowComparison]=useState(false);
   const [oppKind,setOppKind]=useState("all"),[oppQuery,setOppQuery]=useState(""),[selectedProject,setSelectedProject]=useState(null);
   const [showOnboarding,setShowOnboarding]=useState(false),[onboardingStep,setOnboardingStep]=useState(0);
@@ -94,16 +95,17 @@ export default function Home(){
   useEffect(()=>{if(!session?.user?.id||!generatedProjects)return;try{localStorage.setItem(projectCacheKey(session.user.id),JSON.stringify(generatedProjects))}catch{}},[generatedProjects,session?.user?.id]);
   useEffect(()=>{if(!session)return;const sync=()=>{if(document.visibilityState==="visible"&&tab==="advisor")refreshChat()};document.addEventListener("visibilitychange",sync);window.addEventListener("focus",sync);return()=>{document.removeEventListener("visibilitychange",sync);window.removeEventListener("focus",sync)}},[session?.user?.id,tab]);
 
-  async function api(action,body={}){
-    if(!session?.access_token)throw new Error("Please log in.");
+  async function api(action,body={},retry=true,token=session?.access_token){
+    if(!token)throw new Error("Please log in.");
     let res;
     try{
-      res=await fetch("/api/unipath",{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${session.access_token}`},body:JSON.stringify({action,...body})});
+      res=await fetch("/api/unipath",{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${token}`},body:JSON.stringify({action,...body})});
     }catch(e){
       throw new Error("Network request failed. Refresh the page and retry. If it repeats, check the latest Vercel runtime log.");
     }
     const raw=await res.text();let data={};
     try{data=raw?JSON.parse(raw):{}}catch{}
+    if(res.status===401&&retry&&/issue time|issued.*future|session token/i.test(String(data.error||raw))){const refreshed=await supabase?.auth.refreshSession();const next=refreshed?.data?.session;if(next?.access_token){setSession(next);return api(action,body,false,next.access_token)}}
     if(!res.ok)throw new Error(data.error||raw||`Request failed (${res.status})`);
     return data;
   }
@@ -112,6 +114,7 @@ export default function Home(){
       setLoading("bootstrap");
       const d=await api("bootstrap");
       setIsAdmin(!!d.is_admin);
+      setUnlocked(!!d.unlocked);
       if(d.profile)setProfile({...EmptyProfile,...d.profile});
       let loadedPlans=d.plans||[];
       if(d.predictions){setPredictions(d.predictions);if(loadedPlans.length){try{const synced=await api("sync_plans",{predictions:d.predictions});loadedPlans=synced.plans||loadedPlans}catch{}}}
@@ -119,10 +122,11 @@ export default function Home(){
       try{const cachedProjects=JSON.parse(localStorage.getItem(projectCacheKey(session.user.id))||"null");if(cachedProjects?.projects?.length)setGeneratedProjects(cachedProjects)}catch{}
       let cached=[];try{cached=JSON.parse(localStorage.getItem(chatCacheKey(session.user.id))||"[]")}catch{}
       setChat(mergeChatMessages(cached,(d.messages||[]).map(serverChatMessage)));setChatHydrated(true);
-      try{if(!localStorage.getItem(onboardingKey(session.user.id))){setOnboardingStep(0);setShowOnboarding(true)}}catch{}
+      try{if(d.unlocked&&!localStorage.getItem(onboardingKey(session.user.id))){setOnboardingStep(0);setShowOnboarding(true)}}catch{}
     }catch(e){alert(e.message)}finally{setLoading("")}
   }
-  async function signIn(e){e.preventDefault();setAuthMsg("");try{if(!supabase)throw new Error("Supabase is not configured.");if(authMode==="signup"){const {error}=await supabase.auth.signUp({email,password});if(error)throw error;setAuthMsg("Account created. Check email if confirmation is enabled.")}else{const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error}try{if(rememberMe)localStorage.setItem("unipath.remember_email",email);else localStorage.removeItem("unipath.remember_email")}catch{}}catch(e){setAuthMsg(e.message)}}
+  async function signIn(e){e.preventDefault();setAuthMsg("");try{if(!supabase)throw new Error("Supabase is not configured.");if(authMode==="signup"){const res=await fetch("/api/unipath",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"signup",email,password})});const data=await res.json();if(!res.ok)throw new Error(data.error||"Account creation failed.");const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error}else{const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error}try{if(rememberMe)localStorage.setItem("unipath.remember_email",email);else localStorage.removeItem("unipath.remember_email")}catch{}}catch(e){setAuthMsg(e.message)}}
+  async function unlockAccess(e){e.preventDefault();setUnlockMsg("");try{setLoading("unlock");await api("unlock",{key:accessKey});setUnlocked(true);setAccessKey("");await bootstrap()}catch(e){setUnlockMsg(e.message)}finally{setLoading("")}}
   async function logout(){await supabase?.auth.signOut();setNavOpen(false);setSession(null)}
   const update=(k,v)=>setProfile(p=>({...p,[k]:v}));
   async function saveProfile(){try{setLoading("save");const d=await api("save_profile",{profile});setProfile({...EmptyProfile,...d.profile})}catch(e){alert(e.message)}finally{setLoading("")}}
@@ -183,6 +187,7 @@ export default function Home(){
   const navigate=id=>{setNavOpen(false);if(id==="history")loadHistory();else setTab(id)};
 
   if(!session)return <AuthScreen mode={authMode} setMode={setAuthMode} email={email} setEmail={setEmail} password={password} setPassword={setPassword} remember={rememberMe} setRemember={setRememberMe} submit={signIn} msg={authMsg} language={language} setLanguage={setLanguage}/>;
+  if(!unlocked)return <LockedLibrary email={session.user.email} logout={logout} accessKey={accessKey} setAccessKey={setAccessKey} unlock={unlockAccess} message={unlockMsg} loading={loading}/>;
   const hs=highSchools.find(h=>h.id===profile.high_school_id);const copy=ui(language);
 
   return <div className={`shell ${density==="compact"?"compactUI":""}`}>
@@ -216,6 +221,17 @@ export default function Home(){
 function AuthScreen({mode,setMode,email,setEmail,password,setPassword,remember,setRemember,submit,msg,language,setLanguage}){
   const zh=language==="zh";
   return <main className="auth authModern"><section className="authHero"><div className="brand authBrand"><div className="mark">U</div><div><b>UniPath</b><small>Admissions OS 1.0</small></div></div><div className="authCopy"><span className="kicker">UNIPATH</span><h1>{zh?"把申请规划，收进一条清晰路径。":"Plan what matters next."}</h1><p>{zh?"档案、选校、项目、时间线和申请策略持续同步，不需要每次重新开始。":"Your profile, college list, projects, roadmap and application strategy stay in one continuous system."}</p><div className="authSignals"><span><b>{schools.length}</b>{zh?" 所学校":" schools"}</span><span><b>{majors.length}</b>{zh?" 个专业方向":" majors"}</span><span><b>1</b>{zh?" 条持续规划":" persistent plan"}</span></div></div></section><form className="authCard" onSubmit={submit}><div className="authTop"><div><span className="overline">{mode==="login"?(zh?"欢迎回来":"WELCOME BACK"):(zh?"开始使用":"GET STARTED")}</span><h2>{mode==="login"?(zh?"登录 UniPath":"Sign in"):(zh?"创建账户":"Create account")}</h2></div><select className="languageMini" value={language} onChange={e=>setLanguage(e.target.value)}><option value="en">English</option><option value="zh">简体中文</option></select></div><label>{zh?"邮箱":"Email"}<input type="email" autoComplete="email" value={email} onChange={e=>setEmail(e.target.value)} required/></label><label>{zh?"密码":"Password"}<input type="password" autoComplete={mode==="login"?"current-password":"new-password"} value={password} onChange={e=>setPassword(e.target.value)} minLength={6} required/></label>{mode==="login"&&<><div className="demoLogin"><span>{zh?"同学测试账户":"Classmate demo account"}</span><select value={email.startsWith("unipath.demo")?email:""} onChange={e=>{if(e.target.value)setEmail(e.target.value)}}><option value="">{zh?"可选：选择管理员创建的测试账户":"Optional: choose a demo user"}</option>{[1,2,3,4,5].map(n=>{const v=`unipath.demo${n}@example.com`;return <option key={v} value={v}>{v}</option>})}</select></div><label className="rememberRow"><input type="checkbox" checked={remember} onChange={e=>setRemember(e.target.checked)}/><span>{zh?"记住邮箱":"Remember email"}</span></label></>}<button className="solid authPrimary" type="submit">{mode==="login"?(zh?"继续":"Continue"):(zh?"创建账户":"Create account")}</button>{msg&&<div className="notice">{msg}</div>}<button type="button" className="textButton authSwitch" onClick={()=>setMode(mode==="login"?"signup":"login")}>{mode==="login"?(zh?"创建新账户":"Create an account"):(zh?"已有账户？登录":"Already have an account?")}</button><small className="authHint">{zh?"密码由浏览器密码管理器处理；UniPath 不会把明文密码写入本地存储。":"Passwords are handled by your browser password manager; UniPath does not write raw passwords to local storage."}</small></form></main>
+}
+
+const DEMO_BACKGROUNDS=[
+  {id:"social",label:"社会科学 · 城市研究",student:"11 年级国际课程学生",summary:"高强度写作与社会观察，活动围绕城市、教育公平和公共叙事形成主线。",academics:["SAT 1530","AP Psychology 5","AP English Language 5"],activities:["城市身份纪录片：访谈、剪辑与公开放映","教育公平调研：问卷、数据分析与政策简报","校报主编：建立专题报道流程"],schools:["UChicago · Super Reach","Brown · Super Reach","Northwestern · Reach","Tufts · Reach","NYU · Reach","UVA · Target","Wisconsin–Madison · Likely"],timeline:["9–10 月：完成纪录片与研究资料归档","11–12 月：形成英文研究摘要并邀请外部反馈","1–3 月：深化一个可量化的社区项目","4–6 月：整理作品集、活动描述和推荐信证据"]},
+  {id:"engineering",label:"工程 · 机器人系统",student:"10 年级 STEM 学生",summary:"数学和物理基础扎实，用机器人项目证明设计、迭代与团队领导能力。",academics:["SAT 1510","AP Calculus BC 5","AP Physics C 5"],activities:["机器人队机械负责人：三轮原型迭代","低成本环境传感器：开源硬件与数据面板","数学建模社：组织校际训练营"],schools:["MIT · Super Reach","Carnegie Mellon · Super Reach","Georgia Tech · Reach","Purdue · Target","UIUC · Target","Virginia Tech · Likely","RIT · Likely"],timeline:["暑期：完成传感器准确性实验","9–11 月：发布代码、物料清单和测试报告","12–2 月：组织真实用户试用并记录改进","3–6 月：准备工程作品集和技术说明"]},
+  {id:"bio",label:"生命科学 · 公共健康",student:"IB 11 年级学生",summary:"以生物学课程为基础，通过公共健康调查与科普输出连接实验、数据和服务。",academics:["IB Biology HL 7","IB Chemistry HL 6","TOEFL 112"],activities:["青少年睡眠调查：研究设计与统计分析","社区健康科普：双语手册与工作坊","校内生物实验项目：重复实验与误差分析"],schools:["Johns Hopkins · Super Reach","Cornell · Reach","Emory · Reach","Boston University · Target","Rochester · Target","UC Davis · Target","Ohio State · Likely"],timeline:["8–10 月：完成伦理说明、问卷和试测","11–1 月：清洗数据并完成统计分析","2–4 月：发布报告并举办两场工作坊","5–6 月：复盘影响数据并完成申请素材"]}
+];
+
+function LockedLibrary({email,logout,accessKey,setAccessKey,unlock,message,loading}){
+  const [view,setView]=useState("examples"),[selected,setSelected]=useState(DEMO_BACKGROUNDS[0]),[query,setQuery]=useState("");const q=query.trim().toLowerCase();const catalog=schools.filter(s=>!q||s.name.toLowerCase().includes(q)||String(COUNTRY_LABEL[s.country]||s.country).toLowerCase().includes(q));
+  return <div className="lockedShell"><header className="lockedTop"><div className="brand"><div className="mark">U</div><div><b>UniPath</b><small>VIEW-ONLY LIBRARY</small></div></div><nav><button className={view==="examples"?"active":""} onClick={()=>setView("examples")}>背景案例</button><button className={view==="universities"?"active":""} onClick={()=>setView("universities")}>大学资料</button></nav><div className="row"><span className="lockedEmail">{email}</span><button className="textButton" onClick={logout}>退出</button></div></header><main className="lockedMain"><section className="panel unlockHero"><div><span className="overline">PREVIEW ACCESS</span><h1>浏览案例，或解锁你的规划空间。</h1><p>当前账户只能查看系统示例和大学资料。输入访问密钥后可使用 DIY Background、个人预测、活动规划、时间线、申请策略与 AI Advisor。</p></div><form onSubmit={unlock}><label><span>访问密钥</span><input type="password" value={accessKey} onChange={e=>setAccessKey(e.target.value)} placeholder="输入密钥" required/></label><button className="solid" disabled={loading==="unlock"}>{loading==="unlock"?"正在验证…":"解锁全部功能"}</button>{message&&<div className="notice">{message}</div>}</form></section>{view==="examples"?<><div className="demoTabs">{DEMO_BACKGROUNDS.map(x=><button className={selected.id===x.id?"active":""} onClick={()=>setSelected(x)} key={x.id}>{x.label}</button>)}</div><section className="demoBackgroundGrid"><article className="panel"><span className="overline">BACKGROUND</span><h2>{selected.label}</h2><b>{selected.student}</b><p>{selected.summary}</p><div className="chips">{selected.academics.map(x=><span key={x}>{x}</span>)}</div></article><article className="panel"><span className="overline">ACTIVITY PLAN</span><h3>活动与成果</h3><ul className="cleanList">{selected.activities.map(x=><li key={x}>{x}</li>)}</ul></article><article className="panel"><span className="overline">COLLEGE RESULT</span><h3>示例选校结构</h3><div className="demoSchoolList">{selected.schools.map(x=><span key={x}>{x}</span>)}</div></article><article className="panel"><span className="overline">TIMELINE</span><h3>示例时间安排</h3><div className="demoTimeline">{selected.timeline.map((x,i)=><span key={x}><i>{String(i+1).padStart(2,"0")}</i><b>{x}</b></span>)}</div></article></section></>:<section className="panel universityLibrary"><div className="panelHead"><div><span className="overline">UNIVERSITY CATALOG</span><h2>{schools.length} 所大学</h2></div><input value={query} onChange={e=>setQuery(e.target.value)} placeholder="搜索学校或国家"/></div><div className="universityRows">{catalog.map(s=><div key={s.name}><b>{s.name}</b><span>{COUNTRY_LABEL[s.country]||s.country}</span><i>{s.cds?.status==="available"?`CDS ${s.cds.year}`:`Catalog rank ${s.rank}`}</i></div>)}</div></section>}</main></div>
 }
 
 function Overview({profile,predictions,plans,roadmap,completedRoadmap,hs,go,runPrediction}){
