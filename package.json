@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "data:update-cds": "node scripts/update-cds-data.mjs --write"
+    "data:update-cds": "node scripts/update-cds-data.mjs --write",
+    "test:model": "node scripts/audit-model.mjs"
   },
   "dependencies": {
     "next": "latest",
