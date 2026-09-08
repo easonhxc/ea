@@ -169,6 +169,9 @@ SUPABASE_SECRET_KEY=sb_secret_xxx
 # SUPABASE_SERVICE_ROLE_KEY=legacy_service_role_if_needed
 
 ADMIN_EMAILS=admin@example.com
+
+# SHA-256 of the private unlock key. Keep the key itself out of GitHub.
+UNIPATH_ACCESS_KEY_HASH=sha256_of_your_private_unlock_key
 ```
 
 Never expose an AI provider key or Supabase server/service key through `NEXT_PUBLIC_*` variables or commit them to GitHub.

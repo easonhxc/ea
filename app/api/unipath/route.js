@@ -18,6 +18,10 @@ import schoolCatalog from "@/data/schools.json";
 export const runtime="nodejs";
 const ok=data=>NextResponse.json(data);
 const fail=(message,status=400)=>NextResponse.json({error:message},{status});
+const requestWindows=new Map();
+const runtimeMetrics={started_at:new Date().toISOString(),requests:0,errors:0,ai_requests:0,last_errors:[]};
+function allowRequest(key,limit=24,windowMs=10*60*1000){const now=Date.now(),prior=requestWindows.get(key)||[];const active=prior.filter(x=>now-x<windowMs);if(active.length>=limit){requestWindows.set(key,active);return false}active.push(now);requestWindows.set(key,active);return true}
+function recordError(error){runtimeMetrics.errors++;runtimeMetrics.last_errors=[{at:new Date().toISOString(),message:String(error?.message||error).slice(0,180)},...runtimeMetrics.last_errors].slice(0,8)}
 function profileFingerprint(profile,primary,secondary){
   const {us_rank_cap:_,include_liberal_arts_colleges:__,...applicantProfile}=profile||{};
   const stable=JSON.stringify({profile:applicantProfile,primary:primary||profile?.primary_major||null,secondary:secondary||profile?.secondary_major||null});
@@ -49,7 +53,7 @@ async function aiAssessment(profile,major){
 
 export async function POST(request){
   try{
-    const body=await request.json();const action=String(body.action||"");const supabase=getSupabaseAdmin();
+    const body=await request.json();const action=String(body.action||"");runtimeMetrics.requests++;const supabase=getSupabaseAdmin();
     if(action==="signup"){
       const email=String(body.email||"").trim().toLowerCase(),password=String(body.password||"");
       if(!/^\S+@\S+\.\S+$/.test(email))return fail("Enter a valid email address.");
@@ -61,13 +65,20 @@ export async function POST(request){
     const user=await requireUser(request);const admin=isAdminEmail(user.email);const unlocked=admin||user.app_metadata?.unipath_unlocked===true;
 
     if(action==="unlock"){
+      if(!allowRequest(`unlock:${user.id}`,6,10*60*1000))return fail("Too many unlock attempts. Please wait a few minutes and try again.",429);
       const supplied=createHash("sha256").update(String(body.key||"")).digest("hex");
-      if(supplied!=="2bfa0e43ea8a0757f6d202899a22b9587c7a6bc64b6440498f9ac343937307f2")return fail("Invalid access key.",403);
+      const expected=process.env.UNIPATH_ACCESS_KEY_HASH||"2bfa0e43ea8a0757f6d202899a22b9587c7a6bc64b6440498f9ac343937307f2";
+      if(supplied!==expected)return fail("Invalid access key.",403);
       const updated=await supabase.auth.admin.updateUserById(user.id,{app_metadata:{...(user.app_metadata||{}),unipath_unlocked:true}});
       if(updated.error)throw updated.error;return ok({unlocked:true});
     }
 
     if(action==="me")return ok({user:{id:user.id,email:user.email},is_admin:admin,unlocked,catalog:{high_schools:highSchools.length,...catalogStats()}});
+    if(action==="sign_out_all"){
+      const result=await supabase.auth.admin.signOut(user.id,"global");
+      if(result?.error)throw result.error;
+      return ok({signed_out:true});
+    }
     if(action==="bootstrap"){
       if(!unlocked)return ok({is_admin:admin,unlocked:false,profile:null,plans:[],saved_opportunities:[],roadmap:[],messages:[],predictions:null});
       const [profileRow,plansRow,savedRow,roadmapRow,chatRow,latestRow]=await Promise.all([
@@ -83,6 +94,7 @@ export async function POST(request){
         is_admin:admin,
         unlocked:true,
         profile:profileRow.data?.profile||null,
+        profile_updated_at:profileRow.data?.updated_at||null,
         plans:(plansRow.data||[]).map(enrichPlan),
         saved_opportunities:(savedRow.data||[]).map(x=>({...x,opportunity:getOpportunity(x.opportunity_id)})),
         roadmap:roadmapRow.data||[],
@@ -92,6 +104,10 @@ export async function POST(request){
       });
     }
     if(!unlocked)return fail("Enter the UniPath access key to unlock this feature.",403);
+    if(["analyze","predict","counsel","generate_projects","generate_roadmap"].includes(action)){
+      runtimeMetrics.ai_requests++;
+      if(!allowRequest(`ai:${user.id}`,30,10*60*1000))return fail("AI request limit reached. Please wait a few minutes before trying again.",429);
+    }
     if(action==="load_profile"){
       const {data}=await supabase.from("profiles").select("profile,updated_at").eq("user_id",user.id).maybeSingle();return ok({profile:data?.profile||null,updated_at:data?.updated_at||null});
     }
@@ -99,7 +115,7 @@ export async function POST(request){
       const {data,error}=await supabase.from("prediction_runs").select("result,created_at").eq("user_id",user.id).order("created_at",{ascending:false}).limit(1).maybeSingle();if(error)throw error;return ok({predictions:data?.result||null,created_at:data?.created_at||null});
     }
     if(action==="save_profile"){
-      const profile=resolveHighSchool(ApplicantProfileSchema.parse(body.profile));const {error}=await supabase.from("profiles").upsert({user_id:user.id,profile,updated_at:new Date().toISOString()});if(error)throw error;return ok({saved:true,profile});
+      const profile=resolveHighSchool(ApplicantProfileSchema.parse(body.profile));const updatedAt=new Date().toISOString();const {error}=await supabase.from("profiles").upsert({user_id:user.id,profile,updated_at:updatedAt});if(error)throw error;return ok({saved:true,profile,updated_at:updatedAt});
     }
     if(action==="analyze"){
       const text=String(body.text||"").trim(),ageBand=String(body.age_band||"unknown");if(ageBand==="under_13")return fail("This app does not process profile data for users under 13.");if(text.length<20)return fail("Please provide a more complete applicant description.");if(text.length>25000)return fail("Profile text is too long.");
@@ -108,7 +124,11 @@ export async function POST(request){
       const [ai,[ovs,hsovs]]=await Promise.all([aiAssessment(profile,profile.primary_major||"Undeclared"),configPromise]);
       const predictions=predict(profile,profile.primary_major,profile.secondary_major,ovs,ai.assessment,hsovs);
       predictions.ai_status=ai.status;predictions.ai_error=ai.error;predictions.profile_fingerprint=profileFingerprint(profile,profile.primary_major,profile.secondary_major);
-      await supabase.from("profiles").upsert({user_id:user.id,profile,updated_at:new Date().toISOString()});await supabase.from("prediction_runs").insert({user_id:user.id,primary_major:predictions.primary_major,secondary_major:predictions.secondary_major,result:predictions});return ok({profile,predictions});
+      return ok({profile,predictions,preview_only:true});
+    }
+    if(action==="commit_analyze"){
+      const profile=resolveHighSchool(ApplicantProfileSchema.parse(body.profile));const predictions=body.predictions&&typeof body.predictions==="object"?body.predictions:null;if(!predictions)return fail("Prediction preview is missing.");
+      const updatedAt=new Date().toISOString();const saved=await supabase.from("profiles").upsert({user_id:user.id,profile,updated_at:updatedAt});if(saved.error)throw saved.error;const run=await supabase.from("prediction_runs").insert({user_id:user.id,primary_major:predictions.primary_major||profile.primary_major,secondary_major:predictions.secondary_major||profile.secondary_major,result:predictions});if(run.error)throw run.error;return ok({saved:true,profile,updated_at:updatedAt});
     }
     if(action==="predict"){
       const profile=resolveHighSchool(ApplicantProfileSchema.parse(body.profile));const primary=body.primary_major||profile.primary_major,secondary=body.secondary_major||profile.secondary_major;const fp=profileFingerprint(profile,primary,secondary);
@@ -246,7 +266,7 @@ ${JSON.stringify(roadmap||[])}`;
     if(action==="feedback"){const message=String(body.message||"").trim();if(!message)return fail("Feedback is empty.");const {error}=await supabase.from("feedback").insert({user_id:user.id,message});if(error)throw error;return ok({saved:true})}
 
     if(action==="admin_stats"){
-      if(!admin)return fail("Admin access required.",403);const [profiles,plans,runs,feedback,ovs,hsovs,roadmap,chat,saved]=await Promise.all([supabase.from("profiles").select("*",{count:"exact",head:true}),supabase.from("application_plans").select("*",{count:"exact",head:true}),supabase.from("prediction_runs").select("*",{count:"exact",head:true}),supabase.from("feedback").select("*",{count:"exact",head:true}),supabase.from("school_overrides").select("school_name,data,updated_at").order("school_name"),supabase.from("high_school_outcome_overrides").select("*").order("high_school_id"),supabase.from("roadmap_items").select("*",{count:"exact",head:true}),supabase.from("conversation_messages").select("*",{count:"exact",head:true}),supabase.from("saved_opportunities").select("*",{count:"exact",head:true})]);return ok({stats:{profiles:profiles.count||0,plans:plans.count||0,runs:runs.count||0,feedback:feedback.count||0,roadmap:roadmap.count||0,chat:chat.count||0,saved_opportunities:saved.count||0},overrides:ovs.data||[],high_school_overrides:hsovs.data||[],catalog:{universities:schoolCatalog.length,high_schools:highSchools.length,...catalogStats()}});
+      if(!admin)return fail("Admin access required.",403);const [profiles,plans,runs,feedback,ovs,hsovs,roadmap,chat,saved]=await Promise.all([supabase.from("profiles").select("*",{count:"exact",head:true}),supabase.from("application_plans").select("*",{count:"exact",head:true}),supabase.from("prediction_runs").select("*",{count:"exact",head:true}),supabase.from("feedback").select("*",{count:"exact",head:true}),supabase.from("school_overrides").select("school_name,data,updated_at").order("school_name"),supabase.from("high_school_outcome_overrides").select("*").order("high_school_id"),supabase.from("roadmap_items").select("*",{count:"exact",head:true}),supabase.from("conversation_messages").select("*",{count:"exact",head:true}),supabase.from("saved_opportunities").select("*",{count:"exact",head:true})]);return ok({stats:{profiles:profiles.count||0,plans:plans.count||0,runs:runs.count||0,feedback:feedback.count||0,roadmap:roadmap.count||0,chat:chat.count||0,saved_opportunities:saved.count||0},runtime_metrics:{...runtimeMetrics,last_errors:runtimeMetrics.last_errors},overrides:ovs.data||[],high_school_overrides:hsovs.data||[],catalog:{universities:schoolCatalog.length,high_schools:highSchools.length,...catalogStats()}});
     }
     if(action==="admin_save_override"){
       if(!admin)return fail("Admin access required.",403);const schoolName=String(body.school_name||"").trim();if(!schoolName)return fail("School name is required.");const data=typeof body.data==="object"&&body.data?body.data:{};const {error}=await supabase.from("school_overrides").upsert({school_name:schoolName,data,updated_by:user.id,updated_at:new Date().toISOString()});if(error)throw error;return ok({saved:true});
@@ -263,6 +283,7 @@ ${JSON.stringify(roadmap||[])}`;
     }
     return fail("Unknown action.");
   }catch(error){
+    recordError(error);
     console.error("UniPath API error:",error);
     if(error?.message==="AUTH_REQUIRED")return fail("Please log in.",401);
     if(error?.message==="JWT_CLOCK_SKEW")return fail("Your session token has an invalid issue time. UniPath will refresh it automatically; retry if this message remains.",401);
