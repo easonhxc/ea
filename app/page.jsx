@@ -267,17 +267,25 @@ function LockedLibrary({email,logout,accessKey,setAccessKey,unlock,message,loadi
 }
 
 function VoiceInput({onText}){
-  const [listening,setListening]=useState(false);
+  const [listening,setListening]=useState(false);const recognitionRef=useRef(null);const seenFinalRef=useRef(new Set());
+  useEffect(()=>()=>{const recognition=recognitionRef.current;recognitionRef.current=null;recognition?.abort()},[]);
   function toggle(){
     if(typeof window==="undefined")return;
     const Recognition=window.SpeechRecognition||window.webkitSpeechRecognition;
     if(!Recognition){alert("当前浏览器不支持语音输入，请使用 Chrome 或 Safari。");return}
-    if(listening){setListening(false);return}
-    const recognition=new Recognition();recognition.lang=document.documentElement.lang||"zh-CN";recognition.interimResults=true;recognition.continuous=false;
-    recognition.onstart=()=>setListening(true);recognition.onend=()=>setListening(false);recognition.onerror=()=>setListening(false);
-    recognition.onresult=e=>{const text=Array.from(e.results).map(x=>x[0]?.transcript||"").join("").trim();if(text)onText(text)};recognition.start();
+    if(listening){recognitionRef.current?.stop();setListening(false);return}
+    const recognition=new Recognition();recognitionRef.current=recognition;seenFinalRef.current.clear();recognition.lang=document.documentElement.lang||"zh-CN";recognition.interimResults=true;recognition.continuous=false;recognition.maxAlternatives=1;
+    recognition.onstart=()=>setListening(true);
+    recognition.onresult=e=>{
+      for(let i=e.resultIndex;i<e.results.length;i++){
+        const result=e.results[i];
+        if(result.isFinal){const text=result[0]?.transcript?.trim();const key=`${i}:${text}`;if(text&&!seenFinalRef.current.has(key)){seenFinalRef.current.add(key);onText(text)}}
+      }
+    };
+    recognition.onerror=()=>{if(recognitionRef.current===recognition)setListening(false)};recognition.onend=()=>{if(recognitionRef.current!==recognition)return;recognitionRef.current=null;seenFinalRef.current.clear();setListening(false)};
+    try{recognition.start()}catch{recognitionRef.current=null;setListening(false)}
   }
-  return <button type="button" className={`voiceButton ${listening?"listening":""}`} onClick={toggle} aria-label={listening?"Stop voice input":"Start voice input"} title={listening?"停止识别":"语音输入"}><span aria-hidden="true">{listening?"■":"◉"}</span>{listening?"识别中":"语音"}</button>
+  return <button type="button" className={`voiceButton ${listening?"listening":""}`} onClick={toggle} aria-pressed={listening} aria-label={listening?"Stop voice input":"Start voice input"} title={listening?"停止识别":"语音输入"}><span aria-hidden="true">{listening?"■":"◉"}</span>{listening?"识别中":"语音"}</button>
 }
 
 function ProfileAIHero({importText,setImportText,importProfile,loading,go}){
