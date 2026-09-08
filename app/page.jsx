@@ -148,6 +148,7 @@ export default function Home(){
       let cached=[];try{cached=JSON.parse(localStorage.getItem(chatCacheKey(session.user.id))||"[]")}catch{}
       setChat(mergeChatMessages(cached,(d.messages||[]).map(serverChatMessage)));setChatHydrated(true);
       try{if(d.unlocked&&!localStorage.getItem(onboardingKey(session.user.id))){setOnboardingStep(0);setShowOnboarding(true)}}catch{}
+      if(d.unlocked)void resumePendingAI();
     }catch(e){alert(e.message)}finally{setLoading("")}
   }
   async function signIn(e){e.preventDefault();setAuthMsg("");try{if(!supabase)throw new Error("Supabase is not configured.");if(authMode==="signup"){const res=await fetch("/api/unipath",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"signup",email,password})});const data=await res.json();if(!res.ok)throw new Error(data.error||"Account creation failed.");const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error}else{const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error}try{if(rememberMe)localStorage.setItem("unipath.remember_email",email);else localStorage.removeItem("unipath.remember_email")}catch{}}catch(e){setAuthMsg(e.message)}}
