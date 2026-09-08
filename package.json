@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "data:update-cds": "node scripts/update-cds-data.mjs --write",
+    "data:cache-school-logos": "node scripts/cache-school-logos.mjs",
     "test:model": "node scripts/audit-model.mjs"
   },
   "dependencies": {
