@@ -150,7 +150,12 @@ export default function Home(){
       setChat(mergeChatMessages(cached,(d.messages||[]).map(serverChatMessage)));setChatHydrated(true);
       try{if(d.unlocked&&!localStorage.getItem(onboardingKey(session.user.id))){setOnboardingStep(0);setShowOnboarding(true)}}catch{}
       if(d.unlocked)void resumePendingAI();
-    }catch(e){alert(e.message)}finally{setLoading("")}
+    }catch(e){
+      if(/issue time|issued.*future|session token|JWT_CLOCK_SKEW/i.test(String(e?.message||e))){
+        try{await supabase?.auth.signOut({scope:"local"})}catch{}
+        setSession(null);setUnlocked(false);setAuthMsg("登录会话已过期，请重新登录。");
+      }else alert(e.message)
+    }finally{setLoading("")}
   }
   async function signIn(e){e.preventDefault();setAuthMsg("");try{if(!supabase)throw new Error("Supabase is not configured.");if(authMode==="signup"){const res=await fetch("/api/unipath",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({action:"signup",email,password})});const data=await res.json();if(!res.ok)throw new Error(data.error||"Account creation failed.");const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error}else{const {error}=await supabase.auth.signInWithPassword({email,password});if(error)throw error}try{if(rememberMe)localStorage.setItem("unipath.remember_email",email);else localStorage.removeItem("unipath.remember_email")}catch{}}catch(e){setAuthMsg(e.message)}}
   async function unlockAccess(e){e.preventDefault();setUnlockMsg("");try{setLoading("unlock");await api("unlock",{key:accessKey});setUnlocked(true);setAccessKey("");await bootstrap()}catch(e){setUnlockMsg(e.message)}finally{setLoading("")}}
