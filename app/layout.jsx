@@ -1,8 +1,9 @@
 import "./globals.css";
+import "./upgrade.css";
 
 export const metadata={
-  title:"UniPath 1.0 — Admissions Planning OS",
-  description:"Persistent applicant intelligence, college intelligence, strategy, projects, roadmap and admissions planning."
+  title:"UniPath — Admissions Planning Workspace",
+  description:"A focused workspace for applicant evidence, college fit, projects, roadmap and application strategy."
 };
 
 export default function RootLayout({children}) {
